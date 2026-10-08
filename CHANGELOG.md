@@ -2,6 +2,11 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.6] - 2024-10-08
+
+### Fixed
+- **Horizontal quick launch overflow hidden**: More than 6 quick-launch icons no longer render half-cut rows colliding with the bar edges — `ToolbarItems` capped to `MaxHeight=56` (exactly 2 rows) with `ClipToBounds=True`; icons 7+ are laid out but not rendered. First 6 icons always show as 2 rows of 3.
+
 ## [1.0.5] - 2024-10-08
 
 ### Fixed
