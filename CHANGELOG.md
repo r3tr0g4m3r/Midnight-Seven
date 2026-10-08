@@ -2,6 +2,13 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.8] - 2026-10-08
+
+### Changed
+- **Task buttons are now 64×50px in both orientations** (were 46×46) — vertical tiles fill the bar edge-to-edge like the start button, horizontal tiles center with 7px top/bottom margins
+- The 36px icon gets 4px of breathing room above and below inside the tile (was 2px)
+- `TaskButtonWidth` key (previously unused) now drives the width: 46 → 64; `TaskButtonMargin` `0,9,0,9` → `0,7,0,7` so the taller tile still centers in the 64px bar
+
 ## [1.0.7] - 2026-10-08
 
 ### Changed
