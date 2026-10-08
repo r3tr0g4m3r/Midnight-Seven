@@ -6,12 +6,12 @@ A Windows 7-style theme for [RetroBar](https://github.com/dremin/RetroBar) featu
 
 ![Midnight Seven](screenshot.png)
 
-*Vertical taskbar with 32px task icons, 36px start button icon, and 24px quick launch icons in 2-column layout*
+*Vertical taskbar with 36px task icons, 36px start button icon, and 24px quick launch icons in 2-column layout*
 
 ## Features
 
 - **Windows 7/10 style icon-only task buttons** - No window titles, just icons
-- **Vertical taskbar optimized** - 64px wide bar with centered 32px icons
+- **Vertical taskbar optimized** - 64px wide bar with centered 36px icons
 - **Square task buttons in both orientations** - 46×46px rounded squares: horizontal floats vertically in the 64px bar, vertical centers in the 64px-wide bar (macOS dock style)
 - **Large start button** - 36px customizable icon (vector-based, replaceable)
 - **Quick launch toolbar** - 24px icons, borderless (fits 64px bar)
@@ -64,7 +64,7 @@ Replace the `StartButtonIcon` resource in the theme file:
 | `TaskbarWidth` | 64 | Vertical taskbar width |
 | `TaskbarHeight` | 64 | Horizontal taskbar height |
 | `TaskButtonWidth` | 46 | Task button size — square 46×46 tiles in both orientations |
-| `TaskButtonIconSize` | 32 | Task button icon size |
+| `TaskButtonIconSize` | 36 | Task button icon size (set in the `TaskIcon` style) |
 | `StartButtonIconSize` | 36 | Start button icon size |
 | `StartButtonVerticalSize` | 44 | Start button height (vertical) |
 | `StartButtonHorizontalHeight` | 34 | Start button height (horizontal) |

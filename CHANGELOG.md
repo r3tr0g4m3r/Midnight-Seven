@@ -2,6 +2,12 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.3] - 2024-10-08
+
+### Changed
+- **Task icons enlarged**: 32×32px → 36×36px (fills the 46×46 tile better, dock-style)
+- Task button content margin in horizontal mode set to 0 so the larger icon has full room (42×42 content area)
+
 ## [1.0.2] - 2024-10-08
 
 ### Fixed
