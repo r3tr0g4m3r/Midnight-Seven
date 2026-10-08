@@ -2,36 +2,47 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
-## [1.0.6] - 2024-10-08
+## [1.0.7] - 2026-10-08
+
+### Changed
+- **Self-contained theme file**: The 14 base styles previously inherited from RetroBar's built-in System theme are now inlined directly into the file (copied verbatim from RetroBar v1.22.122, commit `cff7a787c3`) so the theme resolves every `StaticResource` locally and parses standalone — inlined keys are prefixed `SystemTheme.` to avoid clashing with the theme's own overrides, which keep their original names
+
+### Fixed
+- **Vertical taskbar background**: Added the missing `TaskbarVerticalBackground` definition (referenced in vertical mode but never defined) — gradient from `#16111f` to `#1a1a36`, matching the horizontal palette
+
+### Removed
+- Dead `StartIconImage` / `StartButtonImage` bitmap references (target files were never shipped; the start button uses the vector `StartButtonIcon`)
+
+## [1.0.6] - 2026-10-08
 
 ### Fixed
 - **Horizontal quick launch overflow hidden**: More than 6 quick-launch icons no longer render half-cut rows colliding with the bar edges — `ToolbarItems` capped to `MaxHeight=56` (exactly 2 rows) with `ClipToBounds=True`; icons 7+ are laid out but not rendered. First 6 icons always show as 2 rows of 3.
 
-## [1.0.5] - 2024-10-08
+## [1.0.5] - 2026-10-08
 
 ### Fixed
 - **Horizontal quick launch wrapping**: Icons now wrap into rows of 3 (6 icons = 2 rows of 3) instead of a single unbounded row — `ToolbarItems` constrained to `MaxWidth=96` (3 × 32px columns)
 - Quick launch block is vertically centered in the 64px bar (56px tall, 4px top/bottom)
 
-## [1.0.4] - 2024-10-08
+## [1.0.4] - 2026-10-08
 
 ### Fixed
 - **Horizontal taskbar centering**: Task buttons now float centered vertically in the 64px bar (9px padding top and bottom) instead of sitting flush against the top border — matches the centered look of vertical mode
 - `TaskButtonMargin` set to `0,9,0,9` (row height 46+18 = 64 = bar height); also applied via Style.Triggers for multi-row mode
 
-## [1.0.3] - 2024-10-08
+## [1.0.3] - 2026-10-08
 
 ### Changed
 - **Task icons enlarged**: 32×32px → 36×36px (fills the 46×46 tile better, dock-style)
 - Task button content margin in horizontal mode set to 0 so the larger icon has full room (42×42 content area)
 
-## [1.0.2] - 2024-10-08
+## [1.0.2] - 2026-10-08
 
 ### Fixed
 - **Vertical taskbar**: Task buttons are now the same 46×46px square tiles as horizontal mode, centered in the 64px-wide bar (previously 64px wide × ~36px tall rectangles)
 - Both orientations now render identical 46×46 rounded squares with a centered 32px icon
 
-## [1.0.1] - 2024-10-08
+## [1.0.1] - 2026-10-08
 
 ### Fixed
 - **Horizontal taskbar**: Task buttons are now square (46×46px) instead of rectangular (46×64px), centered vertically in the 64px bar — matches macOS dock / Windows 10 taskbar look
@@ -42,7 +53,7 @@ All notable changes to the Midnight Seven theme will be documented in this file.
 - ToolbarButton: Removed pressed-state borders; ContentPresenter Margin=0; Horizontal Margin="2,0,2,0"
 - TaskIcon: Added Stretch=Uniform, VerticalAlignment=Center, HorizontalAlignment=Center
 
-## [1.0.0] - 2024-10-08
+## [1.0.0] - 2026-10-08
 
 ### Added
 - Initial release of Midnight Seven theme

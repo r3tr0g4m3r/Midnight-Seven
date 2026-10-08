@@ -2,12 +2,6 @@
 
 A Windows 7-style theme for [RetroBar](https://github.com/dremin/RetroBar) featuring large centered icons, vertical taskbar optimization, and a dark midnight aesthetic.
 
-## Preview
-
-![Midnight Seven](screenshot.png)
-
-*Vertical taskbar with 36px task icons, 36px start button icon, and 24px quick launch icons in 2-column layout*
-
 ## Features
 
 - **Windows 7/10 style icon-only task buttons** - No window titles, just icons
@@ -20,6 +14,7 @@ A Windows 7-style theme for [RetroBar](https://github.com/dremin/RetroBar) featu
 - **Active window highlight** - Foreground window icon stays at full opacity
 - **Dark midnight palette** - Deep purples with cyan/orange/green accents
 - **High DPI ready** - Vector icons scale perfectly at any DPI
+- **Self-contained** - RetroBar's System theme base styles are inlined (v1.22.122, commit `cff7a787c3`), so the file resolves every resource locally and parses standalone
 
 ## Installation
 
@@ -28,6 +23,8 @@ A Windows 7-style theme for [RetroBar](https://github.com/dremin/RetroBar) featu
 3. Select **"Midnight Seven"** from the theme dropdown
 4. Set **Taskbar Location** to **Left** or **Right** (vertical)
 5. Enable **Show window thumbnails** in Properties for live previews
+
+> The working copy's `Themes/` folder also holds 18 upstream Midnight / Dark Mode themes by Ward Hale. They are reference material only — gitignored, not maintained here, and not part of this project.
 
 ## Customization
 
@@ -63,7 +60,11 @@ Replace the `StartButtonIcon` resource in the theme file:
 |-----|---------|-------------|
 | `TaskbarWidth` | 64 | Vertical taskbar width |
 | `TaskbarHeight` | 64 | Horizontal taskbar height |
+| `TaskbarRowHeight` | 64 | Horizontal taskbar row height (one row of task buttons) |
+| `TaskbarUnlockedSize` | 4 | Size of the drag handle shown when the taskbar is unlocked |
 | `TaskButtonWidth` | 46 | Task button size — square 46×46 tiles in both orientations |
+| `TaskButtonMargin` | `0,9,0,9` | Horizontal-mode margins that center the 46px tile in the 64px bar |
+| `TaskButtonVerticalMargin` | `0,0,0,2` | Vertical-mode margins (bottom spacing between tiles) |
 | `TaskButtonIconSize` | 36 | Task button icon size (set in the `TaskIcon` style) |
 | `StartButtonIconSize` | 36 | Start button icon size |
 | `StartButtonVerticalSize` | 44 | Start button height (vertical) |
@@ -73,7 +74,7 @@ Replace the `StartButtonIcon` resource in the theme file:
 
 Quick launch icon size is controlled by the `ToolbarIcon` style:
 ```xaml
-<Style x:Key="ToolbarIcon" BasedOn="{StaticResource ToolbarIcon}" TargetType="Image">
+<Style x:Key="ToolbarIcon" BasedOn="{StaticResource SystemTheme.ToolbarIcon}" TargetType="Image">
     <Setter Property="Width" Value="24" />
     <Setter Property="Height" Value="24" />
     <Setter Property="Margin" Value="2" />

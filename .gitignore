@@ -1,5 +1,6 @@
-# RetroBar theme files
-*.xaml
+# Reference themes (upstream by Ward Hale) - only Midnight Seven is part of this project
+/Themes/*.xaml
+!/Themes/Midnight Seven.xaml
 
 # IDE/Editor
 .vscode/

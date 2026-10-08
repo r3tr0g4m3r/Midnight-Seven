@@ -1,0 +1,2311 @@
+<!-- Midnight Seven - based on "Midnight Test" (Midnight Windows Longhorn by Ward Hale). Windows 7-style icon-only taskbar with large centered icons, optimized for vertical (left/right docked) taskbars. -->
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:Double x:Key="TaskbarHeight">64</system:Double>
+    <system:Double x:Key="TaskbarRowHeight">64</system:Double>
+    <system:Double x:Key="TaskbarWidth">64</system:Double>
+    <system:Double x:Key="TaskButtonWidth">46</system:Double>
+    <system:Double x:Key="TaskbarUnlockedSize">4</system:Double>
+    <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
+    <system:Boolean x:Key="UseLargeIcons">True</system:Boolean>
+    <!--system:Boolean x:Key="UseFloatingStartButton">false</system:Boolean-->
+    <Thickness x:Key="TaskButtonMargin">0,9,0,9</Thickness>
+    <Thickness x:Key="TaskButtonVerticalMargin">0,0,0,2</Thickness>
+
+    <!-- Start button sizing (larger than task icons) -->
+    <system:Double x:Key="StartButtonIconSize">36</system:Double>
+    <system:Double x:Key="StartButtonVerticalSize">44</system:Double>
+    <system:Double x:Key="StartButtonHorizontalHeight">34</system:Double>
+
+    <DrawingBrush x:Key="winlogo" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#f57b3c" Geometry="F1 M 1.72485,5.83789L 3.1958,0.636841C 6.17462,-0.627686 7.60321,0.0866699 8.89423,0.986084L 7.42853,6.17651C 6.13751,5.28235 4.51324,4.95435 1.72485,5.83789 Z " />
+                    <GeometryDrawing Brush="#1d8acb" Geometry="F1 M 0,11.949L 1.47089,6.74268C 4.44971,5.4834 5.87836,6.19775 7.16937,7.0918L 5.70367,12.2823C 4.41266,11.3936 2.97882,11.1978 0,11.949 Z " />
+                    <GeometryDrawing Brush="#fecc09" Geometry="F1 M 6.47089,12.8274L 7.93652,7.63684C 9.22754,8.52563 11.2963,9.25061 14.2751,7.98608L 12.8042,13.187C 11.6614,13.6738 10.6508,13.8643 9.76715,13.8643C 8.34918,13.8643 7.26459,13.3777 6.47089,12.8274 Z " />
+                    <GeometryDrawing Brush="#6dc068" Geometry="F1 M 8.1958,6.71631L 9.66138,1.52563C 10.9524,2.41992 13.0212,3.14478 16,1.88025L 14.5291,7.0813C 13.3862,7.56812 12.3757,7.75854 11.492,7.75854C 10.074,7.75854 8.98944,7.26648 8.1958,6.71631 Z " />
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <!-- Interchangeable Start button icon -->
+    <!-- 
+         CUSTOMIZATION GUIDE:
+         =====================
+         Replace this entire <DrawingImage x:Key="StartButtonIcon"> block with ONE of:
+         
+         1. CUSTOM PNG/JPG/BMP/TIFF/ICO (recommended for custom logos):
+            <BitmapImage x:Key="StartButtonIcon" 
+                         UriSource="../Resources/my-start-icon.png" 
+                         DecodePixelWidth="36" DecodePixelHeight="36" />
+            * Supported formats: PNG (with transparency), JPG, BMP, TIFF, ICO
+            * Place your image in RetroBar's Resources folder or same folder as theme
+            * Use DecodePixelWidth/Height matching StartButtonIconSize (36) for crisp rendering
+            * Recommended source size: 36x36 or 48x48 (will scale down cleanly)
+         
+         2. CUSTOM VECTOR (DrawingImage) - scales perfectly at any size:
+            <DrawingImage x:Key="StartButtonIcon">
+                <DrawingImage.Drawing>
+                    <DrawingGroup>
+                        * Your GeometryDrawing elements here 
+                    </DrawingGroup>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+            * Use DrawingBrush/DrawingImage format (same as this default)
+            * Define geometry with GeometryDrawing elements
+            * Advantage: perfectly crisp at any DPI/scale
+         
+         3. CUSTOM DRAWINGBRUSH (if you prefer brush-based):
+            <DrawingBrush x:Key="StartButtonIcon" Stretch="Uniform">
+                <DrawingBrush.Drawing>
+                    <DrawingGroup>
+                        * Your GeometryDrawing elements here 
+                    </DrawingGroup>
+                </DrawingBrush.Drawing>
+            </DrawingBrush>
+            * Works with Image.Source via implicit conversion
+            * Stretch="Uniform" ensures proper scaling
+         
+         SIZING:
+         +++++++
+         * The icon renders at StartButtonIconSize (default 36px)
+         * In vertical taskbar: button is 44px tall, icon centered
+         * In horizontal taskbar: button is 34px tall, icon centered
+         * For custom images, provide at least 36x36; 48x48 or 64x64 works well
+         * Vector sources scale infinitely; raster sources should match or exceed 36px
+         
+         PLACEMENT:
+         ++++++++++
+         * For BitmapImage: place image in %LOCALAPPDATA%\RetroBar\Resources\ 
+           or alongside this theme file, then use relative path: 
+           UriSource="../Resources/my-icon.png"
+         * For embedded resources in a compiled theme: use pack URI syntax
+     -->
+    <DrawingImage x:Key="StartButtonIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#f57b3c" Geometry="F1 M 1.72485,5.83789L 3.1958,0.636841C 6.17462,-0.627686 7.60321,0.0866699 8.89423,0.986084L 7.42853,6.17651C 6.13751,5.28235 4.51324,4.95435 1.72485,5.83789 Z " />
+                    <GeometryDrawing Brush="#1d8acb" Geometry="F1 M 0,11.949L 1.47089,6.74268C 4.44971,5.4834 5.87836,6.19775 7.16937,7.0918L 5.70367,12.2823C 4.41266,11.3936 2.97882,11.1978 0,11.949 Z " />
+                    <GeometryDrawing Brush="#fecc09" Geometry="F1 M 6.47089,12.8274L 7.93652,7.63684C 9.22754,8.52563 11.2963,9.25061 14.2751,7.98608L 12.8042,13.187C 11.6614,13.6738 10.6508,13.8643 9.76715,13.8643C 8.34918,13.8643 7.26459,13.3777 6.47089,12.8274 Z " />
+                    <GeometryDrawing Brush="#6dc068" Geometry="F1 M 8.1958,6.71631L 9.66138,1.52563C 10.9524,2.41992 13.0212,3.14478 16,1.88025L 14.5291,7.0813C 13.3862,7.56812 12.3757,7.75854 11.492,7.75854C 10.074,7.75854 8.98944,7.26648 8.1958,6.71631 Z " />
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <SolidColorBrush x:Key="StartButtonBorder1" Color="#1c1c3b" />
+
+    <SolidColorBrush x:Key="StartButtonBorder1Pressed" Color="#372947" />
+
+    <SolidColorBrush x:Key="StartButtonBorder2" Color="#1c1c3b" />
+
+    <SolidColorBrush x:Key="StartButtonBorder3" Color="#1f1f3d" />
+
+    <LinearGradientBrush x:Key="StartButtonBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="Transparent" />
+        <GradientStop Offset="0.0" Color="Transparent" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="StartButtonBackgroundHover" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="#7767bf" />
+        <GradientStop Offset="1.0" Color="#524882" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="StartButtonBackgroundPressed" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="#6767bf" />
+        <GradientStop Offset="0.1" Color="#5187CC" />
+        <GradientStop Offset="0.9" Color="#4F80C2" />
+        <GradientStop Offset="1" Color="#77A1D1" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TaskbarBackground" Color="#16111f" />
+
+    <LinearGradientBrush x:Key="TaskbarVerticalBackground" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0" Color="#16111f" />
+        <GradientStop Offset="1" Color="#1a1a36" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TaskbarBorder" Color="#433357" />
+    <SolidColorBrush x:Key="TaskbarUnlockedBorder1" Color="#1c1c3b" />
+    <SolidColorBrush x:Key="TaskbarUnlockedBorder2" Color="#1a1a36" />
+    <SolidColorBrush x:Key="TaskbarUnlockedBorder3" Color="#1a1a36" />
+    <SolidColorBrush x:Key="TaskbarUnlockedBorder4" Color="#1c1c3b" />
+	
+<!--System Tray little line border pop out thingie on right-->
+    <SolidColorBrush x:Key="TrayLeftBorder1" Color="#433357" />
+    <SolidColorBrush x:Key="TrayLeftBorder2" Color="#433357" />
+
+    <SolidColorBrush x:Key="TrayBackground" Color="#1a1a36" />
+
+    <LinearGradientBrush x:Key="TrayToggleBorder" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0.2" Color="#4e3982" />
+        <GradientStop Offset="0.8" Color="#735496" />
+    </LinearGradientBrush>
+	
+	<SolidColorBrush x:Key="TrayToggleBackground" Color="#16111f" />
+    <RadialGradientBrush x:Key="TrayToggleHoverBackground" GradientOrigin="0.15,0.15" RadiusX="0.75" RadiusY="0.7">
+        <GradientStop Offset="0.0" Color="#666666" />
+        <GradientStop Offset="0.9" Color="#525252" />
+    </RadialGradientBrush>
+    <RadialGradientBrush x:Key="TrayTogglePressedBackground" GradientOrigin="0.1,0.1" RadiusX="0.6" RadiusY="0.6">
+        <GradientStop Offset="0.0" Color="#666666" />
+        <GradientStop Offset="0.9" Color="#525252" />
+    </RadialGradientBrush>
+    <DropShadowEffect
+        x:Key="TrayToggleArrowOuterShadow"
+        BlurRadius="0"
+        Opacity="0"
+        ShadowDepth="0"
+        Color="Transparent" />
+    <DropShadowEffect
+        x:Key="TrayToggleArrowShadow"
+        BlurRadius="2"
+        ShadowDepth="0"
+        Color="#2e2d2d" />
+    <SolidColorBrush x:Key="TrayToggleArrowPressed" Color="#695685" />
+    <Thickness
+        x:Key="TrayToggleArrowPadding"
+        Bottom="4"
+        Left="5"
+        Right="6"
+        Top="4" />
+
+    <LinearGradientBrush x:Key="ButtonBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="#16111f" />
+        <GradientStop Offset="1" Color="#1d1230" />
+    </LinearGradientBrush>
+
+
+    <LinearGradientBrush x:Key="ButtonBackgroundFlashing" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0555556" Color="#332c59" />
+        <GradientStop Offset="0.229167" Color="#332c59" />
+        <GradientStop Offset="0.48973" Color="#332c59" />
+        <GradientStop Offset="0.628472" Color="#332c59" />
+        <GradientStop Offset="0.8125" Color="#42428a" />
+        <GradientStop Offset="0.853652" Color="#42428a" />
+        <GradientStop Offset="0.881944" Color="#42428a" />
+        <GradientStop Offset="0.975694" Color="#42428a" />
+    </LinearGradientBrush>
+<!--Button Separator left and right (separate programs)-->
+    <LinearGradientBrush x:Key="ButtonBorder1" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="#1d1629" />
+        <GradientStop Offset="1" Color="#1d1629" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="ButtonBorder1Pressed" Color="#372947" />
+
+    <SolidColorBrush x:Key="ButtonBorder1Flashing" Color="#6565b5" />
+<!--Active Window Border-->
+    <SolidColorBrush x:Key="ButtonBorder2" Color="#392d6e" />
+
+    <SolidColorBrush x:Key="ButtonBorder2Flashing" Color="#6565b5" />
+
+    <LinearGradientBrush x:Key="ButtonBorder3" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="#332c59" />
+        <GradientStop Offset="1" Color="#332c59" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="ButtonBorder3Flashing" Color="#999999" />
+
+    <SolidColorBrush x:Key="TaskListScrollButtonBackground" Color="#332c59" />
+
+    <LinearGradientBrush x:Key="TaskListScrollButtonBackgroundHover" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="#332c59" />
+        <GradientStop Offset="1" Color="#332c59" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TaskListScrollButtonBorder1Hover" Color="#2a2254" />
+
+    <SolidColorBrush x:Key="TaskListScrollButtonBorder2Hover" Color="#2a2254" />
+
+    <SolidColorBrush x:Key="TaskListScrollButtonBorder3Hover" Color="#2a2254" />
+
+    <LinearGradientBrush x:Key="TaskListScrollButtonBackgroundPressed" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="#46467d" />
+        <GradientStop Offset="1" Color="#46467d" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TaskListScrollButtonBorder1Pressed" Color="#46467d" />
+
+    <SolidColorBrush x:Key="TaskListScrollButtonBorder2Pressed" Color="#46467d" />
+
+    <SolidColorBrush x:Key="TaskListScrollButtonBorder3Pressed" Color="#46467d" />
+<!--toolbar icon divider - shown when unlocked-->
+    <SolidColorBrush x:Key="ToolbarThumbForeground" Color="#46467d" />
+    <SolidColorBrush x:Key="ToolbarThumbBackground" Color="#46467d" />
+
+    <DrawingBrush x:Key="VArrowUp" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 5.99994,1L 0.999817,7L 11.4999,7L 5.99994,1 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="#46467d" />
+                                    <GradientStop Offset="1" Color="#46467d" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="VArrowUpHover" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 5.99994,1L 0.999878,7L 11.4999,7L 5.99994,1 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="#46467d" />
+                                    <GradientStop Offset="1" Color="#46467d" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="VArrowUpPressed" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 5.99994,1L 0.999878,7L 11.4999,7L 5.99994,1 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="#46467d" />
+                                    <GradientStop Offset="1" Color="#46467d" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="VArrowDown" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 6.00012,6.49992L 0.999878,0.499794L 11.5001,0.499916L 6.00012,6.49992 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="#46467d" />
+                                    <GradientStop Offset="1" Color="#46467d" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="VArrowDownHover" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 6.00006,6.49992L 0.999817,0.499794L 11.5,0.499916L 6.00006,6.49992 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="#46467d" />
+                                    <GradientStop Offset="1" Color="#46467d" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="VArrowDownPressed" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 6.00006,6.49992L 0.999817,0.499794L 11.5,0.499916L 6.00006,6.49992 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="#46467d" />
+                                    <GradientStop Offset="1" Color="#46467d" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DropShadowEffect
+        x:Key="StartIconShadow"
+        BlurRadius="4"
+        Direction="315"
+        Opacity="0.85"
+        ShadowDepth="2"
+        Color="#FF4291CE" />
+
+    <DropShadowEffect
+        x:Key="StartLabelShadow"
+        BlurRadius="4"
+        Direction="315"
+        Opacity="0.85"
+        ShadowDepth="2"
+        Color="#FF4B4B4B" />
+ <!--start button text color--> 
+    <SolidColorBrush x:Key="ItemButtonForeground" Color="#d9d9d9" />
+ <!--taskbar button text color--> 
+    <SolidColorBrush x:Key="ButtonForeground" Color="#9c9c9c" />
+    <SolidColorBrush x:Key="ButtonActiveForeground" Color="#968ff7" />
+    <SolidColorBrush x:Key="ButtonPressedForeground" Color="#9376f5" />
+    <SolidColorBrush x:Key="ButtonFlashingForeground" Color="#9376f5" />
+    <SolidColorBrush x:Key="ClockForeground" Color="#d9d9d9" />
+
+    <SolidColorBrush x:Key="ToolTipBackground" Color="#000000" />
+    <SolidColorBrush x:Key="ToolTipForeground" Color="#968ff7" />
+
+    <SolidColorBrush x:Key="BalloonCloseButtonInactiveBackground" Color="#8f63a8" />
+    <SolidColorBrush x:Key="BalloonCloseButtonInactiveBorder" Color="#C7BEA6" />
+    <SolidColorBrush x:Key="BalloonCloseButtonInactiveForeground" Color="#AA9C87" />
+    <SolidColorBrush x:Key="BalloonCloseButtonInactiveShadow" Color="Transparent" />
+
+    <SolidColorBrush x:Key="BalloonCloseButtonActiveBorder" Color="#8f63a8" />
+    <SolidColorBrush x:Key="BalloonCloseButtonActiveForeground" Color="#8f63a8" />
+    <SolidColorBrush x:Key="BalloonCloseButtonActiveShadowLight" Color="#F3F3D6" />
+    <SolidColorBrush x:Key="BalloonCloseButtonActiveShadowDark" Color="#B8B8A2" />
+
+    <SolidColorBrush x:Key="BalloonCloseButtonHoverInnerLight" Color="#11000000" />
+    <SolidColorBrush x:Key="BalloonCloseButtonHoverInnerDark" Color="#33000000" />
+
+    <RadialGradientBrush x:Key="BalloonCloseButtonHoverBackground" GradientOrigin="1.0,1.0" RadiusX="0.8" RadiusY="0.8">
+        <GradientStop Offset="0.0" Color="#62367a" />
+        <GradientStop Offset="0.5" Color="#5b3b6e" />
+        <GradientStop Offset="0.6" Color="#5b3b6e" />
+        <GradientStop Offset="1.0" Color="#8f63a8" />
+    </RadialGradientBrush>
+
+    <SolidColorBrush x:Key="BalloonCloseButtonPressedInnerLight" Color="#08000000" />
+    <SolidColorBrush x:Key="BalloonCloseButtonPressedInnerDark" Color="#33000000" />
+
+    <RadialGradientBrush x:Key="BalloonCloseButtonPressedBackground" GradientOrigin="1.0,1.0" RadiusX="0.8" RadiusY="0.8">
+        <GradientStop Offset="0.0" Color="#d89500" />
+        <GradientStop Offset="0.5" Color="#cc7900" />
+        <GradientStop Offset="0.6" Color="#cc7900" />
+        <GradientStop Offset="1.0" Color="#a96000" />
+    </RadialGradientBrush>
+
+    <DrawingBrush x:Key="XPShowDesktopIcon" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#5a3875" Geometry="F1 M 3.87366,8.72534L 71.6837,0C 73.8849,-0.315704 75.7194,1.21851 75.7812,3.42682L 76.4743,59.9248C 76.5361,62.1331 74.8018,64.1791 72.6006,64.4948L 6.79065,79.2202C 4.58948,79.5359 2.75497,78.0016 2.69315,75.7934L 0,13.2954C -0.0617981,11.0871 1.67249,9.04105 3.87366,8.72534 Z " />
+                    <GeometryDrawing Geometry="F1 M 3.87366,8.72537L 71.6837,0C 73.8849,-0.315704 75.7194,1.21851 75.7812,3.42682L 76.4743,59.9248C 76.5361,62.1331 74.8018,64.1791 72.6006,64.4948L 6.79065,79.2202C 4.58948,79.5359 2.75497,78.0016 2.69315,75.7934L 0,13.2954C -0.0617981,11.0871 1.67249,9.04108 3.87366,8.72537 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.509566,0.0541268" EndPoint="1.35484,0.0541268">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <SkewTransform AngleX="-0.123993" AngleY="0" CenterX="0.509566" CenterY="0.0541268" />
+                                        <RotateTransform Angle="88.227" CenterX="0.509566" CenterY="0.0541268" />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="#FF4EA3EA" />
+                                    <GradientStop Offset="1" Color="#FF18489C" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="M 5.00003,28.2202L 18,12.2202L 60.0001,5.22015L 73.3566,18.6739L 74.0001,47.2201L 64.0001,63.2201L 21,73.2201L 6.00003,61.2201L 5.00003,28.2202 Z ">
+                        <GeometryDrawing.Pen>
+                            <Pen Brush="#FF005EAD" LineJoin="Round" />
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.478035,0.0581315" EndPoint="1.3354,0.0581315">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <SkewTransform AngleX="0.171244" AngleY="0" CenterX="0.478035" CenterY="0.0581315" />
+                                        <RotateTransform Angle="84.1789" CenterX="0.478035" CenterY="0.0581315" />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="#FFFFFFF4" />
+                                    <GradientStop Offset="1" Color="#FFFFFFC8" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M 4.87369,9.72531L 70.6838,0.999969C 72.8849,0.684296 74.7194,2.21848 74.7813,4.42682L 74.8054,6.39417C 74.1365,5.06781 72.6806,2.9791 71.0001,3.22015L 6.52856,12.4865C 4.26968,12.8105 3.48868,13.8633 3.55045,16.0716L 5.2189,74.5732C 5.27359,76.5286 5.75504,78.9503 7.66202,79.0252L 6.79068,79.2201C 4.58951,79.5358 3.75504,77.0016 3.69321,74.7933L 1.00009,14.2954C 0.938232,12.0871 2.67252,10.041 4.87369,9.72531 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.487357,0.0409243" EndPoint="1.19107,0.0409243">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <SkewTransform AngleX="-0.367544" AngleY="0" CenterX="0.487357" CenterY="0.0409243" />
+                                        <RotateTransform Angle="86.6887" CenterX="0.487357" CenterY="0.0409243" />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="#FFDCF5FE" />
+                                    <GradientStop Offset="1" Color="#FF18489C" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M 23.9999,21.2202L 53.0001,16.2202L 55.0001,57.2202L 26,62.2202L 23.9999,21.2202 Z ">
+                        <GeometryDrawing.Pen>
+                            <Pen
+                                Brush="#FF1CA4FB"
+                                LineJoin="Round"
+                                Thickness="1.5" />
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.483872,0.0653275" EndPoint="1.35404,0.0653275">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <SkewTransform AngleX="-1.15928" AngleY="0" CenterX="0.483872" CenterY="0.0653275" />
+                                        <RotateTransform Angle="87.8755" CenterX="0.483872" CenterY="0.0653275" />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="#FFF4FAFF" />
+                                    <GradientStop Offset="1" Color="#FFD0E7FF" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M 44,42.2202L 53.9999,48.2202L 54.9999,57.2202L 47,58.2202L 44,42.2202 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="-0.000454992,0.000871658" EndPoint="1.26132,0.000871658">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <SkewTransform AngleX="-19.9407" AngleY="0" CenterX="-0.000454992" CenterY="0.000871658" />
+                                        <RotateTransform Angle="43.9051" CenterX="-0.000454992" CenterY="0.000871658" />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0.185345" Color="#FF4BBBFF" />
+                                    <GradientStop Offset="0.887931" Color="#FF9FD6FF" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M 43.9999,42.4019L 52.408,44.2198L 48.4467,35.038L 43.9999,42.4019 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.409965,0.232282" EndPoint="1.25158,0.232282">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <SkewTransform AngleX="-3.63669" AngleY="0" CenterX="0.409965" CenterY="0.232282" />
+                                        <RotateTransform Angle="65.0566" CenterX="0.409965" CenterY="0.232282" />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0.512931" Color="#FFC6A541" />
+                                    <GradientStop Offset="1" Color="#FF816716" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="#FF478BCC" Geometry="F1 M 48.4468,35.0383L 69.5652,25.9272L 73.5266,35.1091L 52.4081,44.2202C 51.1358,42.9539 49.8635,41.6877 49.2032,40.1574C 48.543,38.6271 48.4949,36.8327 48.4468,35.0383 Z " />
+                    <GeometryDrawing Geometry="F1 M 49.7611,35.5603L 69.9624,26.8477C 70.1845,28.204 70.4066,29.5604 70.9348,30.7846C 71.463,32.0089 72.2972,33.1011 73.1314,34.1933L 52.9302,42.9059C 51.7899,41.9457 50.6495,40.9855 50.1214,39.7613C 49.5932,38.537 49.6772,37.0486 49.7611,35.5603 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.394188,0.295605" EndPoint="0.871197,0.295605">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <SkewTransform AngleX="15.7223" AngleY="0" CenterX="0.394188" CenterY="0.295605" />
+                                        <RotateTransform Angle="73.5295" CenterX="0.394188" CenterY="0.295605" />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0.103448" Color="#FFBDD6F0" />
+                                    <GradientStop Offset="0.422414" Color="#FF5E9DDD" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="#FF727272" Geometry="F1 M 74.1562,23.9465L 69.5652,25.9272C 69.6133,27.7216 69.6614,29.5161 70.3216,31.0464C 70.9818,32.5767 72.2542,33.8429 73.5266,35.1091L 78.1175,33.1285C 76.8452,31.8622 75.5728,30.596 74.9125,29.0657C 74.2523,27.5354 74.2043,25.741 74.1562,23.9465 Z " />
+                    <GeometryDrawing Geometry="F1 M 74.1562,23.9465C 75.6865,23.2863 77.2169,22.6261 78.6182,22.9291C 80.0195,23.2321 81.2918,24.4984 81.9521,26.0287C 82.6123,27.559 82.6604,29.3534 81.9193,30.5807C 81.1782,31.808 79.6479,32.4683 78.1176,33.1285C 76.8452,31.8622 75.5728,30.596 74.9126,29.0657C 74.2524,27.5354 74.2043,25.741 74.1562,23.9465 Z ">
+                        <GeometryDrawing.Brush>
+                            <RadialGradientBrush Center="0.79128,0.360437" GradientOrigin="0.79128,0.360437" RadiusX="0.585436" RadiusY="0.750622">
+                                <RadialGradientBrush.GradientStops>
+                                    <GradientStop Offset="0.512931" Color="#FFBD1A0C" />
+                                    <GradientStop Offset="1" Color="#FFD97D2F" />
+                                </RadialGradientBrush.GradientStops>
+                                <RadialGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <SkewTransform AngleX="8.86752" AngleY="0" CenterX="0.79128" CenterY="0.360437" />
+                                        <RotateTransform Angle="-19.224" CenterX="0.79128" CenterY="0.360437" />
+                                    </TransformGroup>
+                                </RadialGradientBrush.RelativeTransform>
+                            </RadialGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M 44.0001,42.4022L 46.012,39.4921L 47.4975,42.9354L 44.0001,42.4022 Z " />
+                    <GeometryDrawing Geometry="F1 M 73.6342,25.2609L 70.7347,26.5118C 70.699,27.9793 70.6634,29.4468 71.1916,30.6711C 71.7197,31.8954 72.8117,32.8764 73.9037,33.8574L 76.8033,32.6064C 75.8885,31.549 74.9737,30.4915 74.4455,29.2673C 73.9173,28.043 73.7758,26.6519 73.6342,25.2609 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.178664,0.0922855" EndPoint="1.17928,0.0922855">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <SkewTransform AngleX="-14.3697" AngleY="0" CenterX="0.178664" CenterY="0.0922855" />
+                                        <RotateTransform Angle="58.6444" CenterX="0.178664" CenterY="0.0922855" />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="#FFFFFFFF" />
+                                    <GradientStop Offset="1" Color="#FF808080" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <Style x:Key="TaskManMenuItem" TargetType="MenuItem">
+        <Setter Property="Header" Value="{DynamicResource show_taskman}" />
+    </Style>
+<!-- Font Family and Font Size Stuff -->
+    <FontFamily x:Key="GlobalFontFamily">Segoe UI</FontFamily>
+    <system:Double x:Key="GlobalFontSize">12</system:Double>
+
+        <!-- ===================================================================
+         Inlined RetroBar System theme base (RetroBar v1.22.122, commit cff7a787c3).
+         Copied verbatim from RetroBar's built-in System theme so this file
+         resolves every StaticResource locally and can parse standalone.
+         Base keys are prefixed "SystemTheme." to avoid clashing with this
+         theme's own overrides, which keep their original names below.
+         =================================================================== -->
+    <Style x:Key="DefaultDirection" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="Control.FlowDirection" Value="LeftToRight" />
+    </Style>
+    <Style x:Key="GlobalFonts" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="Control.FontFamily" Value="{DynamicResource GlobalFontFamily}" />
+        <Setter Property="Control.FontSize" Value="{DynamicResource GlobalFontSize}" />
+    </Style>
+    <Style x:Key="TaskListScrollButton" TargetType="RepeatButton" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="{DynamicResource ButtonFace}" />
+        <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="Aliased" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border BorderThickness="0,0,1,1" BorderBrush="{DynamicResource ButtonDarkShadow}" x:Name="ButtonOuterBottomBorder">
+                        <Border BorderThickness="1,1,0,0" BorderBrush="{DynamicResource ButtonHighlight}" x:Name="ButtonOuterTopBorder">
+                            <Border BorderThickness="0,0,1,1" BorderBrush="{DynamicResource ButtonShadow}" x:Name="ButtonInnerBottomBorder">
+                                <Border BorderThickness="1,1,0,0" BorderBrush="{DynamicResource ButtonLight}" Background="{TemplateBinding Background}" Padding="4,0" x:Name="ButtonInnerTopBorder">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-5,0,-3" />
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonOuterBottomBorder" Property="BorderBrush" Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonOuterTopBorder" Property="BorderBrush" Value="{DynamicResource ButtonDarkShadow}" />
+                            <Setter TargetName="ButtonInnerBottomBorder" Property="BorderBrush" Value="{DynamicResource ButtonLight}" />
+                            <Setter TargetName="ButtonInnerTopBorder" Property="BorderBrush" Value="{DynamicResource ButtonShadow}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="TaskListScrollButtonText" TargetType="TextBlock" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="FontFamily" Value="Webdings" />
+        <Setter Property="FontSize" Value="9" />
+    </Style>
+    <Style TargetType="ContentControl" x:Key="SystemTheme.Taskbar" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TranslateTransform X="0" Y="0" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource ButtonLight}" Name="OuterBorder">
+                        <Border BorderThickness="0,1,0,0" BorderBrush="{DynamicResource ButtonHighlight}" Background="{DynamicResource ButtonFace}" Name="InnerBorder">
+                            <ContentPresenter />
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Left">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource ButtonDarkShadow}" />
+                                <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{DynamicResource ButtonShadow}" />
+                                <Setter TargetName="OuterBorder" Property="BorderThickness" Value="0,0,1,0" />
+                                <Setter TargetName="InnerBorder" Property="BorderThickness" Value="0,0,1,0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Right">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="OuterBorder" Property="BorderThickness" Value="1,0,0,0" />
+                                <Setter TargetName="InnerBorder" Property="BorderThickness" Value="1,0,0,0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Top">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="OuterBorder" Property="BorderBrush" Value="{DynamicResource ButtonDarkShadow}" />
+                                <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{DynamicResource ButtonShadow}" />
+                                <Setter TargetName="OuterBorder" Property="BorderThickness" Value="0,0,0,1" />
+                                <Setter TargetName="InnerBorder" Property="BorderThickness" Value="0,0,0,1" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="SystemTheme.TaskButton" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="{DynamicResource ButtonFace}" />
+        <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
+        <Setter Property="Margin" Value="0,0,3,-1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="Transparent" Padding="0,2" Name="ButtonBorder">
+                        <Border BorderThickness="0,0,1,1" BorderBrush="{DynamicResource ButtonDarkShadow}" x:Name="ButtonOuterBottomBorder">
+                            <Border BorderThickness="1,1,0,0" BorderBrush="{DynamicResource ButtonHighlight}" x:Name="ButtonOuterTopBorder">
+                                <Border BorderThickness="0,0,1,1" BorderBrush="{DynamicResource ButtonShadow}" x:Name="ButtonInnerBottomBorder">
+                                    <Border BorderThickness="1,1,0,0" BorderBrush="{DynamicResource ButtonLight}" Background="{TemplateBinding Background}" Padding="2,1" x:Name="ButtonInnerTopBorder">
+                                        <ContentPresenter />
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="ButtonBorder" Property="Padding" Value="2,1" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonOuterBottomBorder" Property="BorderBrush" Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonOuterTopBorder" Property="BorderBrush" Value="{DynamicResource ButtonDarkShadow}" />
+                            <Setter TargetName="ButtonInnerBottomBorder" Property="BorderBrush" Value="{DynamicResource ButtonLight}" />
+                            <Setter TargetName="ButtonInnerTopBorder" Property="BorderBrush" Value="{DynamicResource ButtonShadow}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal" />
+                    <Condition Binding="{Binding Path=Rows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="1" />
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Margin" Value="{DynamicResource TaskButtonMargin}" />
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin" Value="{DynamicResource TaskButtonVerticalMargin}" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="Thumb" x:Key="SystemTheme.ToolbarThumb" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="Margin" Value="2,2,0,2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border BorderThickness="1,0,0,0" BorderBrush="{DynamicResource ButtonShadow}" x:Name="OuterBorder1" SnapsToDevicePixels="True">
+                        <Border BorderThickness="1,0,0,0" BorderBrush="{DynamicResource ButtonHighlight}" x:Name="OuterBorder2">
+                            <Border BorderThickness="0,0,1,1" BorderBrush="{DynamicResource ButtonShadow}" HorizontalAlignment="Left" Margin="2,2,0,2" x:Name="OuterNub" Width="3">
+                                <Border BorderThickness="1,1,0,0" BorderBrush="{DynamicResource ButtonHighlight}">
+                                    
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="OuterBorder1" Property="BorderThickness" Value="0,1,0,0" />
+                                <Setter TargetName="OuterBorder2" Property="BorderThickness" Value="0,1,0,0" />
+                                <Setter TargetName="OuterNub" Property="Margin" Value="2,2,2,0" />
+                                <Setter TargetName="OuterNub" Property="Height" Value="3" />
+                                <Setter TargetName="OuterNub" Property="HorizontalAlignment" Value="Stretch" />
+                                <Setter TargetName="OuterNub" Property="Width" Value="Auto" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="True">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <Setter Property="Margin" Value="2,1,2,0" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="Image" x:Key="SystemTheme.TaskIcon" BasedOn="{StaticResource DefaultDirection}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="Width" Value="16" />
+        <Setter Property="Height" Value="16" />
+        <Setter Property="Margin" Value="0,0,3,0" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="SystemTheme.TaskLabel" BasedOn="{StaticResource GlobalFonts}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,-1,1,0" />
+    </Style>
+    <Style TargetType="Image" x:Key="SystemTheme.StartIcon" BasedOn="{StaticResource SystemTheme.TaskIcon}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="Margin" Value="0,0,2,0" />
+        <Setter Property="Source" Value="{DynamicResource StartIconImage}" />
+    </Style>
+    <Style TargetType="Image" x:Key="SystemTheme.ToolbarIcon" BasedOn="{StaticResource SystemTheme.TaskIcon}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="Margin" Value="0,0,1,0" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="SystemTheme.StartLabel" BasedOn="{StaticResource SystemTheme.TaskLabel}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="Text" Value="{DynamicResource start_text}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="SystemTheme.Clock" BasedOn="{StaticResource GlobalFonts}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
+        <Setter Property="Foreground" Value="{DynamicResource ClockForeground}" />
+        <Setter Property="Margin" Value="8,0" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin" Value="0,3" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="Image" x:Key="SystemTheme.NotifyIcon" BasedOn="{StaticResource SystemTheme.TaskIcon}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="Margin" Value="0,0,4,0" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin" Value="2,1" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="ItemsControl" x:Key="SystemTheme.ToolbarItems" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="4,0,0,0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="False" />
+                    <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical" />
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Margin" Value="2,4" />
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="True" />
+                    <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical" />
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Margin" Value="2,4,2,0" />
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="Button" x:Key="SystemTheme.ToolbarButton" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="{DynamicResource ButtonFace}" />
+        <Setter Property="Margin" Value="0,0,0,-1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="Transparent" Padding="0,2" Name="ButtonBorder">
+                        <Border BorderThickness="0,0,1,1" BorderBrush="{TemplateBinding Background}" x:Name="ButtonRightBottomBorder">
+                            <Border BorderThickness="1,1,0,0" BorderBrush="{TemplateBinding Background}" Background="{TemplateBinding Background}" Padding="2" x:Name="ButtonLeftTopBorder">
+                                <ContentPresenter />
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="ButtonBorder" Property="Padding" Value="0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonLeftTopBorder" Property="BorderBrush" Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonRightBottomBorder" Property="BorderBrush" Value="{DynamicResource ButtonShadow}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonRightBottomBorder" Property="BorderBrush" Value="{DynamicResource ButtonHighlight}" />
+                            <Setter TargetName="ButtonLeftTopBorder" Property="BorderBrush" Value="{DynamicResource ButtonShadow}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <Setter Property="Margin" Value="0" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="SystemTheme.TaskListScrollViewer" TargetType="ScrollViewer" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="Margin" Value="4,0,0,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollContentPresenter Grid.Column="0" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" CanContentScroll="{TemplateBinding CanContentScroll}" Content="{TemplateBinding Content}" />
+                        <Grid Grid.Column="1" Style="{DynamicResource TaskListScrollButtonGrid}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <RepeatButton Command="ScrollBar.PageUpCommand" Style="{DynamicResource TaskListScrollButton}" Grid.Row="0">
+                                <TextBlock Style="{DynamicResource TaskListScrollButtonText}">5</TextBlock>
+                            </RepeatButton>
+                            <RepeatButton Command="ScrollBar.PageDownCommand" Style="{DynamicResource TaskListScrollButton}" Grid.Row="1">
+                                <TextBlock Style="{DynamicResource TaskListScrollButtonText}">6</TextBlock>
+                            </RepeatButton>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin" Value="0,3,0,0" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <ScrollContentPresenter Grid.Row="0" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" CanContentScroll="{TemplateBinding CanContentScroll}" Content="{TemplateBinding Content}" />
+                                    <Grid Grid.Row="1" Style="{DynamicResource TaskListScrollButtonGrid}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <RepeatButton Command="ScrollBar.PageUpCommand" Style="{DynamicResource TaskListScrollButton}" Grid.Column="0">
+                                            <TextBlock Style="{DynamicResource TaskListScrollButtonText}">5</TextBlock>
+                                        </RepeatButton>
+                                        <RepeatButton Command="ScrollBar.PageDownCommand" Style="{DynamicResource TaskListScrollButton}" Grid.Column="1">
+                                            <TextBlock Style="{DynamicResource TaskListScrollButtonText}">6</TextBlock>
+                                        </RepeatButton>
+                                    </Grid>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="Button" x:Key="SystemTheme.NotifyBalloonCloseButton" BasedOn="{StaticResource GlobalFonts}" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="9,-4,-7,0" />
+        <Setter Property="Height" Value="18" />
+        <Setter Property="Width" Value="18" />
+        <Setter Property="FontFamily" Value="Marlett" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="TextOptions.TextRenderingMode" Value="Aliased" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ButtonShadow}" />
+        <Setter Property="Background" Value="{DynamicResource ButtonFace}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="Content" Margin="0,1,0,0" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Content" Property="Margin" Value="1,2,0,0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+<Style
+        x:Key="Taskbar"
+        BasedOn="{StaticResource SystemTheme.Taskbar}"
+        TargetType="ContentControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Border x:Name="TaskbarUnlockedBorder1" BorderBrush="{DynamicResource TaskbarUnlockedBorder1}">
+                        <Border x:Name="TaskbarUnlockedBorder2" BorderBrush="{DynamicResource TaskbarUnlockedBorder2}">
+                            <Border x:Name="TaskbarUnlockedBorder3" BorderBrush="{DynamicResource TaskbarUnlockedBorder3}">
+                                <Border x:Name="TaskbarUnlockedBorder4" BorderBrush="{DynamicResource TaskbarUnlockedBorder4}">
+                                    <Border
+                                        x:Name="TaskbarBorder"
+                                        Background="{DynamicResource TaskbarBackground}"
+                                        BorderBrush="{DynamicResource TaskbarBorder}"
+                                        BorderThickness="0,1,0,0">
+                                        <ContentPresenter Name="Content" Margin="0,-1,0,0" />
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskbarBorder" Property="Background" Value="{DynamicResource TaskbarVerticalBackground}" />
+                                <Setter TargetName="TaskbarBorder" Property="BorderThickness" Value="1,0,1,0" />
+                                <Setter TargetName="Content" Property="Margin" Value="0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarMode, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="AutoHide" />
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="Bottom" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarUnlockedBorder1" Property="BorderThickness" Value="0,1,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder2" Property="BorderThickness" Value="0,1,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder3" Property="BorderThickness" Value="0,1,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder4" Property="BorderThickness" Value="0,1,0,0" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarMode, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="AutoHide" />
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="Top" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarUnlockedBorder1" Property="BorderThickness" Value="0,0,0,1" />
+                                <Setter TargetName="TaskbarUnlockedBorder2" Property="BorderThickness" Value="0,0,0,1" />
+                                <Setter TargetName="TaskbarUnlockedBorder3" Property="BorderThickness" Value="0,0,0,1" />
+                                <Setter TargetName="TaskbarUnlockedBorder4" Property="BorderThickness" Value="0,0,0,1" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarMode, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="AutoHide" />
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="Right" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarUnlockedBorder1" Property="BorderThickness" Value="1,0,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder2" Property="BorderThickness" Value="1,0,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder3" Property="BorderThickness" Value="1,0,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder4" Property="BorderThickness" Value="1,0,0,0" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=AppBarMode, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="AutoHide" />
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="Left" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarUnlockedBorder1" Property="BorderThickness" Value="0,0,1,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder2" Property="BorderThickness" Value="0,0,1,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder3" Property="BorderThickness" Value="0,0,1,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder4" Property="BorderThickness" Value="0,0,1,0" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="False" />
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="Bottom" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarUnlockedBorder1" Property="BorderThickness" Value="0,1,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder2" Property="BorderThickness" Value="0,1,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder3" Property="BorderThickness" Value="0,1,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder4" Property="BorderThickness" Value="0,1,0,0" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="False" />
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="Top" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarUnlockedBorder1" Property="BorderThickness" Value="0,0,0,1" />
+                                <Setter TargetName="TaskbarUnlockedBorder2" Property="BorderThickness" Value="0,0,0,1" />
+                                <Setter TargetName="TaskbarUnlockedBorder3" Property="BorderThickness" Value="0,0,0,1" />
+                                <Setter TargetName="TaskbarUnlockedBorder4" Property="BorderThickness" Value="0,0,0,1" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="False" />
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="Right" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarUnlockedBorder1" Property="BorderThickness" Value="1,0,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder2" Property="BorderThickness" Value="1,0,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder3" Property="BorderThickness" Value="1,0,0,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder4" Property="BorderThickness" Value="1,0,0,0" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="False" />
+                                <Condition Binding="{Binding Path=AppBarEdge, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Value="Left" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="TaskbarUnlockedBorder1" Property="BorderThickness" Value="0,0,1,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder2" Property="BorderThickness" Value="0,0,1,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder3" Property="BorderThickness" Value="0,0,1,0" />
+                                <Setter TargetName="TaskbarUnlockedBorder4" Property="BorderThickness" Value="0,0,1,0" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Tray" TargetType="GroupBox">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Border
+                        Name="TrayOuterBorder"
+                        Margin="3,0,0,-1"
+                        BorderThickness="0,1">
+                        <Border
+                            Name="TrayInnerBorder1"
+                            Background="{DynamicResource TrayBackground}"
+                            BorderBrush="{DynamicResource TrayLeftBorder1}"
+                            BorderThickness="1,0,0,0">
+                            <Border
+                                Name="TrayInnerBorder2"
+                                Padding="7,0,0,0"
+                                BorderBrush="{DynamicResource TrayLeftBorder2}"
+                                BorderThickness="1,0,0,0">
+                                <ContentPresenter Name="Content" Margin="0,0,6,0" />
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TrayOuterBorder" Property="BorderThickness" Value="0" />
+                                <Setter TargetName="TrayOuterBorder" Property="Margin" Value="0" />
+                                <Setter TargetName="TrayInnerBorder1" Property="BorderThickness" Value="0,1,0,0" />
+                                <Setter TargetName="TrayInnerBorder2" Property="BorderThickness" Value="0,1,0,0" />
+                                <Setter TargetName="TrayInnerBorder2" Property="Padding" Value="0,7,0,0" />
+                                <Setter TargetName="Content" Property="Margin" Value="0,0,0,6" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="TaskButton"
+        BasedOn="{StaticResource SystemTheme.TaskButton}"
+        TargetType="Button">
+        <Setter Property="ToolTipService.InitialShowDelay" Value="150" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        x:Name="TaskButtonBorder1"
+                        Background="{DynamicResource ButtonBackground}"
+                        BorderBrush="{DynamicResource ButtonBorder1}"
+                        BorderThickness="6,2,6,2"
+                        CornerRadius="8,8,8,8">
+                        <Border
+                            x:Name="TaskButtonBorder2"
+                            BorderBrush="{DynamicResource ButtonBorder2}"
+                            BorderThickness="0"
+                            CornerRadius="8,8,8,8">
+                            <Border
+                                x:Name="TaskButtonBorder3"
+                                BorderBrush="{DynamicResource ButtonBorder3}"
+                                BorderThickness="1"
+                                CornerRadius="8,8,8,8">
+                                <Grid x:Name="ButtonContent">
+                                    <Canvas
+                                        x:Name="BlurBehind"
+                                        Grid.ColumnSpan="2"
+                                        Margin="4,2">
+                                        <Canvas.Effect>
+                                            <BlurEffect Radius="12" />
+                                        </Canvas.Effect>
+                                    </Canvas>
+                                    <ContentPresenter x:Name="Content" HorizontalAlignment="Center" Margin="8,8" />
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!--<Setter TargetName="TaskButtonBorder1" Property="Background" Value="Transparent"/>-->
+							<!--Button Hover Background Blur-->
+                            <Setter TargetName="BlurBehind" Property="Background" Value="#303063" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <!--<Setter TargetName="TaskButtonBorder1" Property="Background" Value="Transparent"/>-->
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderBrush" Value="{DynamicResource ButtonBorder1Pressed}" />
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1,1,1,0" />
+                            <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1,1,1,0" />
+                            <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="1,1,0,0" />
+                            <Setter TargetName="BlurBehind" Property="Background" Value="#42428a" />
+                            <Setter TargetName="ButtonContent" Property="Margin" Value="-1,-2,-1,0" />
+                        </Trigger>
+                        <!-- Vertical taskbar: full rounded frame, no edge-anchored pressed offset -->
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="2,2,2,2" />
+                                <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="0" />
+                                <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="8" />
+                                <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
+                                <Setter TargetName="Content" Property="Margin" Value="0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <!-- Horizontal taskbar: square buttons (46x46), centered vertically in 64px bar -->
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="2,2,2,2" />
+                                <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
+                                <Setter TargetName="Content" Property="Margin" Value="0" />
+                                <Setter TargetName="Content" Property="VerticalAlignment" Value="Center" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!-- Horizontal taskbar: make buttons square (46x46) and center vertically in the 64px bar -->
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                <Setter Property="Height" Value="46" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="{DynamicResource TaskButtonMargin}" />
+            </DataTrigger>
+            <!-- Vertical taskbar: same 46x46 square tile as horizontal, centered in the 64px-wide bar -->
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <Setter Property="Height" Value="46" />
+                <Setter Property="Width" Value="46" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="{DynamicResource TaskButtonVerticalMargin}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="TaskButtonActive"
+        BasedOn="{StaticResource TaskButton}"
+        TargetType="Button">
+        <Setter Property="Foreground" Value="{DynamicResource ButtonActiveForeground}" />
+        <Setter Property="ToolTipService.InitialShowDelay" Value="150" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        x:Name="TaskButtonBorder1"
+                        Background="{DynamicResource ButtonBackground}"
+                        BorderBrush="{DynamicResource ButtonBorder1Pressed}"
+                        BorderThickness="1,1,1,0"
+                        CornerRadius="3,3,0,0">
+                        <Border
+                            x:Name="TaskButtonBorder2"
+                            BorderBrush="{DynamicResource ButtonBorder2}"
+                            BorderThickness="1,1,1,0"
+                            CornerRadius="2,2,0,0">
+                            <Border
+                                x:Name="TaskButtonBorder3"
+                                BorderBrush="{DynamicResource ButtonBorder3}"
+                                BorderThickness="1"
+                                CornerRadius="1,1,0,0">
+                                <Grid x:Name="ButtonContent" Margin="-1,-2,-1,0">
+                                    <Canvas
+                                        x:Name="BlurBehind"
+                                        Grid.ColumnSpan="2"
+                                        Margin="4,2">
+                                        <Canvas.Effect>
+                                            <BlurEffect Radius="12" />
+                                        </Canvas.Effect>
+                                    </Canvas>
+                                    <ContentPresenter x:Name="Content" HorizontalAlignment="Center" Margin="8,8" />
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                        </Trigger>
+                        <!-- Vertical taskbar: full rounded frame, no edge-anchored offset -->
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
+                                <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="3" />
+                                <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="3" />
+                                <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
+                                <Setter TargetName="Content" Property="Margin" Value="0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <!-- Horizontal taskbar: square buttons (46x46), centered vertically in 64px bar -->
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1,1,1,1" />
+                                <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
+                                <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="3" />
+                                <Setter TargetName="TaskButtonBorder3" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="3" />
+                                <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
+                                <Setter TargetName="Content" Property="Margin" Value="0" />
+                                <Setter TargetName="Content" Property="VerticalAlignment" Value="Center" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!-- Horizontal taskbar: make buttons square (46x46) and center vertically in the 64px bar -->
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                <Setter Property="Height" Value="46" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="{DynamicResource TaskButtonMargin}" />
+            </DataTrigger>
+            <!-- Vertical taskbar: same 46x46 square tile as horizontal, centered in the 64px-wide bar -->
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <Setter Property="Height" Value="46" />
+                <Setter Property="Width" Value="46" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="{DynamicResource TaskButtonVerticalMargin}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="TaskButtonFlashing"
+        BasedOn="{StaticResource TaskButton}"
+        TargetType="Button">
+        <Setter Property="ToolTipService.InitialShowDelay" Value="150" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        x:Name="TaskButtonBorder1"
+                        Background="{DynamicResource ButtonBackgroundFlashing}"
+                        BorderBrush="{DynamicResource ButtonBorder1Flashing}"
+                        BorderThickness="1,1,1,0"
+                        CornerRadius="3,3,0,0">
+                        <Border
+                            x:Name="TaskButtonBorder2"
+                            BorderBrush="{DynamicResource ButtonBorder2Flashing}"
+                            BorderThickness="1,1,1,0"
+                            CornerRadius="2,2,0,0">
+                            <Border
+                                x:Name="TaskButtonBorder3"
+                                BorderBrush="{DynamicResource ButtonBorder3Flashing}"
+                                BorderThickness="1"
+                                CornerRadius="1,1,0,0">
+                                <Grid x:Name="ButtonContent" Margin="-1,-2,-1,0">
+                                    <Canvas
+                                        x:Name="BlurBehind"
+                                        Grid.ColumnSpan="2"
+                                        Margin="4,2">
+                                        <Canvas.Effect>
+                                            <BlurEffect Radius="12" />
+                                        </Canvas.Effect>
+                                    </Canvas>
+                                    <ContentPresenter x:Name="Content" HorizontalAlignment="Center" Margin="8,8" />
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderBrush" Value="{DynamicResource ButtonBorder1}" />
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1,0,1,0" />
+                            <Setter TargetName="TaskButtonBorder2" Property="BorderBrush" Value="{DynamicResource ButtonBorder2}" />
+                            <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="0" />
+                            <Setter TargetName="TaskButtonBorder3" Property="BorderBrush" Value="{DynamicResource ButtonBorder3}" />
+                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                            <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderBrush" Value="{DynamicResource ButtonBorder1Pressed}" />
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1,1,1,0" />
+                            <Setter TargetName="TaskButtonBorder2" Property="BorderBrush" Value="{DynamicResource ButtonBorder2}" />
+                            <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1,1,1,0" />
+                            <Setter TargetName="TaskButtonBorder3" Property="BorderBrush" Value="{DynamicResource ButtonBorder3}" />
+                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                            <Setter TargetName="ButtonContent" Property="Margin" Value="-1,-2,-1,0" />
+                        </Trigger>
+                        <!-- Vertical taskbar: full rounded frame, no edge-anchored offset -->
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
+                                <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="3" />
+                                <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="3" />
+                                <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
+                                <Setter TargetName="Content" Property="Margin" Value="0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <!-- Horizontal taskbar: square buttons (46x46), centered vertically in 64px bar -->
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1,1,1,1" />
+                                <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
+                                <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="3" />
+                                <Setter TargetName="TaskButtonBorder3" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="3" />
+                                <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
+                                <Setter TargetName="Content" Property="Margin" Value="0" />
+                                <Setter TargetName="Content" Property="VerticalAlignment" Value="Center" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!-- Horizontal taskbar: make buttons square (46x46) and center vertically in the 64px bar -->
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                <Setter Property="Height" Value="46" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="{DynamicResource TaskButtonMargin}" />
+            </DataTrigger>
+            <!-- Vertical taskbar: same 46x46 square tile as horizontal, centered in the 64px-wide bar -->
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <Setter Property="Height" Value="46" />
+                <Setter Property="Width" Value="46" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="{DynamicResource TaskButtonVerticalMargin}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ShowDesktopButton" TargetType="ToggleButton">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="Transparent">
+                        <Border
+                            x:Name="TaskButtonBorder1"
+                            Margin="4"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="1,0,1,0"
+                            CornerRadius="3,3,0,0">
+                            <Border
+                                x:Name="TaskButtonBorder2"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                CornerRadius="2,2,0,0">
+                                <Border
+                                    x:Name="TaskButtonBorder3"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="1"
+                                    CornerRadius="2,2,0,0">
+                                    <Grid x:Name="ButtonContent">
+                                        <Canvas
+                                            x:Name="BlurBehind"
+                                            Grid.ColumnSpan="2"
+                                            Margin="1">
+                                            <Canvas.Effect>
+                                                <BlurEffect Radius="6" />
+                                            </Canvas.Effect>
+                                        </Canvas>
+                                        <Border
+                                            Width="30"
+                                            Height="10"
+                                            Margin="1,2,1,2"
+                                            Background="{DynamicResource XPShowDesktopIcon}" />
+                                    </Grid>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderBrush" Value="{DynamicResource ButtonBorder1}" />
+                            <Setter TargetName="TaskButtonBorder2" Property="BorderBrush" Value="{DynamicResource ButtonBorder2}" />
+                            <Setter TargetName="TaskButtonBorder3" Property="BorderBrush" Value="{DynamicResource ButtonBorder3}" />
+                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderBrush" Value="{DynamicResource ButtonBorder1Pressed}" />
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1,1,1,0" />
+                            <Setter TargetName="TaskButtonBorder2" Property="BorderBrush" Value="{DynamicResource ButtonBorder2}" />
+                            <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1,1,1,0" />
+                            <Setter TargetName="TaskButtonBorder3" Property="BorderBrush" Value="{DynamicResource ButtonBorder3}" />
+                            <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="1,1,0,0" />
+                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                            <Setter TargetName="ButtonContent" Property="Margin" Value="-1,-2,-1,0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="ToolbarThumb"
+        BasedOn="{StaticResource SystemTheme.ToolbarThumb}"
+        TargetType="Thumb">
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="Margin" Value="4,2,4,2" />
+        <Setter Property="Width" Value="6" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border Background="Transparent" SnapsToDevicePixels="True">
+                        <Rectangle x:Name="ThumbRect">
+                            <Rectangle.Fill>
+                                <DrawingBrush
+                                    TileMode="Tile"
+                                    Viewbox="0,0,6,6"
+                                    ViewboxUnits="Absolute"
+                                    Viewport="0,0,6,6"
+                                    ViewportUnits="Absolute">
+                                    <DrawingBrush.Drawing>
+                                        <DrawingGroup>
+                                            <GeometryDrawing Brush="{DynamicResource ToolbarThumbBackground}" Geometry="M 1 1 L 1 3 L 3 3 L 3 1 z" />
+                                            <GeometryDrawing Brush="{DynamicResource ToolbarThumbForeground}" Geometry="M 0 0 L 0 2 L 2 2 L 2 0 z" />
+                                        </DrawingGroup>
+                                    </DrawingBrush.Drawing>
+                                </DrawingBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=Orientation}" Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter Property="Height" Value="6" />
+                                <Setter Property="Width" Value="Auto" />
+                                <Setter TargetName="ThumbRect" Property="Fill">
+                                    <Setter.Value>
+                                        <DrawingBrush
+                                            TileMode="Tile"
+                                            Viewbox="0,0,6,6"
+                                            ViewboxUnits="Absolute"
+                                            Viewport="0,0,6,6"
+                                            ViewportUnits="Absolute">
+                                            <DrawingBrush.Drawing>
+                                                <DrawingGroup>
+                                                    <GeometryDrawing Brush="{DynamicResource ToolbarThumbBackground}" Geometry="M 0 4 L 0 6 L 2 6 L 2 4 z" />
+                                                    <GeometryDrawing Brush="{DynamicResource ToolbarThumbForeground}" Geometry="M 1 3 L 1 5 L 3 5 L 3 3 z" />
+                                                </DrawingGroup>
+                                            </DrawingBrush.Drawing>
+                                        </DrawingBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <Setter Property="Margin" Value="5,3,6,1" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TaskButtonThumbnail" TargetType="ContentControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Border
+                        Margin="4"
+                        Padding="4"
+                        Background="{DynamicResource ToolTipBackground}"
+                        BorderBrush="{DynamicResource ToolTipForeground}"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="TaskListScrollUpButton"
+        BasedOn="{StaticResource TaskListScrollButton}"
+        TargetType="RepeatButton">
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border Background="{DynamicResource TaskListScrollButtonBackground}">
+                        <Border
+                            x:Name="ButtonBorder1"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="1,0,0,1"
+                            CornerRadius="2">
+                            <Border
+                                x:Name="ButtonBorder2"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                BorderThickness="1"
+                                CornerRadius="1">
+                                <Border
+                                    x:Name="ButtonBorder3"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="1">
+
+                                    <Border
+                                        x:Name="UpArrow"
+                                        Padding="6"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Background="{DynamicResource VArrowUp}"
+                                        RenderOptions.EdgeMode="Aliased">
+                                        <ContentPresenter
+                                            x:Name="Content"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch" />
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder1" Property="Background" Value="{DynamicResource TaskListScrollButtonBackgroundHover}" />
+                            <Setter TargetName="ButtonBorder1" Property="BorderBrush" Value="{DynamicResource TaskListScrollButtonBorder1Hover}" />
+                            <Setter TargetName="ButtonBorder2" Property="BorderBrush" Value="{DynamicResource TaskListScrollButtonBorder2Hover}" />
+                            <Setter TargetName="ButtonBorder3" Property="BorderBrush" Value="{DynamicResource TaskListScrollButtonBorder3Hover}" />
+                            <Setter TargetName="UpArrow" Property="Background" Value="{DynamicResource VArrowUpHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBorder1" Property="Background" Value="{DynamicResource TaskListScrollButtonBackgroundPressed}" />
+                            <Setter TargetName="ButtonBorder1" Property="BorderBrush" Value="{DynamicResource TaskListScrollButtonBorder1Pressed}" />
+                            <Setter TargetName="ButtonBorder2" Property="BorderBrush" Value="{DynamicResource TaskListScrollButtonBorder2Pressed}" />
+                            <Setter TargetName="ButtonBorder3" Property="BorderBrush" Value="{DynamicResource TaskListScrollButtonBorder3Pressed}" />
+                            <Setter TargetName="UpArrow" Property="Background" Value="{DynamicResource VArrowUpPressed}" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="ButtonBorder1" Property="BorderThickness" Value="0,1,0,1" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin" Value="0" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="TaskListScrollDownButton"
+        BasedOn="{StaticResource TaskListScrollButton}"
+        TargetType="RepeatButton">
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border Background="{DynamicResource TaskListScrollButtonBackground}">
+                        <Border
+                            x:Name="ButtonBorder1"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="1,0,0,1"
+                            CornerRadius="2">
+                            <Border
+                                x:Name="ButtonBorder2"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                BorderThickness="1"
+                                CornerRadius="1">
+                                <Border
+                                    x:Name="ButtonBorder3"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="1">
+
+                                    <Border
+                                        x:Name="UpArrow"
+                                        Padding="6"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Background="{DynamicResource VArrowDown}"
+                                        RenderOptions.EdgeMode="Aliased">
+                                        <ContentPresenter
+                                            x:Name="Content"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch" />
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder1" Property="Background" Value="{DynamicResource TaskListScrollButtonBackgroundHover}" />
+                            <Setter TargetName="ButtonBorder1" Property="BorderBrush" Value="{DynamicResource TaskListScrollButtonBorder1Hover}" />
+                            <Setter TargetName="ButtonBorder2" Property="BorderBrush" Value="{DynamicResource TaskListScrollButtonBorder2Hover}" />
+                            <Setter TargetName="ButtonBorder3" Property="BorderBrush" Value="{DynamicResource TaskListScrollButtonBorder3Hover}" />
+                            <Setter TargetName="UpArrow" Property="Background" Value="{DynamicResource VArrowDownHover}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBorder1" Property="Background" Value="{DynamicResource TaskListScrollButtonBackgroundPressed}" />
+                            <Setter TargetName="ButtonBorder1" Property="BorderBrush" Value="{DynamicResource TaskListScrollButtonBorder1Pressed}" />
+                            <Setter TargetName="ButtonBorder2" Property="BorderBrush" Value="{DynamicResource TaskListScrollButtonBorder2Pressed}" />
+                            <Setter TargetName="ButtonBorder3" Property="BorderBrush" Value="{DynamicResource TaskListScrollButtonBorder3Pressed}" />
+                            <Setter TargetName="UpArrow" Property="Background" Value="{DynamicResource VArrowDownPressed}" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="Content" Property="Margin" Value="1,-3,1,-3" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin" Value="0" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+<ToolTip x:Key="StartButtonTip" Content="{DynamicResource start_button_tip}" />
+
+    <Style x:Key="StartButton" TargetType="ToggleButton">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Foreground" Value="{DynamicResource ItemButtonForeground}" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border
+                        x:Name="StartButtonBorder1"
+                        Margin="0"
+                        Background="{DynamicResource TaskbarBackground}"
+                        BorderBrush="{DynamicResource StartButtonBorder1}"
+                        BorderThickness="0,1,0,0">
+                        <Border
+                            x:Name="StartButtonBorder2"
+                            BorderBrush="{DynamicResource StartButtonBorder2}"
+                            BorderThickness="1,0,0,0">
+                            <Border
+                                x:Name="StartButtonBorder3"
+                                BorderBrush="Transparent"
+                                BorderThickness="0,1,1,0">
+                                <Grid x:Name="StartButtonContent">
+                                    <Canvas x:Name="BlurBehind" Margin="4,2">
+                                        <Canvas.Effect>
+                                            <BlurEffect Radius="12" />
+                                        </Canvas.Effect>
+                                    </Canvas>
+                                    <Image x:Name="StartIcon"
+                                           Width="{DynamicResource StartButtonIconSize}"
+                                           Height="{DynamicResource StartButtonIconSize}"
+                                           Source="{DynamicResource StartButtonIcon}"
+                                           Stretch="Uniform"
+                                           RenderOptions.BitmapScalingMode="HighQuality"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <Setter TargetName="StartButtonBorder2" Property="BorderThickness" Value="0" />
+                            <Setter TargetName="StartButtonContent" Property="Margin" Value="0" />
+                            <Setter Property="Width" Value="{DynamicResource TaskbarWidth}" />
+                            <Setter Property="Height" Value="{DynamicResource StartButtonVerticalSize}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                            <Setter Property="Height" Value="{DynamicResource StartButtonHorizontalHeight}" />
+                            <Setter Property="MinWidth" Value="44" />
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="StartButtonBorder1" Property="BorderBrush" Value="{DynamicResource StartButtonBorder1Pressed}" />
+                            <Setter TargetName="StartButtonBorder1" Property="BorderThickness" Value="0,1,1,0" />
+                            <Setter TargetName="StartButtonBorder3" Property="BorderBrush" Value="{DynamicResource StartButtonBorder3}" />
+                            <Setter TargetName="StartButtonContent" Property="Margin" Value="0,0,1,0" />
+                            <Setter TargetName="BlurBehind" Property="Margin" Value="4,2,2,2" />
+                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="StartButtonBorder1" Property="BorderBrush" Value="{DynamicResource StartButtonBorder1Pressed}" />
+                            <Setter TargetName="StartButtonBorder1" Property="BorderThickness" Value="0,1,1,0" />
+                            <Setter TargetName="StartButtonBorder3" Property="BorderBrush" Value="{DynamicResource StartButtonBorder3}" />
+                            <Setter TargetName="StartButtonContent" Property="Margin" Value="0,0,1,0" />
+                            <Setter TargetName="BlurBehind" Property="Margin" Value="4,2,2,2" />
+                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin" Value="0" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="TaskIcon"
+        BasedOn="{StaticResource SystemTheme.TaskIcon}"
+        TargetType="Image">
+        <Setter Property="Width" Value="36" />
+        <Setter Property="Height" Value="36" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Opacity" Value="0.85" />
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1.0" Duration="0:0:0.1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.85" Duration="0:0:0.15" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.ExitActions>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Hide window title text on task buttons: icon-only buttons like Win7/10 -->
+    <Style
+        x:Key="TaskLabel"
+        BasedOn="{StaticResource SystemTheme.TaskLabel}"
+        TargetType="TextBlock">
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Setter Property="Margin" Value="0" />
+    </Style>
+
+    <Style
+        x:Key="StartIcon"
+        BasedOn="{StaticResource SystemTheme.StartIcon}"
+        TargetType="Image">
+        <Setter Property="Width" Value="{DynamicResource StartButtonIconSize}" />
+        <Setter Property="Height" Value="{DynamicResource StartButtonIconSize}" />
+        <Setter Property="Margin" Value="0,0,4,0" />
+        <Setter Property="Source" Value="{DynamicResource StartButtonIcon}" />
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+    </Style>
+
+    <!-- Quick launch toolbar icons: 24px fits 2 columns in 64px bar with margins -->
+    <Style
+        x:Key="ToolbarIcon"
+        BasedOn="{StaticResource SystemTheme.ToolbarIcon}"
+        TargetType="Image">
+        <Setter Property="Width" Value="24" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
+    </Style>
+
+    <Style
+        x:Key="StartLabel"
+        BasedOn="{StaticResource SystemTheme.StartLabel}"
+        TargetType="TextBlock">
+        <Setter Property="Visibility" Value="Collapsed" />
+    </Style>
+
+    <Style
+        x:Key="Clock"
+        BasedOn="{StaticResource SystemTheme.Clock}"
+        TargetType="TextBlock">
+        <Setter Property="Margin" Value="8,-1,11,0" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin" Value="0,1,1,6" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate x:Key="ClockTemplateKey" TargetType="{x:Type UserControl}">
+        <StackPanel Orientation="Vertical">
+            <TextBlock
+                Name="ClockText"
+                Style="{DynamicResource Clock}"
+                Text="{Binding Path=Now, StringFormat=t, Mode=OneWay}" />
+            <TextBlock
+                Name="ClockVerticalDayOfWeek"
+                Margin="0,0,0,6"
+                Style="{DynamicResource Clock}"
+                Text="{Binding Path=Now, StringFormat=dddd, Mode=OneWay}"
+                Visibility="Collapsed" />
+            <TextBlock
+                Name="ClockVerticalDate"
+                Margin="0,0,0,3"
+                Style="{DynamicResource Clock}"
+                Text="{Binding Path=Now, StringFormat=d, Mode=OneWay}"
+                Visibility="Collapsed" />
+        </StackPanel>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter TargetName="ClockVerticalDayOfWeek" Property="Visibility" Value="Visible" />
+                    <Setter TargetName="ClockVerticalDate" Property="Visibility" Value="Visible" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style
+        x:Key="NotifyIcon"
+        BasedOn="{StaticResource SystemTheme.NotifyIcon}"
+        TargetType="Image">
+        <Setter Property="Margin" Value="0,2,2,2" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin" Value="2,2,0,2" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="ToolbarItems"
+        BasedOn="{StaticResource SystemTheme.ToolbarItems}"
+        TargetType="ItemsControl">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin" Value="0,1" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+            <!-- Horizontal taskbar: constrain width to 3 columns (3x32=96) so icons wrap into rows; center the block in the 64px bar; cap to 2 rows and clip extras (7+ hidden) -->
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                <DataTrigger.Setters>
+                    <Setter Property="MaxWidth" Value="96" />
+                    <Setter Property="MaxHeight" Value="56" />
+                    <Setter Property="ClipToBounds" Value="True" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="ToolbarButton"
+        BasedOn="{StaticResource SystemTheme.ToolbarButton}"
+        TargetType="Button">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="#7070b8" />
+        <Setter Property="Margin" Value="0,2,0,2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        x:Name="TaskButtonBorder1"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        CornerRadius="0">
+                        <Border
+                            x:Name="TaskButtonBorder2"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            CornerRadius="0">
+                            <Border
+                                x:Name="TaskButtonBorder3"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                CornerRadius="0">
+                                <Grid x:Name="ButtonContent">
+                                    <Canvas
+                                        x:Name="BlurBehind"
+                                        Grid.ColumnSpan="2"
+                                        Margin="1">
+                                        <Canvas.Effect>
+                                            <BlurEffect Radius="6" />
+                                        </Canvas.Effect>
+                                    </Canvas>
+                                    <ContentPresenter x:Name="Content" Margin="0" />
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderBrush" Value="{DynamicResource ButtonBorder1}" />
+                            <Setter TargetName="TaskButtonBorder2" Property="BorderBrush" Value="{DynamicResource ButtonBorder2}" />
+                            <Setter TargetName="TaskButtonBorder3" Property="BorderBrush" Value="{DynamicResource ButtonBorder3}" />
+                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderBrush" Value="{DynamicResource ButtonBorder1Pressed}" />
+                            <Setter TargetName="TaskButtonBorder2" Property="BorderBrush" Value="{DynamicResource ButtonBorder2}" />
+                            <Setter TargetName="TaskButtonBorder3" Property="BorderBrush" Value="{DynamicResource ButtonBorder3}" />
+                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="0" />
+                                <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="0" />
+                                <Setter TargetName="TaskButtonBorder3" Property="BorderThickness" Value="0" />
+                                <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                            <DataTrigger.Setters>
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="0" />
+                                <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="0" />
+                                <Setter TargetName="TaskButtonBorder3" Property="BorderThickness" Value="0" />
+                                <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
+                                <Setter TargetName="Content" Property="Margin" Value="0" />
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                <Setter Property="Margin" Value="2,0,2,0" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TaskListScrollButtonGrid" TargetType="Grid">
+        <Setter Property="Margin" Value="1,0" />
+    </Style>
+
+    <SolidColorBrush x:Key="TaskListScrollArrow" Color="Blue" />
+
+    <Style
+        x:Key="TaskListScrollViewer"
+        BasedOn="{StaticResource SystemTheme.TaskListScrollViewer}"
+        TargetType="ScrollViewer">
+        <Setter Property="Margin" Value="0,0,10,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ScrollContentPresenter
+                            Grid.Column="0"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            CanContentScroll="{TemplateBinding CanContentScroll}"
+                            Content="{TemplateBinding Content}" />
+                        <Grid
+                            Grid.Column="1"
+                            Style="{DynamicResource TaskListScrollButtonGrid}"
+                            Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <RepeatButton
+                                x:Name="UpButton"
+                                Grid.Column="0"
+                                Command="ScrollBar.PageUpCommand"
+                                Style="{DynamicResource TaskListScrollUpButton}" />
+                            <RepeatButton
+                                x:Name="DownButton"
+                                Grid.Row="1"
+                                Command="ScrollBar.PageDownCommand"
+                                Style="{DynamicResource TaskListScrollDownButton}" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <ScrollContentPresenter
+                                        Grid.Row="0"
+                                        Width="{TemplateBinding Width}"
+                                        Height="{TemplateBinding Height}"
+                                        CanContentScroll="{TemplateBinding CanContentScroll}"
+                                        Content="{TemplateBinding Content}" />
+                                    <Grid
+                                        Grid.Row="1"
+                                        Style="{DynamicResource TaskListScrollButtonGrid}"
+                                        Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <RepeatButton
+                                            Grid.Column="0"
+                                            Padding="7"
+                                            Command="ScrollBar.PageUpCommand"
+                                            Style="{DynamicResource TaskListScrollUpButton}">
+                                            <Path
+                                                Margin="7"
+                                                Data="{DynamicResource VArrow}"
+                                                Fill="{DynamicResource TaskListScrollArrow}"
+                                                RenderOptions.EdgeMode="Aliased"
+                                                RenderTransformOrigin="0.5,0.5">
+                                                <Path.RenderTransform>
+                                                    <ScaleTransform ScaleY="-1" />
+                                                </Path.RenderTransform>
+                                            </Path>
+                                        </RepeatButton>
+                                        <RepeatButton
+                                            Grid.Column="1"
+                                            Padding="4"
+                                            Command="ScrollBar.PageDownCommand"
+                                            Style="{DynamicResource TaskListScrollDownButton}">
+                                            <Path
+                                                Margin="7"
+                                                Data="{DynamicResource VArrow}"
+                                                Fill="{DynamicResource TaskListScrollArrow}"
+                                                RenderOptions.EdgeMode="Aliased" />
+                                        </RepeatButton>
+                                    </Grid>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Margin" Value="0,0,0,10" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Geometry x:Key="VArrow">M 4.5 6 L 9 1.5 L 8 0 L 4.5 3 L 1 0 L 0 1.5 Z</Geometry>
+    <Geometry x:Key="HArrow">M 0,4.5 L 4.5,9 L 6,8 L 3,4.5 L 6,1 L 4.5,0 Z</Geometry>
+
+    <Style x:Key="TrayToggleButton" TargetType="ToggleButton">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="{DynamicResource TrayToggleBackground}" />
+        <Setter Property="Margin" Value="-17,1,3,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="Transparent">
+                        <Border
+                            x:Name="ButtonBorder"
+                            Padding="{DynamicResource TrayToggleArrowPadding}"
+                            HorizontalAlignment="Center"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{DynamicResource TrayToggleBorder}"
+                            BorderThickness="1"
+                            CornerRadius="10">
+                            <Border Effect="{DynamicResource TrayToggleArrowOuterShadow}">
+                                <Path
+                                    x:Name="ToggleArrow"
+                                    Data="{DynamicResource HArrow}"
+                                    Effect="{DynamicResource TrayToggleArrowShadow}"
+                                    Fill="{DynamicResource ItemButtonForeground}"
+                                    RenderOptions.EdgeMode="Aliased" />
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource TrayToggleHoverBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource TrayTogglePressedBackground}" />
+                            <Setter TargetName="ToggleArrow" Property="Fill" Value="{DynamicResource TrayToggleArrowPressed}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="ToggleArrow" Property="RenderTransformOrigin" Value="0.6,0.5" />
+                            <Setter TargetName="ToggleArrow" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="-1" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="ToolTip" Value="{DynamicResource hide}" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="ToolTip" Value="{DynamicResource show_hidden}" />
+            </Trigger>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <DataTrigger.Setters>
+                    <Setter Property="Margin" Value="0,-17,0,1" />
+                </DataTrigger.Setters>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="NotifyBalloonCloseButton"
+        BasedOn="{StaticResource SystemTheme.NotifyBalloonCloseButton}"
+        TargetType="Button">
+        <Setter Property="Foreground" Value="{DynamicResource BalloonCloseButtonInactiveForeground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        Name="BorderShadowDark"
+                        BorderBrush="{DynamicResource BalloonCloseButtonInactiveShadow}"
+                        BorderThickness="0,0,1,1"
+                        CornerRadius="3">
+                        <Border
+                            Name="BorderShadowLight"
+                            BorderBrush="{DynamicResource BalloonCloseButtonInactiveShadow}"
+                            BorderThickness="1,1,0,0"
+                            CornerRadius="3">
+                            <Border
+                                Name="Border"
+                                Background="{DynamicResource BalloonCloseButtonInactiveBackground}"
+                                BorderBrush="{DynamicResource BalloonCloseButtonInactiveBorder}"
+                                BorderThickness="1"
+                                CornerRadius="2">
+                                <Border
+                                    Name="BorderInnerDark"
+                                    BorderBrush="{DynamicResource BalloonCloseButtonInactiveShadow}"
+                                    BorderThickness="0,0,1,1"
+                                    CornerRadius="2">
+                                    <Border
+                                        Name="BorderInnerLight"
+                                        Padding="3,3,0,0"
+                                        BorderBrush="{DynamicResource BalloonCloseButtonInactiveShadow}"
+                                        BorderThickness="1"
+                                        CornerRadius="2">
+                                        <Grid x:Name="Content">
+                                            <Path
+                                                Width="8"
+                                                Height="8"
+                                                Data="M 0,0 l 6,6"
+                                                Stroke="{TemplateBinding Foreground}"
+                                                StrokeEndLineCap="Round"
+                                                StrokeStartLineCap="Round"
+                                                StrokeThickness="2" />
+                                            <Path
+                                                Width="8"
+                                                Height="8"
+                                                Data="M 0,6 l 6,-6"
+                                                Stroke="{TemplateBinding Foreground}"
+                                                StrokeEndLineCap="Round"
+                                                StrokeStartLineCap="Round"
+                                                StrokeThickness="2" />
+                                        </Grid>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="BorderShadowDark" Property="BorderBrush" Value="{DynamicResource BalloonCloseButtonActiveShadowDark}" />
+                            <Setter TargetName="BorderShadowLight" Property="BorderBrush" Value="{DynamicResource BalloonCloseButtonActiveShadowLight}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource BalloonCloseButtonActiveBorder}" />
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource BalloonCloseButtonHoverBackground}" />
+                            <Setter TargetName="BorderInnerDark" Property="BorderBrush" Value="{DynamicResource BalloonCloseButtonHoverInnerDark}" />
+                            <Setter TargetName="BorderInnerLight" Property="BorderBrush" Value="{DynamicResource BalloonCloseButtonHoverInnerLight}" />
+                            <Setter Property="Foreground" Value="{DynamicResource BalloonCloseButtonActiveForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="BorderShadowDark" Property="BorderBrush" Value="{DynamicResource BalloonCloseButtonActiveShadowDark}" />
+                            <Setter TargetName="BorderShadowLight" Property="BorderBrush" Value="{DynamicResource BalloonCloseButtonActiveShadowLight}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource BalloonCloseButtonActiveBorder}" />
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource BalloonCloseButtonPressedBackground}" />
+                            <Setter TargetName="BorderInnerDark" Property="BorderBrush" Value="{DynamicResource BalloonCloseButtonPressedInnerDark}" />
+                            <Setter TargetName="BorderInnerLight" Property="BorderBrush" Value="{DynamicResource BalloonCloseButtonPressedInnerLight}" />
+                            <Setter TargetName="BorderInnerDark" Property="BorderThickness" Value="1,1,0,0" />
+                            <Setter Property="Foreground" Value="{DynamicResource BalloonCloseButtonActiveForeground}" />
+                            <Setter TargetName="Content" Property="Opacity" Value="0.5" />
+                            <Setter TargetName="Content" Property="Margin" Value="-1,-1,0,0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

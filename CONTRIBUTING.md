@@ -14,9 +14,10 @@ Thank you for your interest in improving Midnight Seven!
 
 1. Install [RetroBar](https://github.com/dremin/RetroBar) (latest release)
 2. Clone this repository
-3. Edit `Themes/Midnight Seven.xaml`
-4. Test by copying to `%LOCALAPPDATA%\RetroBar\Themes\`
-5. Reload theme in RetroBar Properties
+3. Edit `Themes/Midnight Seven.xaml` — the only theme tracked in git; the other `Themes/*.xaml` files are upstream reference material and are gitignored, so leave them alone
+4. Validate: `pwsh tools/Validate-Xaml.ps1` (checks well-formed XAML, root element, duplicate `x:Key` values, and merged dictionary paths — also runs in CI on every push/PR)
+5. Test by copying to `%LOCALAPPDATA%\RetroBar\Themes\`
+6. Reload theme in RetroBar Properties
 
 ## XAML Guidelines
 
@@ -47,6 +48,7 @@ Midnight Seven.xaml
 
 Before submitting a PR, verify:
 
+- [ ] `pwsh tools/Validate-Xaml.ps1` passes with no errors
 - [ ] Theme loads without errors in RetroBar
 - [ ] Vertical taskbar (Left/Right): 2-column quick launch, centered icons
 - [ ] Horizontal taskbar (Top/Bottom): proper layout
