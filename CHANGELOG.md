@@ -2,6 +2,12 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.2] - 2024-10-08
+
+### Fixed
+- **Vertical taskbar**: Task buttons are now the same 46×46px square tiles as horizontal mode, centered in the 64px-wide bar (previously 64px wide × ~36px tall rectangles)
+- Both orientations now render identical 46×46 rounded squares with a centered 32px icon
+
 ## [1.0.1] - 2024-10-08
 
 ### Fixed
