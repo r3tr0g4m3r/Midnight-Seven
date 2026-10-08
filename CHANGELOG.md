@@ -2,6 +2,16 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.9] - 2026-10-08
+
+### Fixed
+- **Horizontal system tray always shows exactly 2 balanced rows**: a count-keyed width ladder (`MaxWidth` steps of 18px x ceil(count/2), tracked live via `Items.Count`) makes the block grow *horizontally* as icons appear instead of stacking rows into the fixed-height bar where they clipped — 6 icons = 3+3 (54px), 7-8 = 4+3/4+4 (72px), 9-10 = 5+5 (90px), 11-12 = 6+6 (108px), stepping up to 23-24 icons (216px); `MaxHeight=40` + `ClipToBounds` guard keeps anything past that from overflowing the bar
+- **Tray block never shifts when toggling `^`**: the cap depends only on icon count, never on the toggle state, so expanding only appends/removes icons — block, overflow toggle, clock and existing icon positions stay put (verified: collapsed vs expanded pixel diff = chevron glyph only)
+
+### Notes
+- Vertical mode untouched (its content width sits below every ladder step, so no cap binds there)
+- Known trade-off: when a new icon arrives at counts 7/9/11..., a few existing icons re-position to rebalance the 2 rows (never happens on `^` toggle)
+
 ## [1.0.8] - 2026-10-08
 
 ### Changed

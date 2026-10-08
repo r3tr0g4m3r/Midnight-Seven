@@ -10,6 +10,7 @@ A Windows 7-style theme for [RetroBar](https://github.com/dremin/RetroBar) featu
 - **Large start button** - 36px customizable icon (vector-based, replaceable)
 - **Quick launch toolbar** - 24px icons, borderless (fits 64px bar)
 - **Instant tooltips** - 150ms delay for window titles (vs default 400ms)
+- **Stacked system tray icons** - Horizontal tray always shows exactly 2 balanced rows: the width cap steps with the icon count so the block grows sideways as icons appear (never clipped rows), and toggling `^` never shifts anything
 - **Icon hover glow** - Subtle opacity pulse on hover
 - **Active window highlight** - Foreground window icon stays at full opacity
 - **Dark midnight palette** - Deep purples with cyan/orange/green accents

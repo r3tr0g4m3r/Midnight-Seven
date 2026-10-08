@@ -1134,6 +1134,82 @@
         </Setter>
     </Style>
 
+    <!-- Horizontal taskbar tray: 2-row width ladder. The icon list always wraps into
+         exactly 2 balanced rows; the width cap steps with the icon count
+         (cap = 18px pitch x ceil(count/2)) so the block grows HORIZONTALLY as icons
+         appear instead of stacking rows into the 64px bar where they would clip:
+         count 0-6 = 54px (3+2/3+3), 7-8 = 72 (4+4), 9-10 = 90 (5+5), 11-12 = 108 (6+6)
+         ... up to 23-24 = 216. Same cap in collapsed and expanded state, and no toggle
+         binding, so pressing ^ never shifts the block or moves icons. MaxHeight=40 +
+         ClipToBounds is the hard guard: past 24 icons extra rows stay clipped instead
+         of overflowing the fixed-height bar. Vertical mode is untouched (its content
+         width is below all step caps, so no cap ever binds there). -->
+    <Style x:Key="NotifyIconItems" TargetType="ItemsControl">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                <Setter Property="MaxWidth" Value="54" />
+                <Setter Property="MaxHeight" Value="40" />
+                <Setter Property="ClipToBounds" Value="True" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="7">
+                <Setter Property="MaxWidth" Value="72" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="8">
+                <Setter Property="MaxWidth" Value="72" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="9">
+                <Setter Property="MaxWidth" Value="90" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="10">
+                <Setter Property="MaxWidth" Value="90" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="11">
+                <Setter Property="MaxWidth" Value="108" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="12">
+                <Setter Property="MaxWidth" Value="108" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="13">
+                <Setter Property="MaxWidth" Value="126" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="14">
+                <Setter Property="MaxWidth" Value="126" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="15">
+                <Setter Property="MaxWidth" Value="144" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="16">
+                <Setter Property="MaxWidth" Value="144" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="17">
+                <Setter Property="MaxWidth" Value="162" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="18">
+                <Setter Property="MaxWidth" Value="162" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="19">
+                <Setter Property="MaxWidth" Value="180" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="20">
+                <Setter Property="MaxWidth" Value="180" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="21">
+                <Setter Property="MaxWidth" Value="198" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="22">
+                <Setter Property="MaxWidth" Value="198" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="23">
+                <Setter Property="MaxWidth" Value="216" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="24">
+                <Setter Property="MaxWidth" Value="216" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
     <Style
         x:Key="TaskButton"
         BasedOn="{StaticResource SystemTheme.TaskButton}"
