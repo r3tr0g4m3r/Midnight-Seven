@@ -18,3 +18,5 @@ obj/
 
 # Local config
 local.settings.json
+# Release archives
+*.zip
