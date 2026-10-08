@@ -12,8 +12,9 @@ A Windows 7-style theme for [RetroBar](https://github.com/dremin/RetroBar) featu
 
 - **Windows 7/10 style icon-only task buttons** - No window titles, just icons
 - **Vertical taskbar optimized** - 64px wide bar with centered 32px icons
+- **Square horizontal buttons** - 46×46px rounded squares floating in the 64px bar (macOS dock style)
 - **Large start button** - 36px customizable icon (vector-based, replaceable)
-- **Quick launch toolbar** - 24px icons in 2-column layout (fits 64px bar)
+- **Quick launch toolbar** - 24px icons, borderless (fits 64px bar)
 - **Instant tooltips** - 150ms delay for window titles (vs default 400ms)
 - **Icon hover glow** - Subtle opacity pulse on hover
 - **Active window highlight** - Foreground window icon stays at full opacity
@@ -62,6 +63,7 @@ Replace the `StartButtonIcon` resource in the theme file:
 |-----|---------|-------------|
 | `TaskbarWidth` | 64 | Vertical taskbar width |
 | `TaskbarHeight` | 64 | Horizontal taskbar height |
+| `TaskButtonWidth` | 46 | Task button width (horizontal buttons are 46×46 squares) |
 | `TaskButtonIconSize` | 32 | Task button icon size |
 | `StartButtonIconSize` | 36 | Start button icon size |
 | `StartButtonVerticalSize` | 44 | Start button height (vertical) |
@@ -75,9 +77,10 @@ Quick launch icon size is controlled by the `ToolbarIcon` style:
     <Setter Property="Width" Value="24" />
     <Setter Property="Height" Value="24" />
     <Setter Property="Margin" Value="2" />
+    <Setter Property="Stretch" Value="Uniform" />
 </Style>
 ```
-Current: 24×24 with 2px margins (2 columns in 64px bar)
+Current: exactly 24×24, borderless buttons (vertical: 2-column layout in 64px bar; horizontal: 2px side margins)
 
 ## Theme Palette
 

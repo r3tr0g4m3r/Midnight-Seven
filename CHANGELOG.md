@@ -2,6 +2,17 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.1] - 2024-10-08
+
+### Fixed
+- **Horizontal taskbar**: Task buttons are now square (46×46px) instead of rectangular (46×64px), centered vertically in the 64px bar — matches macOS dock / Windows 10 taskbar look
+- **Quick launch toolbar**: 24px icons with no borders in any state; proper horizontal margins (2px side spacing) for clean fit
+
+### Changed
+- TaskButton, TaskButtonActive, TaskButtonFlashing: Added horizontal Style.Triggers (Height=46, VerticalAlignment=Center)
+- ToolbarButton: Removed pressed-state borders; ContentPresenter Margin=0; Horizontal Margin="2,0,2,0"
+- TaskIcon: Added Stretch=Uniform, VerticalAlignment=Center, HorizontalAlignment=Center
+
 ## [1.0.0] - 2024-10-08
 
 ### Added
