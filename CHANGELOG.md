@@ -2,6 +2,12 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.4] - 2024-10-08
+
+### Fixed
+- **Horizontal taskbar centering**: Task buttons now float centered vertically in the 64px bar (9px padding top and bottom) instead of sitting flush against the top border — matches the centered look of vertical mode
+- `TaskButtonMargin` set to `0,9,0,9` (row height 46+18 = 64 = bar height); also applied via Style.Triggers for multi-row mode
+
 ## [1.0.3] - 2024-10-08
 
 ### Changed
