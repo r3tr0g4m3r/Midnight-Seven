@@ -2,6 +2,12 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.10] - 2026-10-08
+
+### Fixed
+- **Vertical taskbar tray toggle chevron now rotates**: the `^`/`v` button above the tray icons swaps the horizontal `<` geometry for the vertical one — collapsed points **up** (away from the icons below), expanded points **down** — instead of staying a sideways `<` in the vertical bar; horizontal mode unchanged
+- **Chevron centered in the toggle circle**: vertical mode now overrides the arrow padding to `4,5,4,5` so the wider 9×6 vertical geometry sits dead-center in a 19×18 round button (the horizontal-tuned `5,6` left/right padding left it shifted in the wider pill shape)
+
 ## [1.0.9] - 2026-10-08
 
 ### Fixed

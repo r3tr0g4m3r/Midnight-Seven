@@ -2283,6 +2283,33 @@
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
+                        <!-- Vertical taskbar: swap the horizontal chevron for the vertical one and flip it,
+                             so collapsed points up (^, away from the icons below) and expanded points down.
+                             Defined after the IsChecked trigger so it wins over the horizontal ScaleX flip. -->
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <Setter TargetName="ButtonBorder" Property="Padding" Value="4,5,4,5" />
+                            <Setter TargetName="ToggleArrow" Property="Data" Value="{DynamicResource VArrow}" />
+                            <Setter TargetName="ToggleArrow" Property="RenderTransformOrigin" Value="0.5,0.5" />
+                            <Setter TargetName="ToggleArrow" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleY="-1" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical" />
+                                <Condition Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource TemplatedParent}}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="ToggleArrow" Property="RenderTransformOrigin" Value="0.5,0.5" />
+                                <Setter TargetName="ToggleArrow" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleY="1" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
