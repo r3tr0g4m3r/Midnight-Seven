@@ -2,6 +2,12 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.5] - 2024-10-08
+
+### Fixed
+- **Horizontal quick launch wrapping**: Icons now wrap into rows of 3 (6 icons = 2 rows of 3) instead of a single unbounded row — `ToolbarItems` constrained to `MaxWidth=96` (3 × 32px columns)
+- Quick launch block is vertically centered in the 64px bar (56px tall, 4px top/bottom)
+
 ## [1.0.4] - 2024-10-08
 
 ### Fixed
