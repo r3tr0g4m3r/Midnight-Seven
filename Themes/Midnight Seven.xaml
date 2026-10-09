@@ -18,7 +18,6 @@
     <!-- Start button sizing (larger than task icons) -->
     <system:Double x:Key="StartButtonIconSize">36</system:Double>
     <system:Double x:Key="StartButtonVerticalSize">44</system:Double>
-    <system:Double x:Key="StartButtonHorizontalHeight">34</system:Double>
 
     <DrawingBrush x:Key="winlogo" Stretch="Uniform">
         <DrawingBrush.Drawing>
@@ -410,172 +409,6 @@
         <GradientStop Offset="0.6" Color="#cc7900" />
         <GradientStop Offset="1.0" Color="#a96000" />
     </RadialGradientBrush>
-
-    <DrawingBrush x:Key="XPShowDesktopIcon" Stretch="Uniform">
-        <DrawingBrush.Drawing>
-            <DrawingGroup>
-                <DrawingGroup.Children>
-                    <GeometryDrawing Brush="#5a3875" Geometry="F1 M 3.87366,8.72534L 71.6837,0C 73.8849,-0.315704 75.7194,1.21851 75.7812,3.42682L 76.4743,59.9248C 76.5361,62.1331 74.8018,64.1791 72.6006,64.4948L 6.79065,79.2202C 4.58948,79.5359 2.75497,78.0016 2.69315,75.7934L 0,13.2954C -0.0617981,11.0871 1.67249,9.04105 3.87366,8.72534 Z " />
-                    <GeometryDrawing Geometry="F1 M 3.87366,8.72537L 71.6837,0C 73.8849,-0.315704 75.7194,1.21851 75.7812,3.42682L 76.4743,59.9248C 76.5361,62.1331 74.8018,64.1791 72.6006,64.4948L 6.79065,79.2202C 4.58948,79.5359 2.75497,78.0016 2.69315,75.7934L 0,13.2954C -0.0617981,11.0871 1.67249,9.04108 3.87366,8.72537 Z ">
-                        <GeometryDrawing.Brush>
-                            <LinearGradientBrush StartPoint="0.509566,0.0541268" EndPoint="1.35484,0.0541268">
-                                <LinearGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <SkewTransform AngleX="-0.123993" AngleY="0" CenterX="0.509566" CenterY="0.0541268" />
-                                        <RotateTransform Angle="88.227" CenterX="0.509566" CenterY="0.0541268" />
-                                    </TransformGroup>
-                                </LinearGradientBrush.RelativeTransform>
-                                <LinearGradientBrush.GradientStops>
-                                    <GradientStop Offset="0" Color="#FF4EA3EA" />
-                                    <GradientStop Offset="1" Color="#FF18489C" />
-                                </LinearGradientBrush.GradientStops>
-                            </LinearGradientBrush>
-                        </GeometryDrawing.Brush>
-                    </GeometryDrawing>
-                    <GeometryDrawing Geometry="M 5.00003,28.2202L 18,12.2202L 60.0001,5.22015L 73.3566,18.6739L 74.0001,47.2201L 64.0001,63.2201L 21,73.2201L 6.00003,61.2201L 5.00003,28.2202 Z ">
-                        <GeometryDrawing.Pen>
-                            <Pen Brush="#FF005EAD" LineJoin="Round" />
-                        </GeometryDrawing.Pen>
-                        <GeometryDrawing.Brush>
-                            <LinearGradientBrush StartPoint="0.478035,0.0581315" EndPoint="1.3354,0.0581315">
-                                <LinearGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <SkewTransform AngleX="0.171244" AngleY="0" CenterX="0.478035" CenterY="0.0581315" />
-                                        <RotateTransform Angle="84.1789" CenterX="0.478035" CenterY="0.0581315" />
-                                    </TransformGroup>
-                                </LinearGradientBrush.RelativeTransform>
-                                <LinearGradientBrush.GradientStops>
-                                    <GradientStop Offset="0" Color="#FFFFFFF4" />
-                                    <GradientStop Offset="1" Color="#FFFFFFC8" />
-                                </LinearGradientBrush.GradientStops>
-                            </LinearGradientBrush>
-                        </GeometryDrawing.Brush>
-                    </GeometryDrawing>
-                    <GeometryDrawing Geometry="F1 M 4.87369,9.72531L 70.6838,0.999969C 72.8849,0.684296 74.7194,2.21848 74.7813,4.42682L 74.8054,6.39417C 74.1365,5.06781 72.6806,2.9791 71.0001,3.22015L 6.52856,12.4865C 4.26968,12.8105 3.48868,13.8633 3.55045,16.0716L 5.2189,74.5732C 5.27359,76.5286 5.75504,78.9503 7.66202,79.0252L 6.79068,79.2201C 4.58951,79.5358 3.75504,77.0016 3.69321,74.7933L 1.00009,14.2954C 0.938232,12.0871 2.67252,10.041 4.87369,9.72531 Z ">
-                        <GeometryDrawing.Brush>
-                            <LinearGradientBrush StartPoint="0.487357,0.0409243" EndPoint="1.19107,0.0409243">
-                                <LinearGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <SkewTransform AngleX="-0.367544" AngleY="0" CenterX="0.487357" CenterY="0.0409243" />
-                                        <RotateTransform Angle="86.6887" CenterX="0.487357" CenterY="0.0409243" />
-                                    </TransformGroup>
-                                </LinearGradientBrush.RelativeTransform>
-                                <LinearGradientBrush.GradientStops>
-                                    <GradientStop Offset="0" Color="#FFDCF5FE" />
-                                    <GradientStop Offset="1" Color="#FF18489C" />
-                                </LinearGradientBrush.GradientStops>
-                            </LinearGradientBrush>
-                        </GeometryDrawing.Brush>
-                    </GeometryDrawing>
-                    <GeometryDrawing Geometry="F1 M 23.9999,21.2202L 53.0001,16.2202L 55.0001,57.2202L 26,62.2202L 23.9999,21.2202 Z ">
-                        <GeometryDrawing.Pen>
-                            <Pen
-                                Brush="#FF1CA4FB"
-                                LineJoin="Round"
-                                Thickness="1.5" />
-                        </GeometryDrawing.Pen>
-                        <GeometryDrawing.Brush>
-                            <LinearGradientBrush StartPoint="0.483872,0.0653275" EndPoint="1.35404,0.0653275">
-                                <LinearGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <SkewTransform AngleX="-1.15928" AngleY="0" CenterX="0.483872" CenterY="0.0653275" />
-                                        <RotateTransform Angle="87.8755" CenterX="0.483872" CenterY="0.0653275" />
-                                    </TransformGroup>
-                                </LinearGradientBrush.RelativeTransform>
-                                <LinearGradientBrush.GradientStops>
-                                    <GradientStop Offset="0" Color="#FFF4FAFF" />
-                                    <GradientStop Offset="1" Color="#FFD0E7FF" />
-                                </LinearGradientBrush.GradientStops>
-                            </LinearGradientBrush>
-                        </GeometryDrawing.Brush>
-                    </GeometryDrawing>
-                    <GeometryDrawing Geometry="F1 M 44,42.2202L 53.9999,48.2202L 54.9999,57.2202L 47,58.2202L 44,42.2202 Z ">
-                        <GeometryDrawing.Brush>
-                            <LinearGradientBrush StartPoint="-0.000454992,0.000871658" EndPoint="1.26132,0.000871658">
-                                <LinearGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <SkewTransform AngleX="-19.9407" AngleY="0" CenterX="-0.000454992" CenterY="0.000871658" />
-                                        <RotateTransform Angle="43.9051" CenterX="-0.000454992" CenterY="0.000871658" />
-                                    </TransformGroup>
-                                </LinearGradientBrush.RelativeTransform>
-                                <LinearGradientBrush.GradientStops>
-                                    <GradientStop Offset="0.185345" Color="#FF4BBBFF" />
-                                    <GradientStop Offset="0.887931" Color="#FF9FD6FF" />
-                                </LinearGradientBrush.GradientStops>
-                            </LinearGradientBrush>
-                        </GeometryDrawing.Brush>
-                    </GeometryDrawing>
-                    <GeometryDrawing Geometry="F1 M 43.9999,42.4019L 52.408,44.2198L 48.4467,35.038L 43.9999,42.4019 Z ">
-                        <GeometryDrawing.Brush>
-                            <LinearGradientBrush StartPoint="0.409965,0.232282" EndPoint="1.25158,0.232282">
-                                <LinearGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <SkewTransform AngleX="-3.63669" AngleY="0" CenterX="0.409965" CenterY="0.232282" />
-                                        <RotateTransform Angle="65.0566" CenterX="0.409965" CenterY="0.232282" />
-                                    </TransformGroup>
-                                </LinearGradientBrush.RelativeTransform>
-                                <LinearGradientBrush.GradientStops>
-                                    <GradientStop Offset="0.512931" Color="#FFC6A541" />
-                                    <GradientStop Offset="1" Color="#FF816716" />
-                                </LinearGradientBrush.GradientStops>
-                            </LinearGradientBrush>
-                        </GeometryDrawing.Brush>
-                    </GeometryDrawing>
-                    <GeometryDrawing Brush="#FF478BCC" Geometry="F1 M 48.4468,35.0383L 69.5652,25.9272L 73.5266,35.1091L 52.4081,44.2202C 51.1358,42.9539 49.8635,41.6877 49.2032,40.1574C 48.543,38.6271 48.4949,36.8327 48.4468,35.0383 Z " />
-                    <GeometryDrawing Geometry="F1 M 49.7611,35.5603L 69.9624,26.8477C 70.1845,28.204 70.4066,29.5604 70.9348,30.7846C 71.463,32.0089 72.2972,33.1011 73.1314,34.1933L 52.9302,42.9059C 51.7899,41.9457 50.6495,40.9855 50.1214,39.7613C 49.5932,38.537 49.6772,37.0486 49.7611,35.5603 Z ">
-                        <GeometryDrawing.Brush>
-                            <LinearGradientBrush StartPoint="0.394188,0.295605" EndPoint="0.871197,0.295605">
-                                <LinearGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <SkewTransform AngleX="15.7223" AngleY="0" CenterX="0.394188" CenterY="0.295605" />
-                                        <RotateTransform Angle="73.5295" CenterX="0.394188" CenterY="0.295605" />
-                                    </TransformGroup>
-                                </LinearGradientBrush.RelativeTransform>
-                                <LinearGradientBrush.GradientStops>
-                                    <GradientStop Offset="0.103448" Color="#FFBDD6F0" />
-                                    <GradientStop Offset="0.422414" Color="#FF5E9DDD" />
-                                </LinearGradientBrush.GradientStops>
-                            </LinearGradientBrush>
-                        </GeometryDrawing.Brush>
-                    </GeometryDrawing>
-                    <GeometryDrawing Brush="#FF727272" Geometry="F1 M 74.1562,23.9465L 69.5652,25.9272C 69.6133,27.7216 69.6614,29.5161 70.3216,31.0464C 70.9818,32.5767 72.2542,33.8429 73.5266,35.1091L 78.1175,33.1285C 76.8452,31.8622 75.5728,30.596 74.9125,29.0657C 74.2523,27.5354 74.2043,25.741 74.1562,23.9465 Z " />
-                    <GeometryDrawing Geometry="F1 M 74.1562,23.9465C 75.6865,23.2863 77.2169,22.6261 78.6182,22.9291C 80.0195,23.2321 81.2918,24.4984 81.9521,26.0287C 82.6123,27.559 82.6604,29.3534 81.9193,30.5807C 81.1782,31.808 79.6479,32.4683 78.1176,33.1285C 76.8452,31.8622 75.5728,30.596 74.9126,29.0657C 74.2524,27.5354 74.2043,25.741 74.1562,23.9465 Z ">
-                        <GeometryDrawing.Brush>
-                            <RadialGradientBrush Center="0.79128,0.360437" GradientOrigin="0.79128,0.360437" RadiusX="0.585436" RadiusY="0.750622">
-                                <RadialGradientBrush.GradientStops>
-                                    <GradientStop Offset="0.512931" Color="#FFBD1A0C" />
-                                    <GradientStop Offset="1" Color="#FFD97D2F" />
-                                </RadialGradientBrush.GradientStops>
-                                <RadialGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <SkewTransform AngleX="8.86752" AngleY="0" CenterX="0.79128" CenterY="0.360437" />
-                                        <RotateTransform Angle="-19.224" CenterX="0.79128" CenterY="0.360437" />
-                                    </TransformGroup>
-                                </RadialGradientBrush.RelativeTransform>
-                            </RadialGradientBrush>
-                        </GeometryDrawing.Brush>
-                    </GeometryDrawing>
-                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M 44.0001,42.4022L 46.012,39.4921L 47.4975,42.9354L 44.0001,42.4022 Z " />
-                    <GeometryDrawing Geometry="F1 M 73.6342,25.2609L 70.7347,26.5118C 70.699,27.9793 70.6634,29.4468 71.1916,30.6711C 71.7197,31.8954 72.8117,32.8764 73.9037,33.8574L 76.8033,32.6064C 75.8885,31.549 74.9737,30.4915 74.4455,29.2673C 73.9173,28.043 73.7758,26.6519 73.6342,25.2609 Z ">
-                        <GeometryDrawing.Brush>
-                            <LinearGradientBrush StartPoint="0.178664,0.0922855" EndPoint="1.17928,0.0922855">
-                                <LinearGradientBrush.RelativeTransform>
-                                    <TransformGroup>
-                                        <SkewTransform AngleX="-14.3697" AngleY="0" CenterX="0.178664" CenterY="0.0922855" />
-                                        <RotateTransform Angle="58.6444" CenterX="0.178664" CenterY="0.0922855" />
-                                    </TransformGroup>
-                                </LinearGradientBrush.RelativeTransform>
-                                <LinearGradientBrush.GradientStops>
-                                    <GradientStop Offset="0" Color="#FFFFFFFF" />
-                                    <GradientStop Offset="1" Color="#FF808080" />
-                                </LinearGradientBrush.GradientStops>
-                            </LinearGradientBrush>
-                        </GeometryDrawing.Brush>
-                    </GeometryDrawing>
-                </DrawingGroup.Children>
-            </DrawingGroup>
-        </DrawingBrush.Drawing>
-    </DrawingBrush>
 
     <Style x:Key="TaskManMenuItem" TargetType="MenuItem">
         <Setter Property="Header" Value="{DynamicResource show_taskman}" />
@@ -1505,73 +1338,114 @@
         </Style.Triggers>
     </Style>
 
+    <!-- Show desktop button: Win7-style 15px blank sliver at the end of the bar.
+         Midnight purple grading; separator line faces the tray (left edge when
+         horizontal, top edge when vertical); width/height switch per orientation. -->
+    <LinearGradientBrush x:Key="ShowDesktopBackground" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="#1d1230" />
+        <GradientStop Offset="1.0" Color="#16111f" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ShowDesktopHover" Color="#303063" />
+    <SolidColorBrush x:Key="ShowDesktopPressed" Color="#484896" />
+    <SolidColorBrush x:Key="ShowDesktopSeparator" Color="#433357" />
+    <!-- Directional end-glow sheen: strong shine at the leading end, fast fade,
+         one unified rounded 12% black band (5-stop ramp, neutral transparent
+         gaps — no contour lines), faint glint at the far end.
+         Vertical-axis for the horizontal bar (bright top), rotated axis for the
+         vertical bar (bright left). -->
+    <LinearGradientBrush x:Key="GlassSheen" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="#40FFFFFF" />
+        <GradientStop Offset="0.12" Color="#14FFFFFF" />
+        <GradientStop Offset="0.35" Color="#00000000" />
+        <GradientStop Offset="0.45" Color="#0A000000" />
+        <GradientStop Offset="0.55" Color="#1F000000" />
+        <GradientStop Offset="0.65" Color="#0A000000" />
+        <GradientStop Offset="0.75" Color="#00000000" />
+        <GradientStop Offset="0.9" Color="#0CFFFFFF" />
+        <GradientStop Offset="1.0" Color="#1AFFFFFF" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GlassSheenRotated" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0.0" Color="#40FFFFFF" />
+        <GradientStop Offset="0.12" Color="#14FFFFFF" />
+        <GradientStop Offset="0.35" Color="#00000000" />
+        <GradientStop Offset="0.45" Color="#0A000000" />
+        <GradientStop Offset="0.55" Color="#1F000000" />
+        <GradientStop Offset="0.65" Color="#0A000000" />
+        <GradientStop Offset="0.75" Color="#00000000" />
+        <GradientStop Offset="0.9" Color="#0CFFFFFF" />
+        <GradientStop Offset="1.0" Color="#1AFFFFFF" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="GlassEdgeLight" Color="#4DFFFFFF" />
+
     <Style x:Key="ShowDesktopButton" TargetType="ToggleButton">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
-                    <Border Background="Transparent">
-                        <Border
-                            x:Name="TaskButtonBorder1"
-                            Margin="4"
-                            Background="Transparent"
-                            BorderBrush="Transparent"
-                            BorderThickness="1,0,1,0"
-                            CornerRadius="3,3,0,0">
+                    <Border x:Name="Root" Background="{DynamicResource ShowDesktopBackground}">
+                        <Grid>
                             <Border
-                                x:Name="TaskButtonBorder2"
-                                BorderBrush="Transparent"
-                                BorderThickness="0"
-                                CornerRadius="2,2,0,0">
-                                <Border
-                                    x:Name="TaskButtonBorder3"
-                                    BorderBrush="Transparent"
-                                    BorderThickness="1"
-                                    CornerRadius="2,2,0,0">
-                                    <Grid x:Name="ButtonContent">
-                                        <Canvas
-                                            x:Name="BlurBehind"
-                                            Grid.ColumnSpan="2"
-                                            Margin="1">
-                                            <Canvas.Effect>
-                                                <BlurEffect Radius="6" />
-                                            </Canvas.Effect>
-                                        </Canvas>
-                                        <Border
-                                            Width="30"
-                                            Height="10"
-                                            Margin="1,2,1,2"
-                                            Background="{DynamicResource XPShowDesktopIcon}" />
-                                    </Grid>
-                                </Border>
-                            </Border>
-                        </Border>
+                                x:Name="Sheen"
+                                Background="{DynamicResource GlassSheen}" />
+                            <Border
+                                x:Name="TopLight"
+                                Height="1"
+                                VerticalAlignment="Top"
+                                Background="{DynamicResource GlassEdgeLight}" />
+                            <Border
+                                x:Name="BottomLight"
+                                Height="1"
+                                VerticalAlignment="Bottom"
+                                Background="{DynamicResource GlassEdgeLight}" />
+                            <Border
+                                x:Name="LeftLight"
+                                Width="1"
+                                HorizontalAlignment="Left"
+                                Visibility="Collapsed"
+                                Background="{DynamicResource GlassEdgeLight}" />
+                            <Border
+                                x:Name="RightLight"
+                                Width="1"
+                                HorizontalAlignment="Right"
+                                Visibility="Collapsed"
+                                Background="{DynamicResource GlassEdgeLight}" />
+                            <Border
+                                x:Name="Separator"
+                                BorderBrush="{DynamicResource ShowDesktopSeparator}"
+                                BorderThickness="0" />
+                        </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                            <Setter TargetName="Separator" Property="BorderThickness" Value="1,0,0,0" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <Setter TargetName="Separator" Property="BorderThickness" Value="0,1,0,0" />
+                            <Setter TargetName="Sheen" Property="Background" Value="{DynamicResource GlassSheenRotated}" />
+                            <Setter TargetName="TopLight" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="BottomLight" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="LeftLight" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="RightLight" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
-                            <Setter TargetName="TaskButtonBorder1" Property="BorderBrush" Value="{DynamicResource ButtonBorder1}" />
-                            <Setter TargetName="TaskButtonBorder2" Property="BorderBrush" Value="{DynamicResource ButtonBorder2}" />
-                            <Setter TargetName="TaskButtonBorder3" Property="BorderBrush" Value="{DynamicResource ButtonBorder3}" />
-                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                            <Setter TargetName="Root" Property="Background" Value="{DynamicResource ShowDesktopHover}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
-                            <Setter TargetName="TaskButtonBorder1" Property="BorderBrush" Value="{DynamicResource ButtonBorder1Pressed}" />
-                            <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1,1,1,0" />
-                            <Setter TargetName="TaskButtonBorder2" Property="BorderBrush" Value="{DynamicResource ButtonBorder2}" />
-                            <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1,1,1,0" />
-                            <Setter TargetName="TaskButtonBorder3" Property="BorderBrush" Value="{DynamicResource ButtonBorder3}" />
-                            <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="1,1,0,0" />
-                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
-                            <Setter TargetName="ButtonContent" Property="Margin" Value="-1,-2,-1,0" />
+                            <Setter TargetName="Root" Property="Background" Value="{DynamicResource ShowDesktopPressed}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                <Setter Property="Width" Value="15" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                <Setter Property="Height" Value="15" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style
@@ -1838,6 +1712,25 @@
                                             <BlurEffect Radius="12" />
                                         </Canvas.Effect>
                                     </Canvas>
+                                    <Border
+                                        x:Name="StartSheen"
+                                        Background="{DynamicResource GlassSheen}" />
+                                    <Border
+                                        Height="1"
+                                        VerticalAlignment="Top"
+                                        Background="{DynamicResource GlassEdgeLight}" />
+                                    <Border
+                                        Height="1"
+                                        VerticalAlignment="Bottom"
+                                        Background="{DynamicResource GlassEdgeLight}" />
+                                    <Border
+                                        Width="1"
+                                        HorizontalAlignment="Left"
+                                        Background="{DynamicResource GlassEdgeLight}" />
+                                    <Border
+                                        Width="1"
+                                        HorizontalAlignment="Right"
+                                        Background="{DynamicResource GlassEdgeLight}" />
                                     <Image x:Name="StartIcon"
                                            Width="{DynamicResource StartButtonIconSize}"
                                            Height="{DynamicResource StartButtonIconSize}"
@@ -1854,12 +1747,13 @@
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                             <Setter TargetName="StartButtonBorder2" Property="BorderThickness" Value="0" />
                             <Setter TargetName="StartButtonContent" Property="Margin" Value="0" />
+                            <Setter TargetName="StartSheen" Property="Background" Value="{DynamicResource GlassSheenRotated}" />
                             <Setter Property="Width" Value="{DynamicResource TaskbarWidth}" />
                             <Setter Property="Height" Value="{DynamicResource StartButtonVerticalSize}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
-                            <Setter Property="Height" Value="{DynamicResource StartButtonHorizontalHeight}" />
-                            <Setter Property="MinWidth" Value="44" />
+                            <Setter Property="Width" Value="{DynamicResource TaskbarWidth}" />
+                            <Setter Property="Height" Value="{DynamicResource StartButtonVerticalSize}" />
                         </DataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />

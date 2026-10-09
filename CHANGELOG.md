@@ -2,6 +2,19 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.11] - 2026-10-08
+
+### Changed
+- **Show desktop button is now a Win7-style 15px blank sliver** at the end of the bar (was ~40px wide with a 30×10 blue XP glyph): horizontal bar = 15×64px flush at the right edge, vertical bar = 64×15px flush at the bottom — exact Windows 7 proportion (Win7: 15px wide × full taskbar height)
+- **Color grading**: midnight purple gradient (`#1d1230` → `#16111f`) with a `#433357` separator line facing the tray (left edge horizontal, top edge vertical), `#303063` hover, `#484896` pressed — replaces the blue XP glyph and the task-button glow treatment
+- **Glassy shading**: a persistent Win7-style sheen overlays the sliver — **directional light** with a strong shine at the leading end (top in horizontal mode, left in vertical mode), one **unified rounded 12% black band** below center (5-stop ramp with neutral transparent gaps, so no contour lines), and a faint glint at the far end; crisp 1px `#4DFFFFFF` hairlines sit on both terminal ends (equal brightness); hover/pressed only brighten the base color *underneath* the sheen, so the shading never disappears
+- **Start button gets the same glass treatment**: the shared directional sheen is layered over the start button square (above the hover/pressed purple fill, below the icon) — leading shine, unified dark band, faint far-end glint — plus 1px `#4DFFFFFF` hairlines on **all four edges**; shading persists through hover/pressed (the fill brightens underneath) and the sheen axis flips with orientation (top-dominant horizontal, left-dominant vertical)
+- **Start button is now the same 64×44 box in both orientations** (was 44×34 in the horizontal bar, where the 36px icon overflowed the 34px face and made the bordered square look cramped): horizontal now uses `TaskbarWidth` × `StartButtonVerticalSize` — identical to vertical, and the 64px width lines up with the 64px-wide task buttons
+
+### Removed
+- Dead `XPShowDesktopIcon` drawing brush (only consumer was the old button template; it was XP-blue and clashed with the palette)
+- `StartButtonHorizontalHeight` sizing key (superseded — the start button height is `StartButtonVerticalSize` in both orientations)
+
 ## [1.0.10] - 2026-10-08
 
 ### Fixed

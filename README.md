@@ -59,7 +59,7 @@ Replace the `StartButtonIcon` resource in the theme file:
 
 | Key | Default | Description |
 |-----|---------|-------------|
-| `TaskbarWidth` | 64 | Vertical taskbar width |
+| `TaskbarWidth` | 64 | Vertical taskbar width (also the start-button width in both orientations) |
 | `TaskbarHeight` | 64 | Horizontal taskbar height |
 | `TaskbarRowHeight` | 64 | Horizontal taskbar row height (one row of task buttons) |
 | `TaskbarUnlockedSize` | 4 | Size of the drag handle shown when the taskbar is unlocked |
@@ -68,8 +68,7 @@ Replace the `StartButtonIcon` resource in the theme file:
 | `TaskButtonVerticalMargin` | `0,0,0,2` | Vertical-mode margins (bottom spacing between tiles) |
 | `TaskButtonIconSize` | 36 | Task button icon size (set in the `TaskIcon` style) |
 | `StartButtonIconSize` | 36 | Start button icon size |
-| `StartButtonVerticalSize` | 44 | Start button height (vertical) |
-| `StartButtonHorizontalHeight` | 34 | Start button height (horizontal) |
+| `StartButtonVerticalSize` | 44 | Start button height (both orientations) |
 
 ### Quick Launch Icons
 
