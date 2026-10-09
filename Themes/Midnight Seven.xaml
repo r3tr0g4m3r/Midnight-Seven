@@ -12,8 +12,8 @@
     <system:Boolean x:Key="AllowsTransparency">True</system:Boolean>
     <system:Boolean x:Key="UseLargeIcons">True</system:Boolean>
     <!--system:Boolean x:Key="UseFloatingStartButton">false</system:Boolean-->
-    <Thickness x:Key="TaskButtonMargin">0,5,0,5</Thickness>
-    <Thickness x:Key="TaskButtonVerticalMargin">0,0,0,2</Thickness>
+    <Thickness x:Key="TaskButtonMargin">1,0,2,0</Thickness>
+    <Thickness x:Key="TaskButtonVerticalMargin">0,0,0,3</Thickness>
 
     <!-- Start button sizing (larger than task icons) -->
     <system:Double x:Key="StartButtonIconSize">36</system:Double>
@@ -1055,7 +1055,7 @@
                         x:Name="TaskButtonBorder1"
                         Background="{DynamicResource ButtonBackground}"
                         BorderBrush="{DynamicResource ButtonBorder1}"
-                        BorderThickness="6,2,6,2"
+                        BorderThickness="0"
                         CornerRadius="8,8,8,8">
                         <Border
                             x:Name="TaskButtonBorder2"
@@ -1090,7 +1090,7 @@
                         <Trigger Property="IsPressed" Value="True">
                             <!--<Setter TargetName="TaskButtonBorder1" Property="Background" Value="Transparent"/>-->
                             <Setter TargetName="TaskButtonBorder1" Property="BorderBrush" Value="{DynamicResource ButtonBorder1Pressed}" />
-                            <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1,1,1,0" />
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="0" />
                             <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1,1,1,0" />
                             <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="1,1,0,0" />
                             <Setter TargetName="BlurBehind" Property="Background" Value="#42428a" />
@@ -1099,17 +1099,17 @@
                         <!-- Vertical taskbar: full rounded frame, no edge-anchored pressed offset -->
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                             <DataTrigger.Setters>
-                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="2,2,2,2" />
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="0" />
                                 <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="0" />
                                 <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="8" />
                                 <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
                                 <Setter TargetName="Content" Property="Margin" Value="0" />
                             </DataTrigger.Setters>
                         </DataTrigger>
-                        <!-- Horizontal taskbar: square buttons (46x46), centered vertically in 64px bar -->
+                        <!-- Horizontal taskbar: 64x60 tile fills the 60px bar; frame touches top/bottom -->
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
                             <DataTrigger.Setters>
-                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="2,2,2,2" />
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="0" />
                                 <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
                                 <Setter TargetName="Content" Property="Margin" Value="0" />
                                 <Setter TargetName="Content" Property="VerticalAlignment" Value="Center" />
@@ -1120,14 +1120,14 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <!-- Horizontal taskbar: 64x50 tile, centered vertically in the 64px bar (7px top/bottom) -->
+            <!-- Horizontal taskbar: 64x60 tile fills the 60px bar edge-to-edge (borders touch top/bottom) -->
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
                 <Setter Property="Width" Value="{DynamicResource TaskButtonWidth}" />
-                <Setter Property="Height" Value="50" />
+                <Setter Property="Height" Value="{DynamicResource TaskbarHeight}" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Margin" Value="{DynamicResource TaskButtonMargin}" />
             </DataTrigger>
-            <!-- Vertical taskbar: same 64x50 tile as horizontal, full bar width edge-to-edge -->
+            <!-- Vertical taskbar: 64x50 tile, full bar width edge-to-edge -->
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                 <Setter Property="Width" Value="{DynamicResource TaskButtonWidth}" />
                 <Setter Property="Height" Value="50" />
@@ -1150,7 +1150,7 @@
                         x:Name="TaskButtonBorder1"
                         Background="{DynamicResource ButtonBackground}"
                         BorderBrush="{DynamicResource ButtonBorder1Pressed}"
-                        BorderThickness="1,1,1,0"
+                        BorderThickness="0"
                         CornerRadius="3,3,0,0">
                         <Border
                             x:Name="TaskButtonBorder2"
@@ -1186,7 +1186,7 @@
                         <!-- Vertical taskbar: full rounded frame, no edge-anchored offset -->
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                             <DataTrigger.Setters>
-                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="0" />
                                 <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
                                 <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1" />
                                 <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="3" />
@@ -1195,10 +1195,10 @@
                                 <Setter TargetName="Content" Property="Margin" Value="0" />
                             </DataTrigger.Setters>
                         </DataTrigger>
-                        <!-- Horizontal taskbar: square buttons (46x46), centered vertically in 64px bar -->
+                        <!-- Horizontal taskbar: 64x60 tile fills the 60px bar; frame touches top/bottom -->
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
                             <DataTrigger.Setters>
-                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1,1,1,1" />
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="0" />
                                 <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
                                 <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1" />
                                 <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="3" />
@@ -1214,14 +1214,14 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <!-- Horizontal taskbar: 64x50 tile, centered vertically in the 64px bar (7px top/bottom) -->
+            <!-- Horizontal taskbar: 64x60 tile fills the 60px bar edge-to-edge (borders touch top/bottom) -->
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
                 <Setter Property="Width" Value="{DynamicResource TaskButtonWidth}" />
-                <Setter Property="Height" Value="50" />
+                <Setter Property="Height" Value="{DynamicResource TaskbarHeight}" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Margin" Value="{DynamicResource TaskButtonMargin}" />
             </DataTrigger>
-            <!-- Vertical taskbar: same 64x50 tile as horizontal, full bar width edge-to-edge -->
+            <!-- Vertical taskbar: 64x50 tile, full bar width edge-to-edge -->
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                 <Setter Property="Width" Value="{DynamicResource TaskButtonWidth}" />
                 <Setter Property="Height" Value="50" />
@@ -1243,7 +1243,7 @@
                         x:Name="TaskButtonBorder1"
                         Background="{DynamicResource ButtonBackgroundFlashing}"
                         BorderBrush="{DynamicResource ButtonBorder1Flashing}"
-                        BorderThickness="1,1,1,0"
+                        BorderThickness="3,3,3,0"
                         CornerRadius="3,3,0,0">
                         <Border
                             x:Name="TaskButtonBorder2"
@@ -1272,8 +1272,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
-                            <Setter TargetName="TaskButtonBorder1" Property="BorderBrush" Value="{DynamicResource ButtonBorder1}" />
-                            <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1,0,1,0" />
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="3,0,3,0" />
                             <Setter TargetName="TaskButtonBorder2" Property="BorderBrush" Value="{DynamicResource ButtonBorder2}" />
                             <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="0" />
                             <Setter TargetName="TaskButtonBorder3" Property="BorderBrush" Value="{DynamicResource ButtonBorder3}" />
@@ -1282,8 +1281,7 @@
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
-                            <Setter TargetName="TaskButtonBorder1" Property="BorderBrush" Value="{DynamicResource ButtonBorder1Pressed}" />
-                            <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1,1,1,0" />
+                            <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="0" />
                             <Setter TargetName="TaskButtonBorder2" Property="BorderBrush" Value="{DynamicResource ButtonBorder2}" />
                             <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1,1,1,0" />
                             <Setter TargetName="TaskButtonBorder3" Property="BorderBrush" Value="{DynamicResource ButtonBorder3}" />
@@ -1293,7 +1291,7 @@
                         <!-- Vertical taskbar: full rounded frame, no edge-anchored offset -->
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                             <DataTrigger.Setters>
-                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="3" />
                                 <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
                                 <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1" />
                                 <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="3" />
@@ -1302,10 +1300,10 @@
                                 <Setter TargetName="Content" Property="Margin" Value="0" />
                             </DataTrigger.Setters>
                         </DataTrigger>
-                        <!-- Horizontal taskbar: square buttons (46x46), centered vertically in 64px bar -->
+                        <!-- Horizontal taskbar: 64x60 tile fills the 60px bar; frame touches top/bottom -->
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
                             <DataTrigger.Setters>
-                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="1,1,1,1" />
+                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="3,3,3,3" />
                                 <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
                                 <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1" />
                                 <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="3" />
@@ -1321,14 +1319,14 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <!-- Horizontal taskbar: 64x50 tile, centered vertically in the 64px bar (7px top/bottom) -->
+            <!-- Horizontal taskbar: 64x60 tile fills the 60px bar edge-to-edge (borders touch top/bottom) -->
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
                 <Setter Property="Width" Value="{DynamicResource TaskButtonWidth}" />
-                <Setter Property="Height" Value="50" />
+                <Setter Property="Height" Value="{DynamicResource TaskbarHeight}" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Margin" Value="{DynamicResource TaskButtonMargin}" />
             </DataTrigger>
-            <!-- Vertical taskbar: same 64x50 tile as horizontal, full bar width edge-to-edge -->
+            <!-- Vertical taskbar: 64x50 tile, full bar width edge-to-edge -->
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                 <Setter Property="Width" Value="{DynamicResource TaskButtonWidth}" />
                 <Setter Property="Height" Value="50" />
@@ -1716,19 +1714,19 @@
                                         x:Name="StartSheen"
                                         Background="{DynamicResource GlassSheen}" />
                                     <Border
-                                        Height="1"
+                                        Height="3"
                                         VerticalAlignment="Top"
                                         Background="{DynamicResource GlassEdgeLight}" />
                                     <Border
-                                        Height="1"
+                                        Height="3"
                                         VerticalAlignment="Bottom"
                                         Background="{DynamicResource GlassEdgeLight}" />
                                     <Border
-                                        Width="1"
+                                        Width="3"
                                         HorizontalAlignment="Left"
                                         Background="{DynamicResource GlassEdgeLight}" />
                                     <Border
-                                        Width="1"
+                                        Width="3"
                                         HorizontalAlignment="Right"
                                         Background="{DynamicResource GlassEdgeLight}" />
                                     <Image x:Name="StartIcon"
@@ -1753,7 +1751,7 @@
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
                             <Setter Property="Width" Value="{DynamicResource TaskbarWidth}" />
-                            <Setter Property="Height" Value="{DynamicResource StartButtonVerticalSize}" />
+                            <Setter Property="Height" Value="{DynamicResource TaskbarHeight}" />
                         </DataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
@@ -1923,6 +1921,7 @@
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                 <DataTrigger.Setters>
                     <Setter Property="Margin" Value="0,1" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
                 </DataTrigger.Setters>
             </DataTrigger>
             <!-- Horizontal taskbar: constrain width to 3 columns (3x32=96) so icons wrap into rows; center the block in the 64px bar; cap to 2 rows and clip extras (7+ hidden) -->

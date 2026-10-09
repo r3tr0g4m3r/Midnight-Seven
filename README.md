@@ -6,7 +6,7 @@ A Windows 7-style theme for [RetroBar](https://github.com/dremin/RetroBar) featu
 
 - **Windows 7/10 style icon-only task buttons** - No window titles, just icons
 - **Vertical taskbar optimized** - 64px wide bar with centered 36px icons
-- **Identical task buttons in both orientations** - 64×50px tiles: vertical fills the 64px bar edge-to-edge, horizontal centers in the 60px bar (5px top/bottom)
+- **Task buttons match the bar in both orientations** - vertical: 64×50px tiles fill the 64px bar edge-to-edge; horizontal: 64×60px tiles fill the 60px bar edge-to-edge (thin light outline touches top/bottom); 3px separation between tiles, no dark border
 - **Large start button** - 36px customizable icon (vector-based, replaceable)
 - **Quick launch toolbar** - 24px icons, borderless (fits 64px bar)
 - **Instant tooltips** - 150ms delay for window titles (vs default 400ms)
@@ -63,12 +63,12 @@ Replace the `StartButtonIcon` resource in the theme file:
 | `TaskbarHeight` | 60 | Horizontal taskbar height |
 | `TaskbarRowHeight` | 60 | Horizontal taskbar row height (one row of task buttons) |
 | `TaskbarUnlockedSize` | 4 | Size of the drag handle shown when the taskbar is unlocked |
-| `TaskButtonWidth` | 64 | Task button width — 64×50px tiles in both orientations (height hardcoded to 50) |
-| `TaskButtonMargin` | `0,5,0,5` | Horizontal-mode margins that center the 50px-tall tile in the 60px bar |
-| `TaskButtonVerticalMargin` | `0,0,0,2` | Vertical-mode margins (bottom spacing between tiles) |
+| `TaskButtonWidth` | 64 | Task button width — 64×50px vertical tiles, 64×60px horizontal tiles (horizontal height = `TaskbarHeight`) |
+| `TaskButtonMargin` | `1,0,2,0` | Horizontal tile margins — 3px separation between adjacent tiles |
+| `TaskButtonVerticalMargin` | `0,0,0,3` | Vertical-mode margins (3px bottom spacing between tiles) |
 | `TaskButtonIconSize` | 36 | Task button icon size (set in the `TaskIcon` style) |
 | `StartButtonIconSize` | 36 | Start button icon size |
-| `StartButtonVerticalSize` | 44 | Start button height (both orientations) |
+| `StartButtonVerticalSize` | 44 | Start button height (vertical; horizontal = `TaskbarHeight`) |
 
 ### Quick Launch Icons
 
@@ -81,7 +81,7 @@ Quick launch icon size is controlled by the `ToolbarIcon` style:
     <Setter Property="Stretch" Value="Uniform" />
 </Style>
 ```
-Current: exactly 24×24, borderless buttons (vertical: 2-column layout in 64px bar; horizontal: 2px side margins)
+Current: exactly 24×24, borderless buttons (vertical: 2-column layout centered in the 64px bar; horizontal: 2px side margins)
 
 ## Theme Palette
 

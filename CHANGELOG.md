@@ -2,6 +2,17 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.13] - 2026-10-09
+
+### Fixed
+- **Vertical quick launch icons are centered**: the `ToolbarItems` vertical trigger now sets `HorizontalAlignment=Center` — the inlined `SystemTheme.ToolbarItems` default of `Stretch` left-packed the 56px (2×2) icon block against the edge of the 64px bar instead of centering it
+
+### Changed
+- **Horizontal task tiles now fill the full 60px bar height** (50 → 60px, `Height = TaskbarHeight`, zero vertical margin): each tile's outline touches the bar's top and bottom edges in every state — vertical tiles stay 64×50 and the bar itself is unchanged in both orientations (60px thick / 64px wide)
+- **The dark outer band on task tiles is gone**: the `ButtonBorder1` frame (up to 5px of `#1d1629`) is removed in all states and both orientations — only the thin light `#332c59` line frames the tile against its fill; active windows keep the brighter `#392d6e` line so they stay distinguishable, and flashing tiles keep a bright `#6565b5` border in every state (thickened to 3px; hover/pressed no longer swap it for the dark brush)
+- **3px separation between task tiles in both orientations**: `TaskButtonMargin` `0,5,0,5` → `1,0,2,0` gives a 3px strip of bar background between horizontally adjacent tiles; `TaskButtonVerticalMargin` `0,0,0,2` → `0,0,0,3` matches it vertically (the vertical bar grows ~1px per tile in length; its 64px width is untouched)
+- **Start button fills the bar height in horizontal mode** (44 → 60px = `TaskbarHeight`, matching the tiles; vertical keeps 44px) and its glass hairlines thicken from 1px to 3px on all four edges — the dark chrome and sheen are unchanged
+
 ## [1.0.12] - 2026-10-08
 
 ### Changed
