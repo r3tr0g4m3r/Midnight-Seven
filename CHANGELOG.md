@@ -2,6 +2,11 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.12] - 2026-10-08
+
+### Changed
+- **Horizontal taskbar slimmed 64px → 60px**: `TaskbarHeight` and `TaskbarRowHeight` drop to 60 and `TaskButtonMargin` tightens from `0,7,0,7` to `0,5,0,5` so the 50px tiles stay exactly centered (5+50+5 = 60) — the bar loses 1px of padding above and below every tile; the vertical bar (64px wide) is untouched, and everything that stretches (start button, show-desktop sliver, tray, clock) follows the new height automatically
+
 ## [1.0.11] - 2026-10-08
 
 ### Changed

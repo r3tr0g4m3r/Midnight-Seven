@@ -6,7 +6,7 @@ A Windows 7-style theme for [RetroBar](https://github.com/dremin/RetroBar) featu
 
 - **Windows 7/10 style icon-only task buttons** - No window titles, just icons
 - **Vertical taskbar optimized** - 64px wide bar with centered 36px icons
-- **Identical task buttons in both orientations** - 64×50px tiles: vertical fills the 64px bar edge-to-edge, horizontal centers in the 64px bar (7px top/bottom)
+- **Identical task buttons in both orientations** - 64×50px tiles: vertical fills the 64px bar edge-to-edge, horizontal centers in the 60px bar (5px top/bottom)
 - **Large start button** - 36px customizable icon (vector-based, replaceable)
 - **Quick launch toolbar** - 24px icons, borderless (fits 64px bar)
 - **Instant tooltips** - 150ms delay for window titles (vs default 400ms)
@@ -60,11 +60,11 @@ Replace the `StartButtonIcon` resource in the theme file:
 | Key | Default | Description |
 |-----|---------|-------------|
 | `TaskbarWidth` | 64 | Vertical taskbar width (also the start-button width in both orientations) |
-| `TaskbarHeight` | 64 | Horizontal taskbar height |
-| `TaskbarRowHeight` | 64 | Horizontal taskbar row height (one row of task buttons) |
+| `TaskbarHeight` | 60 | Horizontal taskbar height |
+| `TaskbarRowHeight` | 60 | Horizontal taskbar row height (one row of task buttons) |
 | `TaskbarUnlockedSize` | 4 | Size of the drag handle shown when the taskbar is unlocked |
 | `TaskButtonWidth` | 64 | Task button width — 64×50px tiles in both orientations (height hardcoded to 50) |
-| `TaskButtonMargin` | `0,7,0,7` | Horizontal-mode margins that center the 50px-tall tile in the 64px bar |
+| `TaskButtonMargin` | `0,5,0,5` | Horizontal-mode margins that center the 50px-tall tile in the 60px bar |
 | `TaskButtonVerticalMargin` | `0,0,0,2` | Vertical-mode margins (bottom spacing between tiles) |
 | `TaskButtonIconSize` | 36 | Task button icon size (set in the `TaskIcon` style) |
 | `StartButtonIconSize` | 36 | Start button icon size |
