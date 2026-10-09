@@ -2,6 +2,12 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.14] - 2026-10-09
+
+### Changed
+- **Start button sheen lights only the opposite corners**: the full-cover `GlassSheen` (bright top band, dark mid-band, bottom glint) is replaced on the start button with a new diagonal `GlassCornerSheen` brush — top-left at 25% white fading to fully clear through the center, rising again to 20% white at the bottom-right corner — a subtle 3D orb read without the oversized edge glow; identical diagonal in both orientations (the vertical-mode `GlassSheenRotated` swap was removed)
+- **Start button edge hairlines back to 1px** (from 3px) on all four edges so the corner light carries the effect; dark chrome, hover/pressed blur, and the show-desktop sliver (keeps its full directional sheen and 1px lines) are unchanged
+
 ## [1.0.13] - 2026-10-09
 
 ### Fixed

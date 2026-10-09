@@ -1374,6 +1374,16 @@
         <GradientStop Offset="1.0" Color="#1AFFFFFF" />
     </LinearGradientBrush>
     <SolidColorBrush x:Key="GlassEdgeLight" Color="#4DFFFFFF" />
+    <!-- Start button: light only the opposite corners (TL -> BR) for a subtle 3D
+         orb effect; no full-width band, no dark band. -->
+    <LinearGradientBrush x:Key="GlassCornerSheen" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0.0" Color="#40FFFFFF" />
+        <GradientStop Offset="0.15" Color="#0CFFFFFF" />
+        <GradientStop Offset="0.32" Color="#00000000" />
+        <GradientStop Offset="0.68" Color="#00000000" />
+        <GradientStop Offset="0.85" Color="#0CFFFFFF" />
+        <GradientStop Offset="1.0" Color="#33FFFFFF" />
+    </LinearGradientBrush>
 
     <Style x:Key="ShowDesktopButton" TargetType="ToggleButton">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -1712,21 +1722,21 @@
                                     </Canvas>
                                     <Border
                                         x:Name="StartSheen"
-                                        Background="{DynamicResource GlassSheen}" />
+                                        Background="{DynamicResource GlassCornerSheen}" />
                                     <Border
-                                        Height="3"
+                                        Height="1"
                                         VerticalAlignment="Top"
                                         Background="{DynamicResource GlassEdgeLight}" />
                                     <Border
-                                        Height="3"
+                                        Height="1"
                                         VerticalAlignment="Bottom"
                                         Background="{DynamicResource GlassEdgeLight}" />
                                     <Border
-                                        Width="3"
+                                        Width="1"
                                         HorizontalAlignment="Left"
                                         Background="{DynamicResource GlassEdgeLight}" />
                                     <Border
-                                        Width="3"
+                                        Width="1"
                                         HorizontalAlignment="Right"
                                         Background="{DynamicResource GlassEdgeLight}" />
                                     <Image x:Name="StartIcon"
@@ -1745,7 +1755,6 @@
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                             <Setter TargetName="StartButtonBorder2" Property="BorderThickness" Value="0" />
                             <Setter TargetName="StartButtonContent" Property="Margin" Value="0" />
-                            <Setter TargetName="StartSheen" Property="Background" Value="{DynamicResource GlassSheenRotated}" />
                             <Setter Property="Width" Value="{DynamicResource TaskbarWidth}" />
                             <Setter Property="Height" Value="{DynamicResource StartButtonVerticalSize}" />
                         </DataTrigger>
