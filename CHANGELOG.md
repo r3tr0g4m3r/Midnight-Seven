@@ -2,6 +2,14 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.15] - 2026-10-09
+
+### Fixed
+- **Horizontal task tiles no longer overlap when the bar is full**: the horizontal triggers of `TaskButton`/`TaskButtonActive`/`TaskButtonFlashing` stopped forcing `Width = TaskButtonWidth` (64px) — RetroBar sizes each button's outer box per row (`TaskButtonWidth` + margin when there's room, shrunk to exactly fit the row when crowded), and a fixed 64px tile plus its 3px margin overflowed that box, painting over every neighboring tile as windows accumulated; the tile now stretches to its box so the `TaskButtonMargin` `1,0,2,0` gap (3px) is preserved at every size. With few windows the bar renders identically (64×60 tiles, 3px gaps); vertical mode is untouched (it keeps the fixed 64px width)
+
+### Added
+- **`TaskButtonMinWidth = 45` sizing key**: RetroBar reads it at load to know when to stop shrinking horizontal tiles and switch to its wrapped/scrolling button mode instead of squeezing tiles indefinitely (the theme previously omitted it, so RetroBar's floor resolved to 0 and the fallback never engaged)
+
 ## [1.0.14] - 2026-10-09
 
 ### Changed
