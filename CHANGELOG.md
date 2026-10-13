@@ -2,6 +2,21 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.34] - 2026-10-12
+
+### Changed
+- **Active task button sheen lights opposite corners**: horizontal now lights top-left corner (was top-right), vertical lights top-right (was top-left). Both use triangular corner facets (50% legs) with GlassCornerSheen-style gradients. Horizontal uses top-left → bottom-right diagonal; vertical uses top-right → bottom-left diagonal.
+
+## [1.0.33] - 2026-10-12
+
+### Changed
+- **Active task button gains corner-based glass sheen**: replaced rectangular strip with triangular corner facets (hard-cut style). Horizontal: top-right corner triangle (top-right to bottom-left diagonal, 50% legs). Vertical: top-left corner triangle (top-left to bottom-right diagonal, 50% legs, matches GlassCornerSheen). Gradients match GlassCornerSheen style (60% peak → transparent → glint). Both use Path with Stretch="Fill" for proper scaling.
+
+## [1.0.32] - 2026-10-12
+
+### Added
+- **Active task button gains persistent glass sheen overlay**: active task button now has a persistent glass sheen overlay matching the GlassSheen style (directional highlights, dark band, far glint). Horizontal: sheen covers top 40% of button. Vertical: sheen covers left 40% of button. Gradient matches GlassSheen style (directional highlights, dark band, far glint). Updates automatically with orientation.
+
 ## [1.0.31] - 2026-10-12
 
 ### Changed

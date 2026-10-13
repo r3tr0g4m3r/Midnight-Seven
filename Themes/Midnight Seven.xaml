@@ -1176,6 +1176,16 @@
                                             <BlurEffect Radius="12" />
                                         </Canvas.Effect>
                                     </Canvas>
+                                    <!-- Active button glass sheen overlay (persistent, dual corners) -->
+                                    <Path x:Name="ActiveSheen"
+                                          Fill="{DynamicResource GlassActiveCornerSheen}"
+                                          Data="M 0,0 L 0.5,0 L 0,0.5 Z"
+                                          Stretch="Fill" />
+                                    <!-- Bottom-right corner sheen -->
+                                    <Path x:Name="ActiveSheenBR"
+                                          Fill="{DynamicResource GlassActiveCornerSheenBR}"
+                                          Data="M 0.5,1 L 1,1 L 1,0.5 Z"
+                                          Stretch="Fill" />
                                     <ContentPresenter x:Name="Content" HorizontalAlignment="Center" Margin="8,8" />
                                 </Grid>
                             </Border>
@@ -1198,6 +1208,10 @@
                                 <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="3" />
                                 <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
                                 <Setter TargetName="Content" Property="Margin" Value="0" />
+                                <Setter TargetName="ActiveSheen" Property="Data" Value="M 0,0 L 0.5,0 L 0,0.5 Z" />
+                                <Setter TargetName="ActiveSheen" Property="Fill" Value="{DynamicResource GlassActiveCornerSheen}" />
+                                <Setter TargetName="ActiveSheenBR" Property="Data" Value="M 0.5,1 L 1,1 L 1,0.5 Z" />
+                                <Setter TargetName="ActiveSheenBR" Property="Fill" Value="{DynamicResource GlassActiveCornerSheenBR}" />
                             </DataTrigger.Setters>
                         </DataTrigger>
                         <!-- Horizontal taskbar: tile fills the 60px bar; frame touches top/bottom -->
@@ -1207,11 +1221,14 @@
                                 <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
                                 <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1" />
                                 <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="3" />
-                                <Setter TargetName="TaskButtonBorder3" Property="BorderThickness" Value="1" />
                                 <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="3" />
                                 <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
                                 <Setter TargetName="Content" Property="Margin" Value="0" />
                                 <Setter TargetName="Content" Property="VerticalAlignment" Value="Center" />
+                                <Setter TargetName="ActiveSheen" Property="Data" Value="M 0,0 L 0.5,0 L 0,0.5 Z" />
+                                <Setter TargetName="ActiveSheen" Property="Fill" Value="{DynamicResource GlassActiveCornerSheen}" />
+                                <Setter TargetName="ActiveSheenBR" Property="Data" Value="M 0.5,1 L 1,1 L 1,0.5 Z" />
+                                <Setter TargetName="ActiveSheenBR" Property="Fill" Value="{DynamicResource GlassActiveCornerSheenBR}" />
                             </DataTrigger.Setters>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
@@ -1422,6 +1439,25 @@
         <GradientStop Offset="0.70" Color="#00000000" />
         <GradientStop Offset="0.90" Color="#08FFFFFF" />
         <GradientStop Offset="1.00" Color="#10FFFFFF" />
+    </LinearGradientBrush>
+
+    <!-- Active task button: corner-based glass sheen (dual corners: top-left + bottom-right). -->
+    <LinearGradientBrush x:Key="GlassActiveCornerSheen" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0.00" Color="#66FFFFFF" />
+        <GradientStop Offset="0.15" Color="#1AFFFFFF" />
+        <GradientStop Offset="0.32" Color="#00000000" />
+        <GradientStop Offset="0.68" Color="#00000000" />
+        <GradientStop Offset="0.85" Color="#1AFFFFFF" />
+        <GradientStop Offset="1.00" Color="#50FFFFFF" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GlassActiveCornerSheenBR" StartPoint="1,1" EndPoint="0,0">
+        <GradientStop Offset="0.00" Color="#66FFFFFF" />
+        <GradientStop Offset="0.15" Color="#1AFFFFFF" />
+        <GradientStop Offset="0.32" Color="#00000000" />
+        <GradientStop Offset="0.68" Color="#00000000" />
+        <GradientStop Offset="0.85" Color="#1AFFFFFF" />
+        <GradientStop Offset="1.00" Color="#50FFFFFF" />
     </LinearGradientBrush>
 
     <Style x:Key="ShowDesktopButton" TargetType="ToggleButton">
