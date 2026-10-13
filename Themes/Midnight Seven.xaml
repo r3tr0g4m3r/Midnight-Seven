@@ -1394,6 +1394,36 @@
         <GradientStop Offset="1.0" Color="#33FFFFFF" />
     </LinearGradientBrush>
 
+    <!-- Show desktop sliver: triangular glass facets (soft sheen, bright at base).
+         Horizontal: isosceles triangle on top edge (80% width, 20% height, apex down).
+         Vertical: isosceles triangle on left edge (70% height, 15% width, apex right).
+         Soft glass sheen gradient (smooth transitions, subtle dark band, far glint). -->
+    <!-- Show desktop sliver: triangular glass facets (soft sheen, bright at base).
+         Horizontal: isosceles triangle on top edge (80% width, 20% height, apex down).
+         Vertical: isosceles triangle on left edge (70% height, 15% width, apex right).
+         Soft glass sheen gradient (smooth transitions, subtle dark band, far glint). -->
+    <LinearGradientBrush x:Key="GlassFacetGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0.00" Color="#80FFFFFF" />
+        <GradientStop Offset="0.20" Color="#40FFFFFF" />
+        <GradientStop Offset="0.40" Color="#10FFFFFF" />
+        <GradientStop Offset="0.50" Color="#00000000" />
+        <GradientStop Offset="0.60" Color="#05000000" />
+        <GradientStop Offset="0.70" Color="#00000000" />
+        <GradientStop Offset="0.90" Color="#08FFFFFF" />
+        <GradientStop Offset="1.00" Color="#10FFFFFF" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GlassFacetGradientRotated" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0.00" Color="#80FFFFFF" />
+        <GradientStop Offset="0.20" Color="#40FFFFFF" />
+        <GradientStop Offset="0.40" Color="#10FFFFFF" />
+        <GradientStop Offset="0.50" Color="#00000000" />
+        <GradientStop Offset="0.60" Color="#05000000" />
+        <GradientStop Offset="0.70" Color="#00000000" />
+        <GradientStop Offset="0.90" Color="#08FFFFFF" />
+        <GradientStop Offset="1.00" Color="#10FFFFFF" />
+    </LinearGradientBrush>
+
     <Style x:Key="ShowDesktopButton" TargetType="ToggleButton">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
@@ -1430,11 +1460,19 @@
                                 x:Name="Separator"
                                 BorderBrush="{DynamicResource ShowDesktopSeparator}"
                                 BorderThickness="0" />
+                            <!-- Triangular glass facet (swapped by orientation) -->
+                            <Path
+                                x:Name="FacetShine"
+                                Fill="{DynamicResource GlassFacetGradient}"
+                                Data="M 0.1,0 L 0.9,0 L 0.5,0.2 Z"
+                                Stretch="Fill" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
                             <Setter TargetName="Separator" Property="BorderThickness" Value="1,0,0,0" />
+                            <Setter TargetName="FacetShine" Property="Data" Value="M 0.1,0 L 0.9,0 L 0.5,0.2 Z" />
+                            <Setter TargetName="FacetShine" Property="Fill" Value="{DynamicResource GlassFacetGradient}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                             <Setter TargetName="Separator" Property="BorderThickness" Value="0,1,0,0" />
@@ -1443,6 +1481,8 @@
                             <Setter TargetName="BottomLight" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="LeftLight" Property="Visibility" Value="Visible" />
                             <Setter TargetName="RightLight" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="FacetShine" Property="Data" Value="M 0,0.15 L 0.15,0.5 L 0,0.85 Z" />
+                            <Setter TargetName="FacetShine" Property="Fill" Value="{DynamicResource GlassFacetGradientRotated}" />
                         </DataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Root" Property="Background" Value="{DynamicResource ShowDesktopHover}" />

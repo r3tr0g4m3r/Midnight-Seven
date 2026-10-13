@@ -2,6 +2,31 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.31] - 2026-10-12
+
+### Changed
+- **Show desktop sliver facets softened**: replaced hard-cut triangular facets with soft glass sheen triangular facets. Smooth gradient transitions (80% → 40% → 10% → 0% → subtle 3% dark band → far glint) replace hard cut. Isosceles triangle geometry preserved (horizontal: top edge, 80% width, 20% height; vertical: left edge, 70% height, 15% width). Both lifted from corners.
+
+## [1.0.30] - 2026-10-12
+
+### Changed
+- **Show desktop sliver gains triangular glass facets**: replaced rectangular streaks with isosceles triangular facets (hard-cut, bright at base). Horizontal: isosceles triangle on top edge (80% width, 20% height, apex down). Vertical: isosceles triangle on left edge (70% height, 15% width, apex right). Hard-cut glass facet gradient (`GlassFacetGradient` / `GlassFacetGradientRotated`) with sharp bright-to-dark cut (99% → 3.9% → 0%). Both lifted from corners for slimmer, faceted look.
+
+## [1.0.29] - 2026-10-12
+
+### Changed
+- **Show desktop sliver streak made visible**: horizontal streak now fixed 3px height (20% of 15px), vertical streak 15% width (9.6px on 64px). Both retain glass-like multi-stop gradients with dark bands and edge glints. Gradient brightened (60% peak). Horizontal: top edge streak 3px height (fixed), 80% width, 10% side gaps. Vertical: left edge streak 15% width (9.6px on 64px), 70% height (15% top/bottom gaps). 1px edge highlights retained.
+
+## [1.0.28] - 2026-10-12
+
+### Changed
+- **Show desktop sliver gains glass-like streaks**: complex multi-stop glass-like gradients (`GlassStreakGradient` / `GlassStreakGradientRotated`) with directional highlights, dark bands, and edge glints. Added 1px edge highlights on streak (top/bottom for horizontal, left/right for vertical) for glass depth. Horizontal: top edge streak (80% width, 10% side gaps, 8% height). Vertical: left edge streak (70% height, 15% top/bottom gaps, 8% width). Both lifted from corners.
+
+## [1.0.27] - 2026-10-12
+
+### Changed
+- **Show desktop sliver gains visible corner streaks**: replaced geometric triangle facets with slim rectangular streaks along the edges. Horizontal: horizontal streak along top edge (80% width, 10% side gaps, 8% height). Vertical: vertical streak along left edge (70% height, 15% top/bottom gaps, 8% width). Brighter gradient (`GlassStreakGradient`: 50% → 25% → 10%) for clear visibility. Both orientations lifted from corners for slimmer, disconnected look.
+
 ## [1.0.15] - 2026-10-09
 
 ### Fixed
