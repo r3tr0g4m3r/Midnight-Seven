@@ -2,6 +2,21 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.38] - 2026-10-12
+
+### Changed
+- **Flashing task button border harmonized with normal button**: flashing button border color changed from bright red (#cc4a4a) to dark red-purple blend (#4a2a3a) to harmonize with normal button's dark purple border (#332c59) while keeping 3px thickness and red urgency. All three border colors unified to #4a2a3a. Structure unchanged (3px outer border, inner borders removed).
+
+## [1.0.37] - 2026-10-12
+
+### Changed
+- **Flashing task button: brighter red tint, simplified borders**: background gradient shifted to bright red (#aa2a2a → #cc3a3a), borders updated to bright red (#cc4a4a, #cc6666). Border2 and Border3 removed (0px), leaving only Border1 at 3px with bright red color (#cc4a4a) for a clean, urgent look. Matches normal button structure (single outer border) with urgent red coloration.
+
+## [1.0.36] - 2026-10-12
+
+### Changed
+- **Flashing task button gets subtle red tint**: background gradient and borders shifted from blue-purple to subtle magenta/red to indicate urgency. Background: #332c59→#4a2c4a, #42428a→#5a3a5a. Borders: #6565b5→#7a5a6a, #999999→#aa8888. Structure unchanged.
+
 ## [1.0.34] - 2026-10-12
 
 ### Changed

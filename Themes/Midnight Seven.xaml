@@ -185,14 +185,14 @@
 
 
     <LinearGradientBrush x:Key="ButtonBackgroundFlashing" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0.0555556" Color="#332c59" />
-        <GradientStop Offset="0.229167" Color="#332c59" />
-        <GradientStop Offset="0.48973" Color="#332c59" />
-        <GradientStop Offset="0.628472" Color="#332c59" />
-        <GradientStop Offset="0.8125" Color="#42428a" />
-        <GradientStop Offset="0.853652" Color="#42428a" />
-        <GradientStop Offset="0.881944" Color="#42428a" />
-        <GradientStop Offset="0.975694" Color="#42428a" />
+        <GradientStop Offset="0.0555556" Color="#aa2a2a" />
+        <GradientStop Offset="0.229167" Color="#aa2a2a" />
+        <GradientStop Offset="0.48973" Color="#aa2a2a" />
+        <GradientStop Offset="0.628472" Color="#aa2a2a" />
+        <GradientStop Offset="0.8125" Color="#cc3a3a" />
+        <GradientStop Offset="0.853652" Color="#cc3a3a" />
+        <GradientStop Offset="0.881944" Color="#cc3a3a" />
+        <GradientStop Offset="0.975694" Color="#cc3a3a" />
     </LinearGradientBrush>
 <!--Button Separator left and right (separate programs)-->
     <LinearGradientBrush x:Key="ButtonBorder1" StartPoint="0,0" EndPoint="0,1">
@@ -202,18 +202,18 @@
 
     <SolidColorBrush x:Key="ButtonBorder1Pressed" Color="#372947" />
 
-    <SolidColorBrush x:Key="ButtonBorder1Flashing" Color="#6565b5" />
+    <SolidColorBrush x:Key="ButtonBorder1Flashing" Color="#4a2a3a" />
 <!--Active Window Border-->
     <SolidColorBrush x:Key="ButtonBorder2" Color="#392d6e" />
 
-    <SolidColorBrush x:Key="ButtonBorder2Flashing" Color="#6565b5" />
+    <SolidColorBrush x:Key="ButtonBorder2Flashing" Color="#4a2a3a" />
 
     <LinearGradientBrush x:Key="ButtonBorder3" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Offset="0.0" Color="#332c59" />
         <GradientStop Offset="1" Color="#332c59" />
     </LinearGradientBrush>
 
-    <SolidColorBrush x:Key="ButtonBorder3Flashing" Color="#999999" />
+    <SolidColorBrush x:Key="ButtonBorder3Flashing" Color="#4a2a3a" />
 
     <SolidColorBrush x:Key="TaskListScrollButtonBackground" Color="#332c59" />
 
@@ -1267,32 +1267,32 @@
                         x:Name="TaskButtonBorder1"
                         Background="{DynamicResource ButtonBackgroundFlashing}"
                         BorderBrush="{DynamicResource ButtonBorder1Flashing}"
-                        BorderThickness="3,3,3,0"
-                        CornerRadius="3,3,0,0">
+                        BorderThickness="3,3,3,3"
+                        CornerRadius="4">
                         <Border
                             x:Name="TaskButtonBorder2"
                             BorderBrush="{DynamicResource ButtonBorder2Flashing}"
-                            BorderThickness="1,1,1,0"
-                            CornerRadius="2,2,0,0">
-                            <Border
-                                x:Name="TaskButtonBorder3"
-                                BorderBrush="{DynamicResource ButtonBorder3Flashing}"
-                                BorderThickness="1"
-                                CornerRadius="1,1,0,0">
-                                <Grid x:Name="ButtonContent" Margin="-1,-2,-1,0">
-                                    <Canvas
-                                        x:Name="BlurBehind"
-                                        Grid.ColumnSpan="2"
-                                        Margin="4,2">
-                                        <Canvas.Effect>
-                                            <BlurEffect Radius="12" />
-                                        </Canvas.Effect>
-                                    </Canvas>
-                                    <ContentPresenter x:Name="Content" HorizontalAlignment="Center" Margin="8,8" />
-                                </Grid>
-                            </Border>
+                            BorderThickness="0"
+                            CornerRadius="3">
+                        <Border
+                            x:Name="TaskButtonBorder3"
+                            BorderBrush="{DynamicResource ButtonBorder3Flashing}"
+                            BorderThickness="0"
+                            CornerRadius="3">
+                            <Grid x:Name="ButtonContent" Margin="-1,-2,-1,0">
+                                <Canvas
+                                    x:Name="BlurBehind"
+                                    Grid.ColumnSpan="2"
+                                    Margin="4,2">
+                                    <Canvas.Effect>
+                                        <BlurEffect Radius="12" />
+                                    </Canvas.Effect>
+                                </Canvas>
+                                <ContentPresenter x:Name="Content" HorizontalAlignment="Center" Margin="8,8" />
+                            </Grid>
                         </Border>
                     </Border>
+                </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
@@ -1317,8 +1317,9 @@
                             <DataTrigger.Setters>
                                 <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="3" />
                                 <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
-                                <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="0" />
                                 <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="3" />
+                                <Setter TargetName="TaskButtonBorder3" Property="BorderThickness" Value="0" />
                                 <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="3" />
                                 <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
                                 <Setter TargetName="Content" Property="Margin" Value="0" />
@@ -1329,9 +1330,9 @@
                             <DataTrigger.Setters>
                                 <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="3,3,3,3" />
                                 <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
-                                <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="0" />
                                 <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="3" />
-                                <Setter TargetName="TaskButtonBorder3" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="TaskButtonBorder3" Property="BorderThickness" Value="0" />
                                 <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="3" />
                                 <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
                                 <Setter TargetName="Content" Property="Margin" Value="0" />
