@@ -1267,18 +1267,18 @@
                         x:Name="TaskButtonBorder1"
                         Background="{DynamicResource ButtonBackgroundFlashing}"
                         BorderBrush="{DynamicResource ButtonBorder1Flashing}"
-                        BorderThickness="3,3,3,3"
-                        CornerRadius="4">
+                        BorderThickness="0"
+                        CornerRadius="3,3,0,0">
                         <Border
                             x:Name="TaskButtonBorder2"
                             BorderBrush="{DynamicResource ButtonBorder2Flashing}"
                             BorderThickness="0"
-                            CornerRadius="3">
+                            CornerRadius="8,8,8,8">
                         <Border
                             x:Name="TaskButtonBorder3"
                             BorderBrush="{DynamicResource ButtonBorder3Flashing}"
-                            BorderThickness="0"
-                            CornerRadius="3">
+                            BorderThickness="1"
+                            CornerRadius="8,8,8,8">
                             <Grid x:Name="ButtonContent" Margin="-1,-2,-1,0">
                                 <Canvas
                                     x:Name="BlurBehind"
@@ -1288,58 +1288,100 @@
                                         <BlurEffect Radius="12" />
                                     </Canvas.Effect>
                                 </Canvas>
+                                <!-- Active button glass sheen overlay (persistent, dual corners) -->
+                                <Path x:Name="ActiveSheen"
+                                      Fill="{DynamicResource GlassActiveCornerSheen}"
+                                      Data="M 0,0 L 0.5,0 L 0,0.5 Z"
+                                      Stretch="Fill" />
+                                <!-- Bottom-right corner sheen -->
+                                <Path x:Name="ActiveSheenBR"
+                                      Fill="{DynamicResource GlassActiveCornerSheenBR}"
+                                      Data="M 0.5,1 L 1,1 L 1,0.5 Z"
+                                      Stretch="Fill" />
+                                <!-- Central highlight (bright red center, outward shine) - fills button proportionally -->
+                                <Ellipse x:Name="FlashCenterHighlight"
+                                         Fill="{DynamicResource GlassFlashCenterHighlight}"
+                                         HorizontalAlignment="Center" VerticalAlignment="Center"
+                                         Stretch="Fill" />
                                 <ContentPresenter x:Name="Content" HorizontalAlignment="Center" Margin="8,8" />
+                                <!-- Dark gradient layer over icon (full face rectangle, dark top to transparent bottom) -->
+                                <Rectangle x:Name="IconGlassSheen"
+                                           Stretch="Fill"
+                                           VerticalAlignment="Stretch"
+                                           HorizontalAlignment="Stretch">
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Offset="0.00" Color="#80000000" />
+                                            <GradientStop Offset="0.50" Color="#40000000" />
+                                            <GradientStop Offset="1.00" Color="#00000000" />
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <!-- Diagonal light streak over the icon (upper layer, sliver-style facet sheen) -->
+                                <Path x:Name="IconStreak"
+                                      Data="M 0,0.3 L 0.3,0 L 1,0.7 L 0.7,1 Z"
+                                      Stretch="Fill"
+                                      Fill="{DynamicResource GlassIconStreakGradient}" />
                             </Grid>
                         </Border>
                     </Border>
                 </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
-                            <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="3,0,3,0" />
-                            <Setter TargetName="TaskButtonBorder2" Property="BorderBrush" Value="{DynamicResource ButtonBorder2}" />
-                            <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="0" />
-                            <Setter TargetName="TaskButtonBorder3" Property="BorderBrush" Value="{DynamicResource ButtonBorder3}" />
-                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
+                        <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                        <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
+                        <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
+                        <Setter TargetName="ButtonContent" Property="Margin" Value="-1,-2,-1,0" />
+                    </Trigger>
+                    <!-- Pulse animation for center highlight -->
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="FlashCenterHighlight"
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 From="0.6" To="1.0" Duration="0:0:1.5"
+                                                 AutoReverse="True" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <!-- Vertical taskbar: full rounded frame, no edge-anchored offset -->
+                    <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
+                            <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="4" />
+                            <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="4" />
                             <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="TaskButtonBorder1" Property="Background" Value="{DynamicResource ButtonBackground}" />
-                            <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="0" />
-                            <Setter TargetName="TaskButtonBorder2" Property="BorderBrush" Value="{DynamicResource ButtonBorder2}" />
-                            <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="1,1,1,0" />
-                            <Setter TargetName="TaskButtonBorder3" Property="BorderBrush" Value="{DynamicResource ButtonBorder3}" />
-                            <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
-                            <Setter TargetName="ButtonContent" Property="Margin" Value="-1,-2,-1,0" />
-                        </Trigger>
-                        <!-- Vertical taskbar: full rounded frame, no edge-anchored offset -->
-                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="3" />
-                                <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
-                                <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="0" />
-                                <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="3" />
-                                <Setter TargetName="TaskButtonBorder3" Property="BorderThickness" Value="0" />
-                                <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="3" />
-                                <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
-                                <Setter TargetName="Content" Property="Margin" Value="0" />
-                            </DataTrigger.Setters>
-                        </DataTrigger>
-                        <!-- Horizontal taskbar: tile fills the 60px bar; frame touches top/bottom -->
-                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
-                            <DataTrigger.Setters>
-                                <Setter TargetName="TaskButtonBorder1" Property="BorderThickness" Value="3,3,3,3" />
-                                <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
-                                <Setter TargetName="TaskButtonBorder2" Property="BorderThickness" Value="0" />
-                                <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="3" />
-                                <Setter TargetName="TaskButtonBorder3" Property="BorderThickness" Value="0" />
-                                <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="3" />
-                                <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
-                                <Setter TargetName="Content" Property="Margin" Value="0" />
-                                <Setter TargetName="Content" Property="VerticalAlignment" Value="Center" />
-                            </DataTrigger.Setters>
-                        </DataTrigger>
-                    </ControlTemplate.Triggers>
+                            <Setter TargetName="Content" Property="Margin" Value="0" />
+                            <Setter TargetName="ActiveSheen" Property="Data" Value="M 0,0 L 0.5,0 L 0,0.5 Z" />
+                            <Setter TargetName="ActiveSheen" Property="Fill" Value="{DynamicResource GlassActiveCornerSheen}" />
+                            <Setter TargetName="ActiveSheenBR" Property="Data" Value="M 0.5,1 L 1,1 L 1,0.5 Z" />
+                            <Setter TargetName="ActiveSheenBR" Property="Fill" Value="{DynamicResource GlassActiveCornerSheenBR}" />
+                            <Setter TargetName="IconStreak" Property="Data" Value="M 0,0.3 L 0.3,0 L 1,0.7 L 0.7,1 Z" />
+                            <Setter TargetName="IconStreak" Property="Fill" Value="{DynamicResource GlassIconStreakGradient}" />
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <!-- Horizontal taskbar: tile fills the 60px bar; frame touches top/bottom -->
+                    <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
+                        <DataTrigger.Setters>
+                            <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="3,3,0,0" />
+                            <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="4" />
+                            <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="4" />
+                            <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
+                            <Setter TargetName="Content" Property="Margin" Value="0" />
+                            <Setter TargetName="Content" Property="VerticalAlignment" Value="Center" />
+                            <Setter TargetName="ActiveSheen" Property="Data" Value="M 0,0 L 0.5,0 L 0,0.5 Z" />
+                            <Setter TargetName="ActiveSheen" Property="Fill" Value="{DynamicResource GlassActiveCornerSheen}" />
+                            <Setter TargetName="ActiveSheenBR" Property="Data" Value="M 0.5,1 L 1,1 L 1,0.5 Z" />
+                            <Setter TargetName="ActiveSheenBR" Property="Fill" Value="{DynamicResource GlassActiveCornerSheenBR}" />
+                            <Setter TargetName="IconStreak" Property="Data" Value="M 0,0.3 L 0.3,0 L 1,0.7 L 0.7,1 Z" />
+                            <Setter TargetName="IconStreak" Property="Fill" Value="{DynamicResource GlassIconStreakGradient}" />
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -1459,6 +1501,25 @@
         <GradientStop Offset="0.68" Color="#00000000" />
         <GradientStop Offset="0.85" Color="#1AFFFFFF" />
         <GradientStop Offset="1.00" Color="#50FFFFFF" />
+    </LinearGradientBrush>
+
+    <!-- Flashing task button: central red-white glow behind the icon. -->
+    <RadialGradientBrush x:Key="GlassFlashCenterHighlight" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5" GradientOrigin="0.5,0.5">
+        <GradientStop Offset="0.00" Color="#66FFFFFF" />
+        <GradientStop Offset="0.35" Color="#1AFFFFFF" />
+        <GradientStop Offset="0.70" Color="#00000000" />
+        <GradientStop Offset="1.00" Color="#00000000" />
+    </RadialGradientBrush>
+
+    <!-- Flashing task button: diagonal light streak over the icon (sliver facet sheen). -->
+    <LinearGradientBrush x:Key="GlassIconStreakGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0.00" Color="#00000000" />
+        <GradientStop Offset="0.35" Color="#00000000" />
+        <GradientStop Offset="0.45" Color="#55FFFFFF" />
+        <GradientStop Offset="0.50" Color="#80FFFFFF" />
+        <GradientStop Offset="0.55" Color="#55FFFFFF" />
+        <GradientStop Offset="0.65" Color="#00000000" />
+        <GradientStop Offset="1.00" Color="#00000000" />
     </LinearGradientBrush>
 
     <Style x:Key="ShowDesktopButton" TargetType="ToggleButton">

@@ -2,6 +2,75 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.60] - 2026-10-12
+
+### Changed
+- **Flashing button streak now runs corner-to-corner across the full icon** in both orientations (`M 0,0.3 L 0.3,0 L 1,0.7 L 0.7,1 Z`); vertical-mode horizontal band + rotated gradient removed (unused brush dropped).
+
+## [1.0.59] - 2026-10-12
+
+### Added
+- **Diagonal light streak over flashing task button icon**: sliver-style facet sheen (GlassIconStreakGradient) layered above the icon as a diagonal band, orientation-swapped (horizontal: top-left to bottom-right; vertical: left-to-right rotated gradient). 
+
+### Fixed
+- **Missing GlassFlashCenterHighlight resource** caused template load failure (validation FAIL, line 1325). Radial white glow brush added.
+- **Duplicate Content ContentPresenter removed** from flashing button template (x:Name collision crashed template load).
+
+## [1.0.58] - 2026-10-12
+
+### Changed
+- **Flashing task button adopts active button style with red background**: structure now matches active button (corner sheens, rounded corners, single border). Background changed to bright red radial gradient. Corner sheens (top-left and bottom-right) added with GlassActiveCornerSheen. BlurBehind with 12px blur preserved. Dark gradient sheen over icon preserved. Central pulse highlight with pulsing animation preserved. Orientation-specific corner radii (horizontal: top-rounded; vertical: fully rounded).
+
+## [1.0.57] - 2026-10-12
+
+### Changed
+- **Flashing task button glass sheen replaced with full-face dark gradient**: isosceles triangle replaced with full-face rectangle covering entire icon. Dark gradient from top (#80000000) to transparent bottom (#00000000) creates subtle "icon behind dark glass" effect. Central pulse highlight and red radial background preserved.
+
+## [1.0.56] - 2026-10-12
+
+### Changed
+- **Flashing task button glass sheen replaced with dark gradient layer**: white isosceles triangle replaced with dark gradient layer (top to bottom) over the icon. Dark at top (#80000000), fading to transparent at bottom. Creates subtle "icon behind dark glass" effect. Central pulse highlight and red radial background preserved.
+
+## [1.0.54] - 2026-10-12
+
+### Changed
+- **Flashing task button glass sheen replaced with sharp white isosceles triangle**: gradient reflection replaced with a hard-edged white isosceles triangle (80% opacity, #CCFFFFFF) pointing down over the icon. Covers entire icon area (100% height) with sharp edges, no gradient. Removes gradient reflection and edge highlights. Central pulse highlight and red radial background preserved.
+
+## [1.0.53] - 2026-10-12
+
+### Changed
+- **Flashing task button glass reflection now covers 100% of icon with sharp 80% peak intensity**: glass reflection expanded to full icon coverage (100% height), peak intensity increased to 80% white (#CCFFFFFF), dark band strengthened to 12.5% black (#20000000), edge highlights thickened to 2px. Creates sharp, bright glass prison effect over entire icon while preserving central pulse highlight and red radial background.
+
+## [1.0.52] - 2026-10-12
+
+### Changed
+- **Flashing task button gains glass reflection over icon**: white isosceles triangle replaced with glass-like reflection covering top 60% of icon. Features multi-stop gradient with subtle dark band, 1px top/bottom edge highlights (GlassEdgeLight), and 60% vertical coverage for "icon behind glass" effect. Hard edges maintained for sharp glass look. Central pulse highlight and red radial background preserved.
+
+## [1.0.51] - 2026-10-12
+
+### Changed
+- **Flashing task button glass sheen replaced with white isosceles triangle**: rectangular glass sheen replaced with a hard-edged white isosceles triangle (50% opacity) pointing down over the icon. Creates a sharp "glass prison" effect over the icon. Gradient GlassFlashIconSheen removed.
+
+## [1.0.50] - 2026-10-12
+
+### Changed
+- **Flashing task button glass sheen now covers only icon area**: glass sheen overlay (GlassFlashIconSheen) now binds to ContentPresenter size/position, covering only the icon area for true "icon prison" effect. Debug test letter removed. Entire button face no longer covered.
+
+## [1.0.49] - 2026-10-12
+
+### Changed
+- **Flashing task button debug test**: added white "X" test letter over icon area to verify Z-order of glass sheen overlay. Helps debug glass sheen visibility over icon.
+
+## [1.0.48] - 2026-10-12
+
+### Changed
+- **Flashing task button: border removed, glass sheen added over icon**: outer 3px border removed, inner borders simplified to match normal button (single 1px outer border). Added glass sheen overlay over entire button face (icon prison effect) with subtle 20-30% opacity gradient. Central pulse highlight preserved with pulsing animation. Background gradient unchanged (center-bright red radial).
+
+## [1.0.47] - 2026-10-12
+
+### Added
+- **Flashing task button gains central red highlight**: beveled shine effect with bright red radial gradient from center outward. Background gradient shifted to center-bright radial (center #cc3a3a → edges #3a1010). Added pulsing center highlight (55% size, 20% peak opacity, 1.5s pulse animation). Border colors updated to red (#cc4a4a, #cc6666).
+
 ## [1.0.38] - 2026-10-12
 
 ### Changed
