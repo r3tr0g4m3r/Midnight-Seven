@@ -2,6 +2,11 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.62] - 2026-10-12
+
+### Changed
+- **Flashing button shine reworked as an inverted (concave) deep-button dome**: the diagonal streak removed; a frame-hugging rounded-square panel (1px margin, 4px corner radius, matching the button border) now carries vertical inverted lighting — dark rim under the near top lip (#55000000), clear center, bright far bottom inner slope (#70FFFFFF). Brush renamed GlassIconStreakGradient → GlassDeepButtonConcave. Orientation DataTriggers no longer set IconStreak Data/Fill (rounded shapes have no Data property).
+
 ## [1.0.61] - 2026-10-12
 
 ### Fixed

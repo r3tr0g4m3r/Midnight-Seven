@@ -1326,11 +1326,13 @@
                                         </LinearGradientBrush>
                                     </Rectangle.Fill>
                                 </Rectangle>
-                                <!-- Diagonal light streak over the icon (upper layer, sliver-style facet sheen) -->
-                                <Path x:Name="IconStreak"
-                                      Data="M 0,0.3 L 0.3,0 L 1,0.7 L 0.7,1 Z"
-                                      Stretch="Fill"
-                                      Fill="{DynamicResource GlassIconStreakGradient}" />
+                                <!-- Concave deep-button dome (frame-hugging rounded square, inverted vertical lighting) -->
+                                <Rectangle x:Name="IconStreak"
+                                           RadiusX="4" RadiusY="4"
+                                           Margin="1,1"
+                                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                           Stretch="Fill"
+                                           Fill="{DynamicResource GlassDeepButtonConcave}" />
                             </Grid>
                         </Border>
                     </Border>
@@ -1369,8 +1371,6 @@
                             <Setter TargetName="ActiveSheen" Property="Fill" Value="{DynamicResource GlassActiveCornerSheen}" />
                             <Setter TargetName="ActiveSheenBR" Property="Data" Value="M 0.5,1 L 1,1 L 1,0.5 Z" />
                             <Setter TargetName="ActiveSheenBR" Property="Fill" Value="{DynamicResource GlassActiveCornerSheenBR}" />
-                            <Setter TargetName="IconStreak" Property="Data" Value="M 0,0.3 L 0.3,0 L 1,0.7 L 0.7,1 Z" />
-                            <Setter TargetName="IconStreak" Property="Fill" Value="{DynamicResource GlassIconStreakGradient}" />
                         </DataTrigger.Setters>
                     </DataTrigger>
                     <!-- Horizontal taskbar: tile fills the 60px bar; frame touches top/bottom -->
@@ -1386,8 +1386,6 @@
                             <Setter TargetName="ActiveSheen" Property="Fill" Value="{DynamicResource GlassActiveCornerSheen}" />
                             <Setter TargetName="ActiveSheenBR" Property="Data" Value="M 0.5,1 L 1,1 L 1,0.5 Z" />
                             <Setter TargetName="ActiveSheenBR" Property="Fill" Value="{DynamicResource GlassActiveCornerSheenBR}" />
-                            <Setter TargetName="IconStreak" Property="Data" Value="M 0,0.3 L 0.3,0 L 1,0.7 L 0.7,1 Z" />
-                            <Setter TargetName="IconStreak" Property="Fill" Value="{DynamicResource GlassIconStreakGradient}" />
                         </DataTrigger.Setters>
                     </DataTrigger>
                 </ControlTemplate.Triggers>
@@ -1520,15 +1518,17 @@
         <GradientStop Offset="1.00" Color="#00000000" />
     </RadialGradientBrush>
 
-    <!-- Flashing task button: diagonal light streak over the icon (sliver facet sheen). -->
-    <LinearGradientBrush x:Key="GlassIconStreakGradient" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Offset="0.00" Color="#00000000" />
-        <GradientStop Offset="0.35" Color="#00000000" />
-        <GradientStop Offset="0.45" Color="#55FFFFFF" />
-        <GradientStop Offset="0.50" Color="#80FFFFFF" />
-        <GradientStop Offset="0.55" Color="#55FFFFFF" />
-        <GradientStop Offset="0.65" Color="#00000000" />
-        <GradientStop Offset="1.00" Color="#00000000" />
+    <!-- Flashing task button: inverted (concave) deep-button dome. Vertical lighting —
+         shadow under the near top lip, light on the far bottom inner slope. Clipped
+         by the full-face IconStreak ellipse so it reads as a round indented button. -->
+    <LinearGradientBrush x:Key="GlassDeepButtonConcave" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.00" Color="#55000000" />
+        <GradientStop Offset="0.10" Color="#2A000000" />
+        <GradientStop Offset="0.22" Color="#00000000" />
+        <GradientStop Offset="0.60" Color="#00000000" />
+        <GradientStop Offset="0.78" Color="#1AFFFFFF" />
+        <GradientStop Offset="0.92" Color="#55FFFFFF" />
+        <GradientStop Offset="1.00" Color="#70FFFFFF" />
     </LinearGradientBrush>
 
     <Style x:Key="ShowDesktopButton" TargetType="ToggleButton">
