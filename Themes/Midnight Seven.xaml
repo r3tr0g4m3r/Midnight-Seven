@@ -177,6 +177,15 @@
         Left="5"
         Right="6"
         Top="4" />
+    <!-- Rotated equivalent of TrayToggleArrowPadding for the vertical taskbar:
+         the chevron is the same HArrow rotated 90° via LayoutTransform, so the
+         5/6 apex gaps become top/bottom and the 4/4 gaps become the sides. -->
+    <Thickness
+        x:Key="TrayToggleArrowPaddingVertical"
+        Bottom="6"
+        Left="4"
+        Right="4"
+        Top="5" />
 
     <LinearGradientBrush x:Key="ButtonBackground" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Offset="0.0" Color="#16111f" />
@@ -2324,37 +2333,55 @@
                             <Setter TargetName="ButtonBorder" Property="Background" Value="{DynamicResource TrayTogglePressedBackground}" />
                             <Setter TargetName="ToggleArrow" Property="Fill" Value="{DynamicResource TrayToggleArrowPressed}" />
                         </Trigger>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="ToggleArrow" Property="RenderTransformOrigin" Value="0.6,0.5" />
-                            <Setter TargetName="ToggleArrow" Property="RenderTransform">
-                                <Setter.Value>
-                                    <ScaleTransform ScaleX="-1" />
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                        <!-- Vertical taskbar: swap the horizontal chevron for the vertical one and flip it,
-                             so collapsed points up (^, away from the icons below) and expanded points down.
-                             Defined after the IsChecked trigger so it wins over the horizontal ScaleX flip. -->
+                        <!-- Vertical taskbar: keep the horizontal chevron and rotate it 90° via
+                             LayoutTransform (resizes the layout box to the rotated bounds, so
+                             the button stays circular and the arrow fills it centered — a
+                             RenderTransform would overflow the box and read stretched).
+                             Padding is the rotated equivalent of the horizontal padding. -->
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
-                            <Setter TargetName="ButtonBorder" Property="Padding" Value="4,5,4,5" />
-                            <Setter TargetName="ToggleArrow" Property="Data" Value="{DynamicResource VArrow}" />
-                            <Setter TargetName="ToggleArrow" Property="RenderTransformOrigin" Value="0.5,0.5" />
-                            <Setter TargetName="ToggleArrow" Property="RenderTransform">
-                                <Setter.Value>
-                                    <ScaleTransform ScaleY="-1" />
-                                </Setter.Value>
-                            </Setter>
+                            <Setter TargetName="ButtonBorder" Property="Padding" Value="{DynamicResource TrayToggleArrowPaddingVertical}" />
                         </DataTrigger>
+                        <!-- Horizontal taskbar: chevron points left when collapsed, right when expanded -->
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical" />
-                                <Condition Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource TemplatedParent}}" Value="True" />
+                                <Condition Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal" />
                             </MultiDataTrigger.Conditions>
                             <MultiDataTrigger.Setters>
                                 <Setter TargetName="ToggleArrow" Property="RenderTransformOrigin" Value="0.5,0.5" />
                                 <Setter TargetName="ToggleArrow" Property="RenderTransform">
                                     <Setter.Value>
-                                        <ScaleTransform ScaleY="1" />
+                                        <ScaleTransform ScaleX="-1" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <!-- Vertical taskbar: collapsed points up (^, away from the icons below).
+                             LayoutTransform (not RenderTransform) so the layout box becomes the
+                             rotated 9x6 bounds and the circular button stays circular. -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}" Value="False" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="ToggleArrow" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="90" />
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                        <!-- Vertical taskbar: expanded points down (v, toward the icons) -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=IsChecked, RelativeSource={RelativeSource Self}}" Value="True" />
+                                <Condition Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="ToggleArrow" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90" />
                                     </Setter.Value>
                                 </Setter>
                             </MultiDataTrigger.Setters>

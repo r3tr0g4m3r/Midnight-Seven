@@ -2,6 +2,12 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.61] - 2026-10-12
+
+### Fixed
+- **Tray expand chevron now reverses in vertical mode**: rebuilt TrayToggleButton triggers on RetroBar's stock pattern (one MultiDataTrigger per orientation/checked state with RelativeSource Self). Replaces fragile trigger-ordering that let the horizontal ScaleX flip win over the vertical flip. Collapsed points up, expanded points down.
+- **Vertical-mode chevron perfectly centered, button stays circular**: vertical mode now reuses the same HArrow geometry as horizontal, rotated ±90° via LayoutTransform (layout box becomes the rotated bounds). New TrayToggleArrowPaddingVertical resource mirrors the horizontal padding (5,6,4,4 → 4,5,4,6). Replaces VArrow geometry swaps and pixel-nudge hacks that caused stretch/off-center rendering.
+
 ## [1.0.60] - 2026-10-12
 
 ### Changed
