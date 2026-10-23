@@ -2,6 +2,18 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.63] - 2026-10-22
+
+### Fixed
+- **Credit links corrected in LICENSE and README**: Ward Hale's DeviantArt attribution now points to the correct profile (madhale) and RetroBar Dark Modes gallery page; trailing newlines added.
+
+### Added
+- **Release packaging script** `tools/Build-Release.ps1`: zips the six release files (CHANGELOG, CONTRIBUTING, INSTALL, LICENSE, README, theme flattened from `Themes/`) into `Midnight-Seven-v{ver}.zip`, validating the theme first.
+- **Git tags resumed**: annotated tags backfilled for every version with a corresponding commit (v1.0.7–v1.0.15, v1.0.31, v1.0.35, v1.0.38, v1.0.60–v1.0.62); v1.0.16–v1.0.30, v1.0.32–v1.0.34, v1.0.36–v1.0.37 and v1.0.39–v1.0.59 predate git and remain changelog-only.
+
+### Changed
+- **Repository history rewritten** to attribute all commits and tags to `r3tr0g4m3r <r3tr0g4m3r@users.noreply.github.com>` (was `Retrogamer <retro>`); commit dates and messages unchanged.
+
 ## [1.0.62] - 2026-10-12
 
 ### Changed
