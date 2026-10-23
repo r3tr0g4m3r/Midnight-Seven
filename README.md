@@ -103,7 +103,7 @@ Current: exactly 24×24, borderless buttons (vertical: 2-column layout centered 
 
 ## Credits
 
-- Based on **Midnight Test** / **Midnight Windows Longhorn** by Ward Hale
+- Based on **Midnight Windows Longhorn** by Ward Hale (https://www.deviantart.com/madhale/art/RetroBar-Dark-Modes-%28Windows-95%2C-2000%2C-XP%2C-Etc.%29-1053142400)
 - Original Longhorn theme by [Longhorn Fusion](https://www.deviantart.com/longhornfusion)
 - RetroBar by [dremin](https://github.com/dremin/RetroBar)
 
