@@ -1329,7 +1329,7 @@
                         Background="{DynamicResource ButtonBackgroundFlashing}"
                         BorderBrush="{DynamicResource ButtonBorder1Flashing}"
                         BorderThickness="0"
-                        CornerRadius="3,3,0,0">
+                        CornerRadius="8,8,8,8">
                         <Border
                             x:Name="TaskButtonBorder2"
                             BorderBrush="{DynamicResource ButtonBorder2Flashing}"
@@ -1368,6 +1368,7 @@
                                 <!-- Dark gradient layer over icon (full face rectangle, dark top to transparent bottom) -->
                                 <Rectangle x:Name="IconGlassSheen"
                                            Stretch="Fill"
+                                           RadiusX="7" RadiusY="7"
                                            VerticalAlignment="Stretch"
                                            HorizontalAlignment="Stretch">
                                     <Rectangle.Fill>
@@ -1414,9 +1415,9 @@
                     <!-- Vertical taskbar: full rounded frame, no edge-anchored offset -->
                     <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                         <DataTrigger.Setters>
-                            <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="4" />
-                            <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="4" />
-                            <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="4" />
+                            <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="8" />
+                            <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="8" />
+                            <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="8" />
                             <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
                             <Setter TargetName="Content" Property="Margin" Value="0" />
                             <Setter TargetName="ActiveSheen" Property="Data" Value="M 0,0 L 0.5,0 L 0,0.5 Z" />
@@ -1428,9 +1429,9 @@
                     <!-- Horizontal taskbar: tile fills the 60px bar; frame touches top/bottom -->
                     <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
                         <DataTrigger.Setters>
-                            <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="3,3,0,0" />
-                            <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="4" />
-                            <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="4" />
+                            <Setter TargetName="TaskButtonBorder1" Property="CornerRadius" Value="8,8,8,8" />
+                            <Setter TargetName="TaskButtonBorder2" Property="CornerRadius" Value="8" />
+                            <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="8" />
                             <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
                             <Setter TargetName="Content" Property="Margin" Value="0" />
                             <Setter TargetName="Content" Property="VerticalAlignment" Value="Center" />

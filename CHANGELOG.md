@@ -2,6 +2,11 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.65] - 2026-10-29
+
+### Fixed
+- **Flashing task button no longer spills square corners past the rounded frame**: the TaskButtonFlashing template's corner radii are now aligned with the normal TaskButton in every state — Border1 (which carries the red background) 8,8,8,8 base and both orientation triggers (was 3,3,0,0 base / 4 vertical / 3,3,0,0 horizontal, so the squarer red tile poked out past the r=8 rounded border arcs), and Border2/3 stay 8 in the triggers (was squashed to 4). The full-face IconGlassSheen overlay is rounded (RadiusX/Y 7) so the dark gradient no longer paints square corners outside the rounded Border3 frame.
+
 ## [1.0.64] - 2026-10-26
 
 ### Changed
