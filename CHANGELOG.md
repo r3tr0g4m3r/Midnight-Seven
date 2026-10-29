@@ -2,6 +2,11 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.68] - 2026-10-29
+
+### Changed
+- **Start button rim replaced with the separator's engraved treatment**: the four 1px white `GlassEdgeLight` edge lines around the start button face are gone; each edge now carries a 2px band replicating the separator sliver's cross-section — dark crease (#A6000000) at the button boundary with a soft light lip (#66FFFFFF) on the inner side. Four per-edge gradient brushes (`StartButtonEdgeTop/Bottom/Left/Right`) keep the crease facing outward on every side. Structural navy lines, corner sheen, icon, notch strip and face size (64×50 vertical / 64×60 horizontal) unchanged.
+
 ## [1.0.67] - 2026-10-29
 
 ### Changed

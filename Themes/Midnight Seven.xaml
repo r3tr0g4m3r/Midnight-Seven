@@ -179,6 +179,30 @@
         <GradientStop Offset="1.00" Color="#00000000" />
     </LinearGradientBrush>
 
+    <!-- Start button engraved edge frame (replaces the white GlassEdgeLight rim):
+         2px band per edge carrying the separator sliver's cross-section — dark
+         crease at the button boundary, soft light lip on the inner side. One
+         brush per edge so the crease always faces outward. -->
+    <LinearGradientBrush x:Key="StartButtonEdgeTop" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.00" Color="#A6000000" />
+        <GradientStop Offset="1.00" Color="#66FFFFFF" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="StartButtonEdgeBottom" StartPoint="0,1" EndPoint="0,0">
+        <GradientStop Offset="0.00" Color="#A6000000" />
+        <GradientStop Offset="1.00" Color="#66FFFFFF" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="StartButtonEdgeLeft" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0.00" Color="#A6000000" />
+        <GradientStop Offset="1.00" Color="#66FFFFFF" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="StartButtonEdgeRight" StartPoint="1,0" EndPoint="0,0">
+        <GradientStop Offset="0.00" Color="#A6000000" />
+        <GradientStop Offset="1.00" Color="#66FFFFFF" />
+    </LinearGradientBrush>
+
     <SolidColorBrush x:Key="TaskbarBackground" Color="#16111f" />
 
     <LinearGradientBrush x:Key="TaskbarVerticalBackground" StartPoint="0,0" EndPoint="1,0">
@@ -1935,21 +1959,21 @@
                                         x:Name="StartSheen"
                                         Background="{DynamicResource GlassCornerSheen}" />
                                     <Border
-                                        Height="1"
+                                        Height="2"
                                         VerticalAlignment="Top"
-                                        Background="{DynamicResource GlassEdgeLight}" />
+                                        Background="{DynamicResource StartButtonEdgeTop}" />
                                     <Border
-                                        Height="1"
+                                        Height="2"
                                         VerticalAlignment="Bottom"
-                                        Background="{DynamicResource GlassEdgeLight}" />
+                                        Background="{DynamicResource StartButtonEdgeBottom}" />
                                     <Border
-                                        Width="1"
+                                        Width="2"
                                         HorizontalAlignment="Left"
-                                        Background="{DynamicResource GlassEdgeLight}" />
+                                        Background="{DynamicResource StartButtonEdgeLeft}" />
                                     <Border
-                                        Width="1"
+                                        Width="2"
                                         HorizontalAlignment="Right"
-                                        Background="{DynamicResource GlassEdgeLight}" />
+                                        Background="{DynamicResource StartButtonEdgeRight}" />
                                     <Image x:Name="StartIcon"
                                            Width="{DynamicResource StartButtonIconSize}"
                                            Height="{DynamicResource StartButtonIconSize}"
