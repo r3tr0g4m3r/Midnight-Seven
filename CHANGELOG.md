@@ -2,6 +2,12 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.64] - 2026-10-26
+
+### Changed
+- **Start button separator gap widened from 4px to 8px** between the start button and the task list (right edge horizontal, bottom edge vertical).
+- **Separator redrawn as a slim engraved indentation (locked mode)**: instead of a shining sliver, a needle-shaped Path (thin over most of its length, swelling only at the middle) is drawn as a dark crease (~1px #A6000000) with a lit lip on the far side away from the button (#80FFFFFF peak softening to #40FFFFFF — the shaded bottom of the dent), inside the 8px gap, with a full-length bell OpacityMask melting to nothing at the tips. In unlocked mode the notch collapses (IsLocked trigger) so RetroBar's own ToolbarThumb dotted separator shows at that spot instead, with no doubling.
+
 ## [1.0.63] - 2026-10-22
 
 ### Fixed

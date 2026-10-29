@@ -126,6 +126,58 @@
         <GradientStop Offset="1" Color="#77A1D1" />
     </LinearGradientBrush>
 
+    <!-- Start button notch (locked mode): slim engraved indentation in the 8px strip
+         between the button and the task list (right edge horizontal, bottom edge
+         vertical). Thin dark crease with a soft light lip on the far side (away from
+         the button — the shaded bottom of the dent). Unlocked mode collapses this
+         (IsLocked trigger on StartNotch) so RetroBar's own ToolbarThumb dotted
+         separator shows at that spot instead. -->
+    <LinearGradientBrush x:Key="StartButtonStreak" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0.00" Color="#00000000" />
+        <GradientStop Offset="0.36" Color="#00000000" />
+        <GradientStop Offset="0.44" Color="#66000000" />
+        <GradientStop Offset="0.50" Color="#A6000000" />
+        <GradientStop Offset="0.56" Color="#4D000000" />
+        <GradientStop Offset="0.58" Color="#80FFFFFF" />
+        <GradientStop Offset="0.63" Color="#40FFFFFF" />
+        <GradientStop Offset="0.72" Color="#00000000" />
+        <GradientStop Offset="0.78" Color="#00000000" />
+        <GradientStop Offset="1.00" Color="#00000000" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="StartButtonStreakVertical" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.00" Color="#00000000" />
+        <GradientStop Offset="0.36" Color="#00000000" />
+        <GradientStop Offset="0.44" Color="#66000000" />
+        <GradientStop Offset="0.50" Color="#A6000000" />
+        <GradientStop Offset="0.56" Color="#4D000000" />
+        <GradientStop Offset="0.58" Color="#80FFFFFF" />
+        <GradientStop Offset="0.63" Color="#40FFFFFF" />
+        <GradientStop Offset="0.72" Color="#00000000" />
+        <GradientStop Offset="0.78" Color="#00000000" />
+        <GradientStop Offset="1.00" Color="#00000000" />
+    </LinearGradientBrush>
+
+    <!-- End fades for the streak line: mask runs ALONG the line length as a full
+         length bell — brightest at the middle, melting to nothing at both tips.
+         Base axis is vertical (horizontal bar: line runs top-to-bottom); the
+         Vertical variant runs left-to-right. -->
+    <LinearGradientBrush x:Key="StartButtonStreakFade" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.00" Color="#00000000" />
+        <GradientStop Offset="0.25" Color="#66FFFFFF" />
+        <GradientStop Offset="0.50" Color="#FFFFFFFF" />
+        <GradientStop Offset="0.75" Color="#66FFFFFF" />
+        <GradientStop Offset="1.00" Color="#00000000" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="StartButtonStreakFadeVertical" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0.00" Color="#00000000" />
+        <GradientStop Offset="0.25" Color="#66FFFFFF" />
+        <GradientStop Offset="0.50" Color="#FFFFFFFF" />
+        <GradientStop Offset="0.75" Color="#66FFFFFF" />
+        <GradientStop Offset="1.00" Color="#00000000" />
+    </LinearGradientBrush>
+
     <SolidColorBrush x:Key="TaskbarBackground" Color="#16111f" />
 
     <LinearGradientBrush x:Key="TaskbarVerticalBackground" StartPoint="0,0" EndPoint="1,0">
@@ -1856,9 +1908,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
                     <Border
                         x:Name="StartButtonBorder1"
-                        Margin="0"
+                        Margin="0,0,8,0"
                         Background="{DynamicResource TaskbarBackground}"
                         BorderBrush="{DynamicResource StartButtonBorder1}"
                         BorderThickness="0,1,0,0">
@@ -1907,12 +1960,33 @@
                             </Border>
                         </Border>
                     </Border>
+                    <Path
+                        x:Name="StartNotch"
+                        Data="M 0.5,0 C 0.85,0.35 1,0.45 1,0.5 C 1,0.55 0.85,0.65 0.5,1 C 0.15,0.65 0,0.55 0,0.5 C 0,0.45 0.15,0.35 0.5,0 Z"
+                        Stretch="Fill"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Stretch"
+                        Width="8"
+                        Fill="{DynamicResource StartButtonStreak}"
+                        OpacityMask="{DynamicResource StartButtonStreakFade}" />
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <Setter TargetName="StartButtonBorder1" Property="Margin" Value="0,0,0,8" />
                             <Setter TargetName="StartButtonBorder2" Property="BorderThickness" Value="0" />
                             <Setter TargetName="StartButtonContent" Property="Margin" Value="0" />
+                            <Setter TargetName="StartNotch" Property="HorizontalAlignment" Value="Stretch" />
+                            <Setter TargetName="StartNotch" Property="VerticalAlignment" Value="Bottom" />
+                            <Setter TargetName="StartNotch" Property="Width" Value="Auto" />
+                            <Setter TargetName="StartNotch" Property="Height" Value="8" />
+                            <Setter TargetName="StartNotch" Property="Data" Value="M 0,0.5 C 0.35,0.15 0.45,0 0.5,0 C 0.55,0 0.65,0.15 1,0.5 C 0.65,0.85 0.55,1 0.5,1 C 0.45,1 0.35,0.85 0,0.5 Z" />
+                            <Setter TargetName="StartNotch" Property="Fill" Value="{DynamicResource StartButtonStreakVertical}" />
+                            <Setter TargetName="StartNotch" Property="OpacityMask" Value="{DynamicResource StartButtonStreakFadeVertical}" />
                             <Setter Property="Width" Value="{DynamicResource TaskbarWidth}" />
                             <Setter Property="Height" Value="{DynamicResource StartButtonVerticalSize}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="False">
+                            <Setter TargetName="StartNotch" Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
                             <Setter Property="Width" Value="{DynamicResource TaskbarWidth}" />
