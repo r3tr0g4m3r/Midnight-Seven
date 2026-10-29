@@ -2,6 +2,12 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.66] - 2026-10-29
+
+### Fixed
+- **Flashing task button corner sheens no longer spill sharp corners**: the ActiveSheen (top-left) and ActiveSheenBR (bottom-right) corner-triangle Paths in TaskButtonFlashing are chord-cut at 0.15 normalized (~8–9px) so their white diagonal gradients end at the rounded frame line instead of painting a 90° corner past it; base geometry and both orientation-trigger Data setters updated.
+- **Active button angular sheen preserved**: TaskButtonActive keeps its original sharp corner-triangle sheens — its frame is nearly square (Border3 r=1,1,0,0 base, 3 per orientation), so the bright corner tip never spilled and the cut would have dimmed the highlight.
+
 ## [1.0.65] - 2026-10-29
 
 ### Fixed

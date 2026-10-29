@@ -1352,12 +1352,12 @@
                                 <!-- Active button glass sheen overlay (persistent, dual corners) -->
                                 <Path x:Name="ActiveSheen"
                                       Fill="{DynamicResource GlassActiveCornerSheen}"
-                                      Data="M 0,0 L 0.5,0 L 0,0.5 Z"
+                                      Data="M 0.15,0 L 0.5,0 L 0,0.5 L 0,0.15 Z"
                                       Stretch="Fill" />
                                 <!-- Bottom-right corner sheen -->
                                 <Path x:Name="ActiveSheenBR"
                                       Fill="{DynamicResource GlassActiveCornerSheenBR}"
-                                      Data="M 0.5,1 L 1,1 L 1,0.5 Z"
+                                      Data="M 0.5,1 L 0.85,1 L 1,0.85 L 1,0.5 Z"
                                       Stretch="Fill" />
                                 <!-- Central highlight (bright red center, outward shine) - fills button proportionally -->
                                 <Ellipse x:Name="FlashCenterHighlight"
@@ -1420,9 +1420,9 @@
                             <Setter TargetName="TaskButtonBorder3" Property="CornerRadius" Value="8" />
                             <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
                             <Setter TargetName="Content" Property="Margin" Value="0" />
-                            <Setter TargetName="ActiveSheen" Property="Data" Value="M 0,0 L 0.5,0 L 0,0.5 Z" />
+                            <Setter TargetName="ActiveSheen" Property="Data" Value="M 0.15,0 L 0.5,0 L 0,0.5 L 0,0.15 Z" />
                             <Setter TargetName="ActiveSheen" Property="Fill" Value="{DynamicResource GlassActiveCornerSheen}" />
-                            <Setter TargetName="ActiveSheenBR" Property="Data" Value="M 0.5,1 L 1,1 L 1,0.5 Z" />
+                            <Setter TargetName="ActiveSheenBR" Property="Data" Value="M 0.5,1 L 0.85,1 L 1,0.85 L 1,0.5 Z" />
                             <Setter TargetName="ActiveSheenBR" Property="Fill" Value="{DynamicResource GlassActiveCornerSheenBR}" />
                         </DataTrigger.Setters>
                     </DataTrigger>
@@ -1435,9 +1435,9 @@
                             <Setter TargetName="ButtonContent" Property="Margin" Value="0" />
                             <Setter TargetName="Content" Property="Margin" Value="0" />
                             <Setter TargetName="Content" Property="VerticalAlignment" Value="Center" />
-                            <Setter TargetName="ActiveSheen" Property="Data" Value="M 0,0 L 0.5,0 L 0,0.5 Z" />
+                            <Setter TargetName="ActiveSheen" Property="Data" Value="M 0.15,0 L 0.5,0 L 0,0.5 L 0,0.15 Z" />
                             <Setter TargetName="ActiveSheen" Property="Fill" Value="{DynamicResource GlassActiveCornerSheen}" />
-                            <Setter TargetName="ActiveSheenBR" Property="Data" Value="M 0.5,1 L 1,1 L 1,0.5 Z" />
+                            <Setter TargetName="ActiveSheenBR" Property="Data" Value="M 0.5,1 L 0.85,1 L 1,0.85 L 1,0.5 Z" />
                             <Setter TargetName="ActiveSheenBR" Property="Fill" Value="{DynamicResource GlassActiveCornerSheenBR}" />
                         </DataTrigger.Setters>
                     </DataTrigger>
