@@ -2,6 +2,11 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.67] - 2026-10-29
+
+### Changed
+- **Start button resized to match a task tile**: the visible start button face was smaller than the task buttons (64×36 vertical, 56×60 horizontal) because the element carried the 8px notch strip inside its box. The element now grows so the face matches a foreground task tile exactly — 64×50 vertical (`StartButtonVerticalSize` 44 → 58) and 64×60 horizontal (new `StartButtonHorizontalWidth` 72 replaces `TaskbarWidth` for the start button), with the 8px engraved-indentation strip preserved below (vertical) / right (horizontal) of the face. Icon size unchanged (36).
+
 ## [1.0.66] - 2026-10-29
 
 ### Fixed

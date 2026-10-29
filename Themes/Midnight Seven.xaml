@@ -20,7 +20,8 @@
 
     <!-- Start button sizing (larger than task icons) -->
     <system:Double x:Key="StartButtonIconSize">36</system:Double>
-    <system:Double x:Key="StartButtonVerticalSize">44</system:Double>
+    <system:Double x:Key="StartButtonVerticalSize">58</system:Double>
+    <system:Double x:Key="StartButtonHorizontalWidth">72</system:Double>
 
     <DrawingBrush x:Key="winlogo" Stretch="Uniform">
         <DrawingBrush.Drawing>
@@ -1990,7 +1991,7 @@
                             <Setter TargetName="StartNotch" Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Horizontal">
-                            <Setter Property="Width" Value="{DynamicResource TaskbarWidth}" />
+                            <Setter Property="Width" Value="{DynamicResource StartButtonHorizontalWidth}" />
                             <Setter Property="Height" Value="{DynamicResource TaskbarHeight}" />
                         </DataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
