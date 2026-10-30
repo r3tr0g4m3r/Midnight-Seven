@@ -181,26 +181,26 @@
 
     <!-- Start button engraved edge frame (replaces the white GlassEdgeLight rim):
          2px band per edge carrying the separator sliver's cross-section — dark
-         crease at the button boundary, soft light lip on the inner side. One
-         brush per edge so the crease always faces outward. -->
+         crease at the button boundary, barely-there light lip (#1AFFFFFF) on the
+         inner side. One brush per edge so the crease always faces outward. -->
     <LinearGradientBrush x:Key="StartButtonEdgeTop" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Offset="0.00" Color="#A6000000" />
-        <GradientStop Offset="1.00" Color="#66FFFFFF" />
+        <GradientStop Offset="1.00" Color="#1AFFFFFF" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="StartButtonEdgeBottom" StartPoint="0,1" EndPoint="0,0">
         <GradientStop Offset="0.00" Color="#A6000000" />
-        <GradientStop Offset="1.00" Color="#66FFFFFF" />
+        <GradientStop Offset="1.00" Color="#1AFFFFFF" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="StartButtonEdgeLeft" StartPoint="0,0" EndPoint="1,0">
         <GradientStop Offset="0.00" Color="#A6000000" />
-        <GradientStop Offset="1.00" Color="#66FFFFFF" />
+        <GradientStop Offset="1.00" Color="#1AFFFFFF" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="StartButtonEdgeRight" StartPoint="1,0" EndPoint="0,0">
         <GradientStop Offset="0.00" Color="#A6000000" />
-        <GradientStop Offset="1.00" Color="#66FFFFFF" />
+        <GradientStop Offset="1.00" Color="#1AFFFFFF" />
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="TaskbarBackground" Color="#16111f" />

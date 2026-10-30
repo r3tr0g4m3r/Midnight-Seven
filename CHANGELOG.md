@@ -2,6 +2,11 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.69] - 2026-10-29
+
+### Fixed
+- **Start button edge lip dimmed to kill the white rim**: the engraved edge bands' light lip dropped from #66FFFFFF through #26FFFFFF to #1AFFFFFF (4%→15%→10% white) across iterations — the 40% lip on all four sides read as the same white rim it replaced. Dark crease (#A6000000), 2px band geometry and per-edge orientation unchanged.
+
 ## [1.0.68] - 2026-10-29
 
 ### Changed
