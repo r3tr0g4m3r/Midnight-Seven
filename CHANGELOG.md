@@ -2,6 +2,17 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
+## [1.0.70] - 2026-10-29
+
+### Changed
+- **Start button edges rebuilt as a raised bevel with in-line shine**: the engraved edge frame from v1.0.68/69 was removed entirely, then replaced with four 1px bevel lines whose shine runs lengthwise inside the border — top (`StartButtonBevelTop`, #59FFFFFF melting left→right) and left (`StartButtonBevelLeft`, melting top→bottom) carry the light; bottom and right carry dark shadows with subtle lengthwise falloff. Brightest at the top-left corner, orientation-agnostic.
+- **Far-side blend**: the button now melts into the taskbar on the side away from the icon — rightward in horizontal mode, downward in vertical mode. Alpha OpacityMask (`StartButtonFadeMaskRight/Bottom`, transparent until 70%, opaque at the far edge) fades the face brush over the far band; the icon stays crisp above it, and the bevel/sheen/hover glow dissolve into the bar.
+- **Face adopts the bar's vertical gradient**: in vertical mode the button background switches from flat `TaskbarBackground` to `TaskbarVerticalBackground` (aligned 1:1 with the bar since the face spans its full width), eliminating the darker-slab mismatch; the fade paints the same gradient so the melt is seamless at every x.
+- **Bar frame line no longer peeks through the notch strip**: the template root now carries an opaque orientation-matched backdrop (`TaskbarBackground` / `TaskbarVerticalBackground` via trigger), so the horizontal bar's 1px #433357 top frame line no longer shows through the transparent strip above the separator sliver.
+
+### Fixed
+- **Navy structural lines removed from the start button**: `StartButtonBorder1/2` thickness zeroed (were 1px #1c1c3b top/left lines sitting over the bright bevel in horizontal mode), and the IsChecked/IsPressed triggers no longer re-add navy top+right lines — pressed feedback remains via the BlurBehind glow and content shift.
+
 ## [1.0.69] - 2026-10-29
 
 ### Fixed

@@ -179,30 +179,6 @@
         <GradientStop Offset="1.00" Color="#00000000" />
     </LinearGradientBrush>
 
-    <!-- Start button engraved edge frame (replaces the white GlassEdgeLight rim):
-         2px band per edge carrying the separator sliver's cross-section — dark
-         crease at the button boundary, barely-there light lip (#1AFFFFFF) on the
-         inner side. One brush per edge so the crease always faces outward. -->
-    <LinearGradientBrush x:Key="StartButtonEdgeTop" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Offset="0.00" Color="#A6000000" />
-        <GradientStop Offset="1.00" Color="#1AFFFFFF" />
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="StartButtonEdgeBottom" StartPoint="0,1" EndPoint="0,0">
-        <GradientStop Offset="0.00" Color="#A6000000" />
-        <GradientStop Offset="1.00" Color="#1AFFFFFF" />
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="StartButtonEdgeLeft" StartPoint="0,0" EndPoint="1,0">
-        <GradientStop Offset="0.00" Color="#A6000000" />
-        <GradientStop Offset="1.00" Color="#1AFFFFFF" />
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="StartButtonEdgeRight" StartPoint="1,0" EndPoint="0,0">
-        <GradientStop Offset="0.00" Color="#A6000000" />
-        <GradientStop Offset="1.00" Color="#1AFFFFFF" />
-    </LinearGradientBrush>
-
     <SolidColorBrush x:Key="TaskbarBackground" Color="#16111f" />
 
     <LinearGradientBrush x:Key="TaskbarVerticalBackground" StartPoint="0,0" EndPoint="1,0">
@@ -1528,6 +1504,51 @@
         <GradientStop Offset="1.0" Color="#1AFFFFFF" />
     </LinearGradientBrush>
     <SolidColorBrush x:Key="GlassEdgeLight" Color="#4DFFFFFF" />
+    <!-- Start button raised bevel (v1.0.70): light on top + left, dark shadow on
+         bottom + right. The shine runs lengthwise INSIDE each border line,
+         brightest at the top-left corner and melting along the edge; shadows
+         carry a subtle lengthwise falloff too. -->
+    <LinearGradientBrush x:Key="StartButtonBevelTop" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0.00" Color="#59FFFFFF" />
+        <GradientStop Offset="0.35" Color="#26FFFFFF" />
+        <GradientStop Offset="0.75" Color="#0AFFFFFF" />
+        <GradientStop Offset="1.00" Color="#05FFFFFF" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="StartButtonBevelLeft" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.00" Color="#4DFFFFFF" />
+        <GradientStop Offset="0.35" Color="#1FFFFFFF" />
+        <GradientStop Offset="1.00" Color="#0AFFFFFF" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="StartButtonBevelBottom" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0.00" Color="#8C000000" />
+        <GradientStop Offset="0.50" Color="#4D000000" />
+        <GradientStop Offset="1.00" Color="#26000000" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="StartButtonBevelRight" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.00" Color="#66000000" />
+        <GradientStop Offset="0.50" Color="#33000000" />
+        <GradientStop Offset="1.00" Color="#1A000000" />
+    </LinearGradientBrush>
+
+    <!-- Start button far-side blend (v1.0.70): the face melts into the taskbar on
+         the side away from the icon — right in horizontal mode, bottom in vertical
+         mode. Alpha OpacityMasks fade the face brush (flat TaskbarBackground, or
+         TaskbarVerticalBackground in vertical mode so the gradient stays aligned
+         with the bar) over the far band; sits under the icon in z-order. -->
+    <LinearGradientBrush x:Key="StartButtonFadeMaskRight" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="0.00" Color="#00000000" />
+        <GradientStop Offset="0.70" Color="#00000000" />
+        <GradientStop Offset="1.00" Color="#FFFFFFFF" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="StartButtonFadeMaskBottom" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.00" Color="#00000000" />
+        <GradientStop Offset="0.70" Color="#00000000" />
+        <GradientStop Offset="1.00" Color="#FFFFFFFF" />
+    </LinearGradientBrush>
     <!-- Start button: light only the opposite corners (TL -> BR) for a subtle 3D
          orb effect; no full-width band, no dark band. -->
     <LinearGradientBrush x:Key="GlassCornerSheen" StartPoint="0,0" EndPoint="1,1">
@@ -1934,17 +1955,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
-                    <Grid>
+                    <Grid x:Name="StartButtonRoot" Background="{DynamicResource TaskbarBackground}">
                     <Border
                         x:Name="StartButtonBorder1"
                         Margin="0,0,8,0"
                         Background="{DynamicResource TaskbarBackground}"
                         BorderBrush="{DynamicResource StartButtonBorder1}"
-                        BorderThickness="0,1,0,0">
+                        BorderThickness="0">
                         <Border
                             x:Name="StartButtonBorder2"
                             BorderBrush="{DynamicResource StartButtonBorder2}"
-                            BorderThickness="1,0,0,0">
+                            BorderThickness="0">
                             <Border
                                 x:Name="StartButtonBorder3"
                                 BorderBrush="Transparent"
@@ -1959,21 +1980,27 @@
                                         x:Name="StartSheen"
                                         Background="{DynamicResource GlassCornerSheen}" />
                                     <Border
-                                        Height="2"
+                                        Height="1"
                                         VerticalAlignment="Top"
-                                        Background="{DynamicResource StartButtonEdgeTop}" />
+                                        Background="{DynamicResource StartButtonBevelTop}" />
                                     <Border
-                                        Height="2"
+                                        Height="1"
                                         VerticalAlignment="Bottom"
-                                        Background="{DynamicResource StartButtonEdgeBottom}" />
+                                        Background="{DynamicResource StartButtonBevelBottom}" />
                                     <Border
-                                        Width="2"
+                                        Width="1"
                                         HorizontalAlignment="Left"
-                                        Background="{DynamicResource StartButtonEdgeLeft}" />
+                                        Background="{DynamicResource StartButtonBevelLeft}" />
                                     <Border
-                                        Width="2"
+                                        Width="1"
                                         HorizontalAlignment="Right"
-                                        Background="{DynamicResource StartButtonEdgeRight}" />
+                                        Background="{DynamicResource StartButtonBevelRight}" />
+                                    <Rectangle
+                                        x:Name="StartFade"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Fill="{DynamicResource TaskbarBackground}"
+                                        OpacityMask="{DynamicResource StartButtonFadeMaskRight}" />
                                     <Image x:Name="StartIcon"
                                            Width="{DynamicResource StartButtonIconSize}"
                                            Height="{DynamicResource StartButtonIconSize}"
@@ -2000,7 +2027,11 @@
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                             <Setter TargetName="StartButtonBorder1" Property="Margin" Value="0,0,0,8" />
                             <Setter TargetName="StartButtonBorder2" Property="BorderThickness" Value="0" />
+                            <Setter TargetName="StartButtonBorder1" Property="Background" Value="{DynamicResource TaskbarVerticalBackground}" />
+                            <Setter TargetName="StartButtonRoot" Property="Background" Value="{DynamicResource TaskbarVerticalBackground}" />
                             <Setter TargetName="StartButtonContent" Property="Margin" Value="0" />
+                            <Setter TargetName="StartFade" Property="Fill" Value="{DynamicResource TaskbarVerticalBackground}" />
+                            <Setter TargetName="StartFade" Property="OpacityMask" Value="{DynamicResource StartButtonFadeMaskBottom}" />
                             <Setter TargetName="StartNotch" Property="HorizontalAlignment" Value="Stretch" />
                             <Setter TargetName="StartNotch" Property="VerticalAlignment" Value="Bottom" />
                             <Setter TargetName="StartNotch" Property="Width" Value="Auto" />
@@ -2022,17 +2053,11 @@
                             <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="StartButtonBorder1" Property="BorderBrush" Value="{DynamicResource StartButtonBorder1Pressed}" />
-                            <Setter TargetName="StartButtonBorder1" Property="BorderThickness" Value="0,1,1,0" />
-                            <Setter TargetName="StartButtonBorder3" Property="BorderBrush" Value="{DynamicResource StartButtonBorder3}" />
                             <Setter TargetName="StartButtonContent" Property="Margin" Value="0,0,1,0" />
                             <Setter TargetName="BlurBehind" Property="Margin" Value="4,2,2,2" />
                             <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="StartButtonBorder1" Property="BorderBrush" Value="{DynamicResource StartButtonBorder1Pressed}" />
-                            <Setter TargetName="StartButtonBorder1" Property="BorderThickness" Value="0,1,1,0" />
-                            <Setter TargetName="StartButtonBorder3" Property="BorderBrush" Value="{DynamicResource StartButtonBorder3}" />
                             <Setter TargetName="StartButtonContent" Property="Margin" Value="0,0,1,0" />
                             <Setter TargetName="BlurBehind" Property="Margin" Value="4,2,2,2" />
                             <Setter TargetName="BlurBehind" Property="Background" Value="#484896" />
