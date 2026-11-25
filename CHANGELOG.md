@@ -2,7 +2,10 @@
 
 All notable changes to the Midnight Seven theme will be documented in this file.
 
-## [1.0.70] - 2026-10-29
+## [1.0.71] - 2026-11-25
+
+### Changed
+- **Quick launch engraved notch**: added custom `ToolbarItems` ControlTemplate with `QuickLaunchNotch` Path in `Themes/Midnight Seven.xaml`. The 8px engraved notch appears on the right side in horizontal orientation and bottom side in vertical orientation, using the existing `StartButtonStreak`/`StartButtonStreakFade` brushes (with vertical variants `StartButtonStreakVertical`/`StartButtonStreakFadeVertical`). The notch collapses when the taskbar is unlocked, letting RetroBar's own separator take over.
 
 ### Changed
 - **Start button edges rebuilt as a raised bevel with in-line shine**: the engraved edge frame from v1.0.68/69 was removed entirely, then replaced with four 1px bevel lines whose shine runs lengthwise inside the border — top (`StartButtonBevelTop`, #59FFFFFF melting left→right) and left (`StartButtonBevelLeft`, melting top→bottom) carry the light; bottom and right carry dark shadows with subtle lengthwise falloff. Brightest at the top-left corner, orientation-agnostic.

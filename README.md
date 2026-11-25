@@ -9,6 +9,7 @@ A Windows 7-style theme for [RetroBar](https://github.com/dremin/RetroBar) featu
 - **Task buttons match the bar in both orientations** - vertical: 64×50px tiles fill the 64px bar edge-to-edge; horizontal: 64×60px tiles fill the 60px bar edge-to-edge when there's room and shrink to fit (3px gap preserved) when the row is full — never overlapping; thin light outline touches top/bottom, no dark border
 - **Large start button** - 36px customizable icon (vector-based, replaceable)
 - **Quick launch toolbar** - 24px icons, borderless (fits 64px bar)
+- **Engraved quick-launch notch** - 8px right-side (horizontal) or bottom-side (vertical) engraved strip; visible when taskbar is locked, collapses when unlocked so RetroBar's own separator takes over
 - **Instant tooltips** - 150ms delay for window titles (vs default 400ms)
 - **Stacked system tray icons** - Horizontal tray always shows exactly 2 balanced rows: the width cap steps with the icon count so the block grows sideways as icons appear (never clipped rows), and toggling `^` never shifts anything
 - **Icon hover glow** - Subtle opacity pulse on hover

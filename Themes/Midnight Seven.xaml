@@ -2207,6 +2207,39 @@
         x:Key="ToolbarItems"
         BasedOn="{StaticResource SystemTheme.ToolbarItems}"
         TargetType="ItemsControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ItemsControl">
+                    <Grid>
+                        <ItemsPresenter x:Name="QuickLaunchItems" Margin="0,0,8,0" />
+                        <Path
+                            x:Name="QuickLaunchNotch"
+                            Data="M 0.5,0 C 0.85,0.35 1,0.45 1,0.5 C 1,0.55 0.85,0.65 0.5,1 C 0.15,0.65 0,0.55 0,0.5 C 0,0.45 0.15,0.35 0.5,0 Z"
+                            Stretch="Fill"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Stretch"
+                            Width="8"
+                            Fill="{DynamicResource StartButtonStreak}"
+                            OpacityMask="{DynamicResource StartButtonStreakFade}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
+                            <Setter TargetName="QuickLaunchItems" Property="Margin" Value="0,0,0,8" />
+                            <Setter TargetName="QuickLaunchNotch" Property="HorizontalAlignment" Value="Stretch" />
+                            <Setter TargetName="QuickLaunchNotch" Property="VerticalAlignment" Value="Bottom" />
+                            <Setter TargetName="QuickLaunchNotch" Property="Width" Value="Auto" />
+                            <Setter TargetName="QuickLaunchNotch" Property="Height" Value="8" />
+                            <Setter TargetName="QuickLaunchNotch" Property="Data" Value="M 0,0.5 C 0.35,0.15 0.45,0 0.5,0 C 0.55,0 0.65,0.15 1,0.5 C 0.65,0.85 0.55,1 0.5,1 C 0.45,1 0.35,0.85 0,0.5 Z" />
+                            <Setter TargetName="QuickLaunchNotch" Property="Fill" Value="{DynamicResource StartButtonStreakVertical}" />
+                            <Setter TargetName="QuickLaunchNotch" Property="OpacityMask" Value="{DynamicResource StartButtonStreakFadeVertical}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=IsLocked, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="False">
+                            <Setter TargetName="QuickLaunchNotch" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                 <DataTrigger.Setters>
