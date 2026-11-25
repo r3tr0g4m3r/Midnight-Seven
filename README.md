@@ -1,34 +1,28 @@
-# Midnight Seven - RetroBar Theme
+# Midnight Seven 🌙
 
-A Windows 7-style theme for [RetroBar](https://github.com/dremin/RetroBar) featuring large centered icons, vertical taskbar optimization, and a dark midnight aesthetic.
+A Windows 7-style RetroBar theme with large centered icons, vertical taskbar optimization, and a dark midnight aesthetic.
 
-## Features
+## ✨ Features
 
-- **Windows 7/10 style icon-only task buttons** - No window titles, just icons
-- **Vertical taskbar optimized** - 64px wide bar with centered 36px icons
-- **Task buttons match the bar in both orientations** - vertical: 64×50px tiles fill the 64px bar edge-to-edge; horizontal: 64×60px tiles fill the 60px bar edge-to-edge when there's room and shrink to fit (3px gap preserved) when the row is full — never overlapping; thin light outline touches top/bottom, no dark border
-- **Large start button** - 36px customizable icon (vector-based, replaceable)
-- **Quick launch toolbar** - 24px icons, borderless (fits 64px bar)
-- **Engraved quick-launch notch** - 8px right-side (horizontal) or bottom-side (vertical) engraved strip; visible when taskbar is locked, collapses when unlocked so RetroBar's own separator takes over
-- **Instant tooltips** - 150ms delay for window titles (vs default 400ms)
-- **Stacked system tray icons** - Horizontal tray always shows exactly 2 balanced rows: the width cap steps with the icon count so the block grows sideways as icons appear (never clipped rows), and toggling `^` never shifts anything
-- **Icon hover glow** - Subtle opacity pulse on hover
-- **Active window highlight** - Foreground window icon stays at full opacity
+- **Icon-only task buttons** - No window titles, just icons
+- **Vertical taskbar** - 64px wide bar with centered 36px icons
+- **Large start button** - 36px customizable icon
+- **Quick launch toolbar** - 24px icons, borderless with engraved notch; visible when locked, collapses when unlocked
 - **Dark midnight palette** - Deep purples with cyan/orange/green accents
 - **High DPI ready** - Vector icons scale perfectly at any DPI
-- **Self-contained** - RetroBar's System theme base styles are inlined (v1.22.122, commit `cff7a787c3`), so the file resolves every resource locally and parses standalone
+- **Self-contained** - All resources inlined, parses standalone
 
-## Installation
+## 📦 Installation
 
 1. Copy `Themes/Midnight Seven.xaml` to `%LOCALAPPDATA%\RetroBar\Themes\`
 2. Open **RetroBar Properties** → **Advanced** tab
-3. Select **"Midnight Seven"** from the theme dropdown
+3. Select `"Midnight Seven"` from the theme dropdown
 4. Set **Taskbar Location** to **Left** or **Right** (vertical)
-5. Enable **Show window thumbnails** in Properties for live previews
+5. Enable **Show window thumbnails** for live previews
 
-> The working copy's `Themes/` folder also holds 18 upstream Midnight / Dark Mode themes by Ward Hale. They are reference material only — gitignored, not maintained here, and not part of this project.
+> The `Themes/` folder also holds 18 upstream Midnight / Dark Mode themes by Ward Hale. They are reference material only — gitignored, not maintained here, and not part of this project.
 
-## Customization
+## 🛠️ Customization
 
 ### Start Button Icon
 
@@ -85,30 +79,17 @@ Quick launch icon size is controlled by the `ToolbarIcon` style:
 ```
 Current: exactly 24×24, borderless buttons (vertical: 2-column layout centered in the 64px bar; horizontal: 2px side margins)
 
-## Theme Palette
-
-| Element | Color |
-|---------|-------|
-| Taskbar Background | `#16111f` |
-| Taskbar Border | `#433357` |
-| Button Background | `#16111f` → `#1d1230` gradient |
-| Button Hover | `#303063` blur |
-| Active Button | `#968ff7` text / purple glow |
-| Start Button Hover | `#484896` |
-| Tooltip Delay | 150ms |
-
-## Requirements
+## 📋 Requirements
 
 - [RetroBar](https://github.com/dremin/RetroBar) 1.22+
 - Windows 10/11 (Windows 7/8.1 supported by RetroBar)
 
-## Credits
+## 👤 Credits
 
-- Based on **Midnight Windows Longhorn** by Ward Hale (https://www.deviantart.com/madhale/art/RetroBar-Dark-Modes-%28Windows-95%2C-2000%2C-XP%2C-Etc.%29-1053142400)
+- Based on **Midnight Windows Longhorn** by Ward Hale
 - Original Longhorn theme by [Longhorn Fusion](https://www.deviantart.com/longhornfusion)
 - RetroBar by [dremin](https://github.com/dremin/RetroBar)
 
-## License
+## 📄 License
 
-This theme is provided as-is for personal use. Original Midnight theme assets by Ward Hale.
-RetroBar is licensed under MIT.
+This theme is provided as-is for personal use. Original Midnight theme assets by Ward Hale. RetroBar is licensed under MIT.

@@ -1,23 +1,5 @@
-# Reference themes (upstream by Ward Hale) - only Midnight Seven is part of this project
-/Themes/*.xaml
-!/Themes/Midnight Seven.xaml
+# VirtualBox VM screenshots - not part of the theme
+Themes/VirtualBoxVM_*.png
 
-# IDE/Editor
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Build artifacts
-bin/
-obj/
-
-# Local config
-local.settings.json
-# Release archives
-*.zip
+# Generated release zip
+Midnight-Seven-v*.zip
