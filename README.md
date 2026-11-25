@@ -1,5 +1,7 @@
 # Midnight Seven 🌙
 
+![Banner](banner.png)
+
 A Windows 7-style RetroBar theme with large centered icons, vertical taskbar optimization, and a dark midnight aesthetic.
 
 ## ✨ Features
