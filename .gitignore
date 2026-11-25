@@ -1,2 +1,4 @@
 tools/
 banner.xcf
+!.gitignore
+gitignore
