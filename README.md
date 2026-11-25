@@ -20,8 +20,6 @@ A Windows 7-style RetroBar theme with large centered icons, vertical taskbar opt
 4. Set **Taskbar Location** to **Left** or **Right** (vertical)
 5. Enable **Show window thumbnails** for live previews
 
-> The `Themes/` folder also holds 18 upstream Midnight / Dark Mode themes by Ward Hale. They are reference material only — gitignored, not maintained here, and not part of this project.
-
 ## 🛠️ Customization
 
 ### Start Button Icon
