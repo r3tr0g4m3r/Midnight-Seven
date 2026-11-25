@@ -2225,6 +2225,7 @@
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Path=Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Vertical">
                             <Setter TargetName="QuickLaunchItems" Property="Margin" Value="0,0,0,8" />
+                            <Setter TargetName="QuickLaunchItems" Property="HorizontalAlignment" Value="Center" />
                             <Setter TargetName="QuickLaunchNotch" Property="HorizontalAlignment" Value="Stretch" />
                             <Setter TargetName="QuickLaunchNotch" Property="VerticalAlignment" Value="Bottom" />
                             <Setter TargetName="QuickLaunchNotch" Property="Width" Value="Auto" />
